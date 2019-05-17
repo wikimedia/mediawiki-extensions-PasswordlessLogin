@@ -14,6 +14,9 @@
 	"Hooks": {
 		"LoadExtensionSchemaUpdates": [
 			"PasswordlessLogin\\Hooks::onLoadExtensionSchemaUpdates"
+		],
+		"BeforePageDisplay": [
+			"PasswordlessLogin\\Hooks::onBeforePageDisplay"
 		]
 	},
 	"ServiceWiringFiles": [
@@ -29,6 +32,24 @@
 				"sort": 0
 			}
 		}
+	},
+	"ResourceModules": {
+		"ext.PasswordlessLogin.link.scripts": {
+			"dependencies": [
+				"mediawiki.api"
+			],
+			"scripts": [
+				"ui/jquery.qrcode.min.js",
+				"ui/link.js"
+			],
+			"styles": [
+				"ui/link.css"
+			]
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteExtPath": "PasswordlessLogin"
 	},
 	"manifest_version": 2
 }
