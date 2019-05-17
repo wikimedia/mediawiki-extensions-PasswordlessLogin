@@ -19,6 +19,9 @@
 	"ServiceWiringFiles": [
 		"src/ServiceWiring.php"
 	],
+	"APIModules": {
+		"passwordlesslogin": "PasswordlessLogin\\adapter\\ApiPasswordlessLogin"
+	},
 	"AuthManagerAutoConfig": {
 		"primaryauth": {
 			"PasswordlessLogin\\adapter\\AuthenticationProvider": {

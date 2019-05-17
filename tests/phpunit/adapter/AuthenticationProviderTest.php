@@ -207,4 +207,7 @@ class FakeDevicesRepository implements DevicesRepository {
 	function save( Device $device ) {
 		$this->savedDevice = $device;
 	}
+
+	function findByPairToken( $pairToken ) {
+	}
 }
