@@ -10,7 +10,9 @@ use MediaWikiTestCase;
 use PasswordlessLogin\model\Device;
 use PasswordlessLogin\model\DevicesRepository;
 use PasswordlessLogin\model\LinkRequest;
+use PasswordlessLogin\model\QRCodeRequest;
 use PasswordlessLogin\model\RemoveRequest;
+use RawMessage;
 use StatusValue;
 use User;
 
@@ -93,10 +95,10 @@ class PasswordlessLoginPrimaryAuthenticationProviderTest extends MediaWikiTestCa
 	 */
 	public function testProviderAllowsAuthenticationDataChangeRemoveRequest() {
 		$provider = new AuthenticationProvider();
-		$this->devicesRepository->byUserId = new Device('1');
+		$this->devicesRepository->byUserId = new Device( '1' );
 		$removeRequest = new RemoveRequest();
 		$removeRequest->action = AuthManager::ACTION_REMOVE;
-		$removeRequest->username = 'UTSysOp';
+		$removeRequest->username = 'UTSysop';
 
 		$result = $provider->providerAllowsAuthenticationDataChange( $removeRequest );
 
@@ -124,7 +126,7 @@ class PasswordlessLoginPrimaryAuthenticationProviderTest extends MediaWikiTestCa
 		$this->devicesRepository->byUserId = null;
 		$removeRequest = new RemoveRequest();
 		$removeRequest->action = AuthManager::ACTION_REMOVE;
-		$removeRequest->username = 'UTSysOp';
+		$removeRequest->username = 'UTSysop';
 
 		$result = $provider->providerAllowsAuthenticationDataChange( $removeRequest );
 
@@ -138,7 +140,7 @@ class PasswordlessLoginPrimaryAuthenticationProviderTest extends MediaWikiTestCa
 		$provider = new AuthenticationProvider();
 		$request = new RemoveRequest();
 		$request->action = AuthManager::ACTION_LINK;
-		$request->username = 'UTSysOp';
+		$request->username = 'UTSysop';
 
 		$provider->providerChangeAuthenticationData( $request );
 
@@ -152,11 +154,11 @@ class PasswordlessLoginPrimaryAuthenticationProviderTest extends MediaWikiTestCa
 		$provider = new AuthenticationProvider();
 		$request = new RemoveRequest();
 		$request->action = AuthManager::ACTION_REMOVE;
-		$request->username = 'UTSysOp';
+		$request->username = 'UTSysop';
 
 		$provider->providerChangeAuthenticationData( $request );
 
-		$this->assertEquals( User::newFromName( 'UTSysOp' ), $this->devicesRepository->removedFor );
+		$this->assertEquals( User::newFromName( 'UTSysop' ), $this->devicesRepository->removedFor );
 	}
 
 	/**
@@ -169,11 +171,30 @@ class PasswordlessLoginPrimaryAuthenticationProviderTest extends MediaWikiTestCa
 
 		$this->assertEquals( null, $this->devicesRepository->removedFor );
 	}
+
+	/**
+	 * @covers \PasswordlessLogin\adapter\AuthenticationProvider::beginPrimaryAccountLink
+	 */
+	public function testBeginPrimaryAccountLinkReturnsUI() {
+		$provider = new AuthenticationProvider();
+
+		$result =
+			$provider->beginPrimaryAccountLink( User::newFromName( 'UTSysop' ),
+				[ new LinkRequest() ] );
+
+		$authenticationResponse =
+			AuthenticationResponse::newUI( [ new QRCodeRequest( '' ) ],
+				new RawMessage( 'Pair device' ) );
+		$this->assertEquals( $authenticationResponse->status, $result->status );
+		$this->assertInstanceOf( QRCodeRequest::class, $result->neededRequests[0] );
+		$this->assertNotNull( $this->devicesRepository->savedDevice );
+	}
 }
 
 class FakeDevicesRepository implements DevicesRepository {
 	public $byUserId = null;
 	public $removedFor = null;
+	public $savedDevice = null;
 
 	function findByUserId( $userId ) {
 		return $this->byUserId;
@@ -184,5 +205,6 @@ class FakeDevicesRepository implements DevicesRepository {
 	}
 
 	function save( Device $device ) {
+		$this->savedDevice = $device;
 	}
 }
