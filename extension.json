@@ -1,0 +1,31 @@
+{
+	"name": "PasswordlessLogin",
+	"version": "0.0.1",
+	"author": "Florian Schmidt",
+	"url": "https://www.mediawiki.org/wiki/Extension:PasswordlessLogin",
+	"license-name": "MIT",
+	"type": "auth",
+	"requires": {
+		"MediaWiki": ">= 1.33.0"
+	},
+	"AutoloadNamespaces": {
+		"PasswordlessLogin\\": "src/"
+	},
+	"Hooks": {
+		"LoadExtensionSchemaUpdates": [
+			"PasswordlessLogin\\Hooks::onLoadExtensionSchemaUpdates"
+		]
+	},
+	"ServiceWiringFiles": [
+		"src/ServiceWiring.php"
+	],
+	"AuthManagerAutoConfig": {
+		"primaryauth": {
+			"PasswordlessLogin\\adapter\\AuthenticationProvider": {
+				"class": "PasswordlessLogin\\adapter\\AuthenticationProvider",
+				"sort": 0
+			}
+		}
+	},
+	"manifest_version": 2
+}
