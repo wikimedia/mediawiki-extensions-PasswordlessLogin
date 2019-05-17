@@ -12,10 +12,11 @@ class ApiPasswordlessLogin extends ApiBase {
 		$devicesRepository =
 			MediaWikiServices::getInstance()->getService( DevicesRepository::SERVICE_NAME );
 
-		$this->requirePostedParameters( [ 'pairToken', 'deviceId' ] );
+		$this->requirePostedParameters( [ 'pairToken', 'deviceId', 'secret' ] );
 		$params = $this->extractRequestParams();
 		$pairToken = $params['pairToken'];
 		$deviceId = $params['deviceId'];
+		$secret = $params['secret'];
 
 		$device = $devicesRepository->findByPairToken( $pairToken );
 		if ( $device == null ) {
@@ -27,11 +28,12 @@ class ApiPasswordlessLogin extends ApiBase {
 		}
 
 		$device->setDeviceId( $deviceId );
+		$device->setSecret( $secret );
 		$devicesRepository->save( $device );
 
-		$this->getResult()->addValue(null, 'register', [
+		$this->getResult()->addValue( null, 'register', [
 			'result' => 'Success',
-		]);
+		] );
 	}
 
 	public function getAllowedParams() {
@@ -42,6 +44,10 @@ class ApiPasswordlessLogin extends ApiBase {
 			],
 			'deviceId' => [
 				ApiBase::PARAM_TYPE => 'string',
+				ApiBase::PARAM_REQUIRED => true,
+			],
+			'secret' => [
+				ApiBase::PARAM_TYPE => 'password',
 				ApiBase::PARAM_REQUIRED => true,
 			],
 		];

@@ -29,13 +29,14 @@ class ApiPasswordlessLoginTest extends ApiTestCase {
 		$result = $this->doApiRequest( [
 			'action' => 'passwordlesslogin',
 			'pairToken' => 'invalid',
-			'deviceId' => 'A_DEVICE_ID'
+			'deviceId' => 'A_DEVICE_ID',
+			'secret' => 'A_SECRET',
 		] );
 
 		$this->assertEquals( 'Failed', $result[0]['register']['result'] );
 	}
 
-	public function testFillsDeviceId() {
+	public function testFillsDeviceData() {
 		$device = Device::forUser( User::newFromName( 'UTSysop' ) );
 		$this->deviceRepository->save( $device );
 
@@ -43,10 +44,12 @@ class ApiPasswordlessLoginTest extends ApiTestCase {
 			'action' => 'passwordlesslogin',
 			'pairToken' => $device->getPairToken(),
 			'deviceId' => 'DEVICE_ID',
+			'secret' => 'A_SECRET',
 		] );
 
 		$this->assertEquals( 'Success', $result[0]['register']['result'] );
 		$registeredDevice = $this->deviceRepository->findByUserId( $device->getUserId() );
 		$this->assertEquals( 'DEVICE_ID', $registeredDevice->getDeviceId() );
+		$this->assertEquals( 'A_SECRET', $registeredDevice->getSecret() );
 	}
 }

@@ -9,6 +9,7 @@ class Device {
 	private $deviceId;
 	private $deviceUserId;
 	private $devicePairToken;
+	private $secret;
 
 	public function getDeviceId() {
 		return $this->deviceId;
@@ -18,14 +19,23 @@ class Device {
 		$this->deviceId = $deviceId;
 	}
 
+	public function getSecret() {
+		return $this->secret;
+	}
+
+	public function setSecret( $secret ) {
+		$this->secret = $secret;
+	}
+
 	public function getUserId() {
 		return $this->deviceUserId;
 	}
 
-	public function __construct( $deviceUserId, $deviceId = null, $id = null ) {
+	public function __construct( $deviceUserId, $deviceId = null, $id = null, $secret = null ) {
 		$this->id = $id;
 		$this->deviceId = $deviceId;
 		$this->deviceUserId = $deviceUserId;
+		$this->secret = $secret;
 	}
 
 	static function forUser( User $user ) {
