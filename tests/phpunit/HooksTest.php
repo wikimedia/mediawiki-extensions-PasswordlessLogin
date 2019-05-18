@@ -2,18 +2,29 @@
 
 namespace PasswordlessLogin;
 
+use MediaWikiTestCase;
 use OutputPage;
 use RequestContext;
 use Title;
 
-class HooksTest extends \MediaWikiTestCase {
-	public function testNotAddingOnNonLoginPage() {
+class HooksTest extends MediaWikiTestCase {
+	public function testNotAddingLinksOnNonLoginPage() {
 		$out = new OutputPage(RequestContext::getMain());
 		$out->setTitle(Title::makeTitle(NS_SPECIAL, 'NoLoginPage'));
 
 		Hooks::onBeforePageDisplay($out, RequestContext::getMain()->getSkin());
 
 		$this->assertEquals([], $out->getModules());
+	}
+
+	public function testNotAddingLinksIfNotRequested() {
+		$out = new OutputPage(RequestContext::getMain());
+		$out->setTitle(Title::makeTitle(NS_SPECIAL, 'LinkAccounts'));
+
+		Hooks::$addFrontendModules = true;
+		Hooks::onBeforePageDisplay($out, RequestContext::getMain()->getSkin());
+
+		$this->assertEquals(['ext.PasswordlessLogin.link.scripts'], $out->getModules());
 	}
 
 	public function testAddsLinkModuleOnLinkPage() {
@@ -23,5 +34,33 @@ class HooksTest extends \MediaWikiTestCase {
 		Hooks::onBeforePageDisplay($out, RequestContext::getMain()->getSkin());
 
 		$this->assertEquals(['ext.PasswordlessLogin.link.scripts'], $out->getModules());
+	}
+
+	public function testNotAddingLoginOnNonLoginPage() {
+		$out = new OutputPage(RequestContext::getMain());
+		$out->setTitle(Title::makeTitle(NS_SPECIAL, 'NoLoginPage'));
+
+		Hooks::onBeforePageDisplay($out, RequestContext::getMain()->getSkin());
+
+		$this->assertEquals([], $out->getModules());
+	}
+
+	public function testNotAddingLoginIfNotRequested() {
+		$out = new OutputPage(RequestContext::getMain());
+		$out->setTitle(Title::makeTitle(NS_SPECIAL, 'UserLogin'));
+
+		Hooks::$addFrontendModules = true;
+		Hooks::onBeforePageDisplay($out, RequestContext::getMain()->getSkin());
+
+		$this->assertEquals(['ext.PasswordlessLogin.login'], $out->getModules());
+	}
+
+	public function testAddsLoginModuleOnLinkPage() {
+		$out = new OutputPage(RequestContext::getMain());
+		$out->setTitle(Title::makeTitle(NS_SPECIAL, 'UserLogin'));
+
+		Hooks::onBeforePageDisplay($out, RequestContext::getMain()->getSkin());
+
+		$this->assertEquals(['ext.PasswordlessLogin.login'], $out->getModules());
 	}
 }

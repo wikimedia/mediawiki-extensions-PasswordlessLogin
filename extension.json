@@ -54,6 +54,18 @@
 			"styles": [
 				"ui/link.css"
 			]
+		},
+		"ext.PasswordlessLogin.login": {
+			"dependencies": [
+				"mediawiki.api",
+				"oojs-ui-core.styles"
+			],
+			"scripts": [
+				"ui/login.js"
+			],
+			"styles": [
+				"ui/login.less"
+			]
 		}
 	},
 	"ResourceFileModulePaths": {

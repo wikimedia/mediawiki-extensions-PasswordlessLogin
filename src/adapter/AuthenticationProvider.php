@@ -7,6 +7,7 @@ use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\MediaWikiServices;
+use PasswordlessLogin\Hooks;
 use PasswordlessLogin\model\Challenge;
 use PasswordlessLogin\model\ChallengesRepository;
 use PasswordlessLogin\model\Device;
@@ -68,6 +69,7 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 		$this->challengesRepository->save( $challenge );
 		$this->firebaseMessageSender->send( $device, $challenge );
 
+		Hooks::$addFrontendModules = true;
 		return AuthenticationResponse::newUI( [ new VerifyRequest() ],
 			new RawMessage( 'Please verify your login on your phone.' ) );
 	}
@@ -76,6 +78,7 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 		$device = Device::forUser( $user );
 		$this->devicesRepository->save( $device );
 
+		Hooks::$addFrontendModules = true;
 		return AuthenticationResponse::newUI( [ new QRCodeRequest( $device->getPairToken() ) ],
 			new RawMessage( 'Pair device' ) );
 	}
@@ -92,6 +95,7 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 			return AuthenticationResponse::newFail( wfMessage( 'passwordlesslogin-no-challenge' ) );
 		}
 		if ( $challenge->getSuccess() === false ) {
+			Hooks::$addFrontendModules = true;
 			return AuthenticationResponse::newUI( [ new VerifyRequest() ],
 				new RawMessage( 'Login not verified, yet.' ) );
 		}

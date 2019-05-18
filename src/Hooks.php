@@ -8,6 +8,8 @@ use Skin;
 use Title;
 
 class Hooks {
+	public static $addFrontendModules = false;
+
 	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater = null ) {
 		$sql = __DIR__ . '/sql';
 		$updater->addExtensionUpdate( [ 'addTable', 'passwordlesslogin_devices',
@@ -19,9 +21,14 @@ class Hooks {
 	}
 
 	public static function onBeforePageDisplay( OutputPage &$out, Skin &$skin ) {
-		if (!$out->getTitle()->equals(Title::makeTitle(NS_SPECIAL, 'LinkAccounts'))) {
+		if (!self::$addFrontendModules) {
 			return;
 		}
-		$out->addModules('ext.PasswordlessLogin.link.scripts');
+		if ($out->getTitle()->equals(Title::makeTitle(NS_SPECIAL, 'LinkAccounts'))) {
+			$out->addModules('ext.PasswordlessLogin.link.scripts');
+		}
+		if ($out->getTitle()->equals(Title::makeTitle(NS_SPECIAL, 'UserLogin'))) {
+			$out->addModules('ext.PasswordlessLogin.login');
+		}
 	}
 }
