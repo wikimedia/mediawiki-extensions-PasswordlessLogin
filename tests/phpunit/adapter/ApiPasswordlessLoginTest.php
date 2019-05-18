@@ -44,12 +44,12 @@ class ApiPasswordlessLoginTest extends ApiTestCase {
 			'action' => 'passwordlesslogin',
 			'pairToken' => $device->getPairToken(),
 			'deviceId' => 'DEVICE_ID',
-			'secret' => 'A_SECRET',
+			'secret' => urlencode('A+SECRET'),
 		] );
 
 		$this->assertEquals( 'Success', $result[0]['register']['result'] );
 		$registeredDevice = $this->deviceRepository->findByUserId( $device->getUserId() );
 		$this->assertEquals( 'DEVICE_ID', $registeredDevice->getDeviceId() );
-		$this->assertEquals( 'A_SECRET', $registeredDevice->getSecret() );
+		$this->assertEquals( 'A+SECRET', $registeredDevice->getSecret() );
 	}
 }

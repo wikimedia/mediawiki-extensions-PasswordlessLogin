@@ -19,11 +19,20 @@
 			"PasswordlessLogin\\Hooks::onBeforePageDisplay"
 		]
 	},
+	"ConfigRegistry": {
+		"passwordless": "GlobalVarConfig::newInstance"
+	},
+	"config": {
+		"PLFirebaseAccessToken": {
+			"value": ""
+		}
+	},
 	"ServiceWiringFiles": [
 		"src/ServiceWiring.php"
 	],
 	"APIModules": {
-		"passwordlesslogin": "PasswordlessLogin\\adapter\\ApiPasswordlessLogin"
+		"passwordlesslogin": "PasswordlessLogin\\adapter\\ApiPasswordlessLogin",
+		"passwordlesslogin-verify": "PasswordlessLogin\\adapter\\ApiPasswordlessLoginVerify"
 	},
 	"AuthManagerAutoConfig": {
 		"primaryauth": {

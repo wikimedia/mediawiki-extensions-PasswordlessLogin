@@ -1,6 +1,10 @@
 {
 	"name": "mediawiki/passwordlesslogin",
 	"license": "MIT",
+	"require": {
+		"ext-openssl": "*",
+		"ext-curl": "*"
+	},
 	"require-dev": {
 		"jakub-onderka/php-parallel-lint": "1.0.0",
 		"mediawiki/mediawiki-codesniffer": "24.0.0",

@@ -5,13 +5,18 @@ namespace PasswordlessLogin\adapter;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\Auth\PrimaryAuthenticationProvider;
 use MediaWikiTestCase;
+use PasswordlessLogin\model\Challenge;
+use PasswordlessLogin\model\ChallengesRepository;
 use PasswordlessLogin\model\Device;
 use PasswordlessLogin\model\DevicesRepository;
 use PasswordlessLogin\model\LinkRequest;
+use PasswordlessLogin\model\LoginRequest;
 use PasswordlessLogin\model\QRCodeRequest;
 use PasswordlessLogin\model\RemoveRequest;
+use PasswordlessLogin\model\VerifyRequest;
 use RawMessage;
 use StatusValue;
 use User;
@@ -21,12 +26,18 @@ class PasswordlessLoginPrimaryAuthenticationProviderTest extends MediaWikiTestCa
 	 * @var FakeDevicesRepository
 	 */
 	private $devicesRepository;
+	/**
+	 * @var FakeChallengesRepository
+	 */
+	private $challengesRepository;
 
 	protected function setUp() {
 		parent::setUp();
 
 		$this->devicesRepository = new FakeDevicesRepository();
+		$this->challengesRepository = new FakeChallengesRepository();
 		$this->setService( DevicesRepository::SERVICE_NAME, $this->devicesRepository );
+		$this->setService( ChallengesRepository::SERVICE_NAME, $this->challengesRepository );
 	}
 
 	/**
@@ -60,6 +71,16 @@ class PasswordlessLoginPrimaryAuthenticationProviderTest extends MediaWikiTestCa
 	}
 
 	/**
+	 * @covers \PasswordlessLogin\adapter\AuthenticationProvider::getAuthenticationRequests
+	 */
+	public function testGetAuthenticationRequestsLogin() {
+		$provider = new AuthenticationProvider();
+
+		$this->assertEquals( [ new LoginRequest() ],
+			$provider->getAuthenticationRequests( AuthManager::ACTION_LOGIN, [] ) );
+	}
+
+	/**
 	 * @covers \PasswordlessLogin\adapter\AuthenticationProvider::beginPrimaryAuthentication
 	 */
 	public function testBeginPrimaryAuthentication() {
@@ -67,6 +88,74 @@ class PasswordlessLoginPrimaryAuthenticationProviderTest extends MediaWikiTestCa
 
 		$this->assertEquals( AuthenticationResponse::newAbstain(),
 			$provider->beginPrimaryAuthentication( [] ) );
+	}
+
+	/**
+	 * @covers \PasswordlessLogin\adapter\AuthenticationProvider::beginPrimaryAuthentication
+	 */
+	public function testBeginPrimaryAuthenticationNoDevice() {
+		$provider = new AuthenticationProvider();
+		$request = new LoginRequest();
+		$request->username = 'UTSysop';
+
+		$this->assertEquals( AuthenticationResponse::newAbstain(),
+			$provider->beginPrimaryAuthentication( [ $request ] ) );
+	}
+
+	/**
+	 * @covers \PasswordlessLogin\adapter\AuthenticationProvider::beginPrimaryAuthentication
+	 */
+	public function testBeginPrimaryAuthenticationDevice() {
+		$provider = new AuthenticationProvider();
+		$request = new LoginRequest();
+		$request->username = 'UTSysop';
+		$this->devicesRepository->byUserId = Device::forUser( User::newFromName( 'UTSysop' ) );
+
+		$this->assertEquals( AuthenticationResponse::newUI( [ new VerifyRequest() ],
+			new RawMessage( 'Please verify your login on your phone.' ) ),
+			$provider->beginPrimaryAuthentication( [ $request ] ) );
+	}
+
+	/**
+	 * @covers \PasswordlessLogin\adapter\AuthenticationProvider::continuePrimaryAuthentication
+	 */
+	public function testContinuePrimaryAuthenticationNoChallenge() {
+		$provider = new AuthenticationProvider();
+		$request = new VerifyRequest();
+		$request->username = 'UTSysop';
+		$this->challengesRepository->byUser = null;
+
+		$this->assertEquals( AuthenticationResponse::newFail( wfMessage( 'passwordlesslogin-no-challenge' ) ),
+			$provider->continuePrimaryAuthentication( [ $request ] ) );
+	}
+
+	/**
+	 * @covers \PasswordlessLogin\adapter\AuthenticationProvider::continuePrimaryAuthentication
+	 */
+	public function testContinuePrimaryAuthenticationNotVerified() {
+		$provider = new AuthenticationProvider();
+		$request = new VerifyRequest();
+		$request->username = 'UTSysop';
+		$this->challengesRepository->byUser = Challenge::forUser( User::newFromName( 'UTSysop' ) );
+
+		$this->assertEquals( AuthenticationResponse::newUI( [ new VerifyRequest() ],
+			new RawMessage( 'Login not verified, yet.' ) ),
+			$provider->continuePrimaryAuthentication( [ $request ] ) );
+	}
+
+	/**
+	 * @covers \PasswordlessLogin\adapter\AuthenticationProvider::continuePrimaryAuthentication
+	 */
+	public function testContinuePrimaryAuthenticationSuccess() {
+		$provider = new AuthenticationProvider();
+		$request = new VerifyRequest();
+		$request->username = 'UTSysop';
+		$this->challengesRepository->byUser = Challenge::forUser( User::newFromName( 'UTSysop' ) );
+		$this->challengesRepository->byUser->setSuccess( true );
+
+		$this->assertEquals( AuthenticationResponse::newPass('UTSysop'),
+			$provider->continuePrimaryAuthentication( [ $request ] ) );
+		$this->assertEquals('UTSysop', $this->challengesRepository->removed->getName());
 	}
 
 	/**
@@ -209,5 +298,28 @@ class FakeDevicesRepository implements DevicesRepository {
 	}
 
 	function findByPairToken( $pairToken ) {
+	}
+}
+
+class FakeChallengesRepository implements ChallengesRepository {
+	/** @var Challenge */
+	public $byUser;
+	/**
+	 * @var User
+	 */
+	public $removed;
+
+	public function save( Challenge $challenge ) {
+	}
+
+	public function findByChallenge( $challenge ) {
+	}
+
+	public function findByUser( User $user ) {
+		return $this->byUser;
+	}
+
+	public function remove( User $user ) {
+		$this->removed = $user;
 	}
 }

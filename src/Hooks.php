@@ -10,8 +10,10 @@ use Title;
 class Hooks {
 	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater = null ) {
 		$sql = __DIR__ . '/sql';
-		$schema = "$sql/devices.sql";
-		$updater->addExtensionUpdate( [ 'addTable', 'passwordlesslogin_devices', $schema, true ] );
+		$updater->addExtensionUpdate( [ 'addTable', 'passwordlesslogin_devices',
+			"$sql/devices.sql", true ] );
+		$updater->addExtensionUpdate( [ 'addTable', 'passwordlesslogin_challenges',
+			"$sql/challenges.sql", true ] );
 
 		return true;
 	}
