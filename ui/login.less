@@ -1,13 +1,15 @@
 @import '../../lib/ooui/wikimedia-ui-base';
 
-.login-loading {
+.mw-htmlform-field-HTMLSubmitField::before {
 	width: 24px;
 	height: 24px;
 	border: 5px solid @wmui-color-base50;
 	border-top: 5px solid @wmui-color-accent50;
 	border-radius: 50%;
-	margin: 0 auto;
+	margin: 0 auto 1em;
 	animation: spin 1s linear infinite;
+	content: ' ';
+	display: block;
 }
 
 @keyframes spin {

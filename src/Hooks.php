@@ -29,6 +29,7 @@ class Hooks {
 		}
 		if ($out->getTitle()->equals(Title::makeTitle(NS_SPECIAL, 'UserLogin'))) {
 			$out->addModules('ext.PasswordlessLogin.login');
+			$out->addModuleStyles('ext.PasswordlessLogin.login.styles');
 		}
 	}
 }

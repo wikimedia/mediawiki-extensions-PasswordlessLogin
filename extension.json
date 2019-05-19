@@ -57,12 +57,13 @@
 		},
 		"ext.PasswordlessLogin.login": {
 			"dependencies": [
-				"mediawiki.api",
 				"oojs-ui-core.styles"
 			],
 			"scripts": [
 				"ui/login.js"
-			],
+			]
+		},
+		"ext.PasswordlessLogin.login.styles": {
 			"styles": [
 				"ui/login.less"
 			]

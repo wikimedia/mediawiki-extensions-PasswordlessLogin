@@ -8,11 +8,12 @@ class LoginRequest extends AuthenticationRequest {
 	public function getFieldInfo() {
 		return [
 			'username' => [
-				'type' => 'string'
+				'type' => 'string',
+				'help' => wfMessage( 'authmanager-username-help' ),
 			],
 			'passwordless' => [
 				'type' => 'button',
-				'label' => new \RawMessage('Login with your Smartphone')
+				'label' => new \RawMessage('Login with your Smartphone'),
 			]
 		];
 	}
