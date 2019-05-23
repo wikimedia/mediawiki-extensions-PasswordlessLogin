@@ -10,6 +10,7 @@ use MediaWiki\MediaWikiServices;
 use PasswordlessLogin\Hooks;
 use PasswordlessLogin\model\Challenge;
 use PasswordlessLogin\model\ChallengesRepository;
+use PasswordlessLogin\model\ConfirmRequest;
 use PasswordlessLogin\model\Device;
 use PasswordlessLogin\model\DevicesRepository;
 use PasswordlessLogin\model\LinkRequest;
@@ -22,6 +23,10 @@ use StatusValue;
 use User;
 
 class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
+	const CHALLENGE_SOLVED = 'solved';
+	const CHALLENGE_NO_CHALLENGE = 'noChallenge';
+	const CHALLENGE_FAILED = 'failed';
+
 	/** @var DevicesRepository */
 	private $devicesRepository;
 	/** @var ChallengesRepository */
@@ -61,26 +66,22 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 
 		$user = User::newFromName( $request->username );
 		$device = $this->devicesRepository->findByUserId( $user->getId() );
-		if ( $device == null ) {
+		if ( $device == null || $device->isConfirmed() ) {
 			return AuthenticationResponse::newAbstain();
 		}
-		$this->challengesRepository->remove( $user );
-		$challenge = Challenge::forUser( $user );
-		$this->challengesRepository->save( $challenge );
-		$this->firebaseMessageSender->send( $device, $challenge );
+		$this->newChallenge( $user, $device );
 
 		Hooks::$addFrontendModules = true;
+
 		return AuthenticationResponse::newUI( [ new VerifyRequest() ],
 			new RawMessage( 'Please verify your login on your phone.' ) );
 	}
 
-	public function beginPrimaryAccountLink( $user, array $reqs ) {
-		$device = Device::forUser( $user );
-		$this->devicesRepository->save( $device );
-
-		Hooks::$addFrontendModules = true;
-		return AuthenticationResponse::newUI( [ new QRCodeRequest( $device->getPairToken() ) ],
-			new RawMessage( 'Pair device' ) );
+	private function newChallenge( User $user, Device $device ) {
+		$this->challengesRepository->remove( $user );
+		$challenge = Challenge::forUser( $user );
+		$this->challengesRepository->save( $challenge );
+		$this->firebaseMessageSender->send( $device, $challenge );
 	}
 
 	public function continuePrimaryAuthentication( array $reqs ) {
@@ -90,19 +91,78 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 			return AuthenticationResponse::newFail( wfMessage( 'passwordlesslogin-error-no-authentication-workflow' ) );
 		}
 		$user = User::newFromName( $request->username );
+		switch ( $this->isChallengeSolved( $user ) ) {
+			case self::CHALLENGE_NO_CHALLENGE:
+				return AuthenticationResponse::newFail( wfMessage( 'passwordlesslogin-no-challenge' ) );
+			case self::CHALLENGE_FAILED:
+				Hooks::$addFrontendModules = true;
+
+				return AuthenticationResponse::newUI( [ new VerifyRequest() ],
+					new RawMessage( 'Login not verified, yet.' ) );
+			case self::CHALLENGE_SOLVED:
+				return AuthenticationResponse::newPass( $user->getName() );
+		}
+		return AuthenticationResponse::newAbstain();
+	}
+
+	private function isChallengeSolved( User $user ) {
 		$challenge = $this->challengesRepository->findByUser( $user );
 		if ( $challenge === null ) {
-			return AuthenticationResponse::newFail( wfMessage( 'passwordlesslogin-no-challenge' ) );
+			return self::CHALLENGE_NO_CHALLENGE;
 		}
 		if ( $challenge->getSuccess() === false ) {
-			Hooks::$addFrontendModules = true;
-			return AuthenticationResponse::newUI( [ new VerifyRequest() ],
-				new RawMessage( 'Login not verified, yet.' ) );
+			return self::CHALLENGE_FAILED;
 		}
 
 		$this->challengesRepository->remove( $user );
 
-		return AuthenticationResponse::newPass( $user->getName() );
+		return self::CHALLENGE_SOLVED;
+	}
+
+	public function beginPrimaryAccountLink( $user, array $reqs ) {
+		$device = Device::forUser( $user );
+		$this->devicesRepository->remove( $user );
+		$this->devicesRepository->save( $device );
+
+		Hooks::$addFrontendModules = true;
+
+		return AuthenticationResponse::newUI( [ new QRCodeRequest( $device->getPairToken() ) ],
+			new RawMessage( 'Pair device' ) );
+	}
+
+	public function continuePrimaryAccountLink( $user, array $reqs ) {
+		/** @var QRCodeRequest $request */
+		$request = AuthenticationRequest::getRequestByClass( $reqs, QRCodeRequest::class );
+		if ( $request !== null ) {
+			$device = $this->devicesRepository->findByUserId( $user->getId() );
+			if ( $device == null || $device->getDeviceId() == null ) {
+				Hooks::$addFrontendModules = true;
+
+				return AuthenticationResponse::newUI( [ $request ],
+					new RawMessage( 'No device paired, yet.' ) );
+			}
+
+			$this->newChallenge( $user, $device );
+
+			return AuthenticationResponse::newUI( [ new ConfirmRequest() ],
+				new RawMessage( 'Verify login on your smartphone' ) );
+		}
+
+		/** @var ConfirmRequest $request */
+		$request = AuthenticationRequest::getRequestByClass( $reqs, ConfirmRequest::class );
+		if ( $request !== null ) {
+			switch ( $this->isChallengeSolved( $user ) ) {
+				case self::CHALLENGE_NO_CHALLENGE:
+					return AuthenticationResponse::newFail( wfMessage( 'passwordlesslogin-no-challenge' ) );
+				case self::CHALLENGE_FAILED:
+					return AuthenticationResponse::newUI( $reqs,
+						new RawMessage( 'Verify login on your smartphone' ) );
+				case self::CHALLENGE_SOLVED:
+					return AuthenticationResponse::newPass();
+			}
+		}
+
+		return AuthenticationResponse::newFail( wfMessage( 'passwordlesslogin-error-no-authentication-workflow' ) );
 	}
 
 	public function testUserExists( $username, $flags = User::READ_NORMAL ) {

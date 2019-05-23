@@ -10,6 +10,7 @@ class Device {
 	private $deviceUserId;
 	private $devicePairToken;
 	private $secret;
+	private $confirmed = false;
 
 	public function getDeviceId() {
 		return $this->deviceId;
@@ -31,11 +32,14 @@ class Device {
 		return $this->deviceUserId;
 	}
 
-	public function __construct( $deviceUserId, $deviceId = null, $id = null, $secret = null ) {
+	public function __construct(
+		$deviceUserId, $deviceId = null, $id = null, $secret = null, $confirmed = false
+	) {
 		$this->id = $id;
 		$this->deviceId = $deviceId;
 		$this->deviceUserId = $deviceUserId;
 		$this->secret = $secret;
+		$this->confirmed = $confirmed;
 	}
 
 	static function forUser( User $user ) {
@@ -47,5 +51,13 @@ class Device {
 
 	public function getPairToken() {
 		return $this->devicePairToken;
+	}
+
+	public function confirm() {
+		$this->confirmed = true;
+	}
+
+	public function isConfirmed() {
+		return $this->confirmed;
 	}
 }

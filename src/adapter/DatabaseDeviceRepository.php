@@ -10,7 +10,7 @@ use Wikimedia\Rdbms\LoadBalancer;
 
 class DatabaseDeviceRepository implements DevicesRepository {
 	const TABLE_NAME = 'passwordlesslogin_devices';
-	const FETCH_FIELDS = [ 'id', 'device_id', 'device_user_id', 'secret' ];
+	const FETCH_FIELDS = [ 'id', 'device_id', 'device_user_id', 'secret', 'confirmed' ];
 	private $loadBalancer;
 
 	public function __construct( LoadBalancer $loadBalancer ) {
@@ -57,7 +57,7 @@ class DatabaseDeviceRepository implements DevicesRepository {
 		$device = $result->fetchObject();
 
 		return new Device( (int)$device->device_user_id, $device->device_id, $device->id,
-			$device->secret );
+			$device->secret, $device->confirmed );
 	}
 
 	private function insertDevice( Device $device ) {
@@ -67,6 +67,7 @@ class DatabaseDeviceRepository implements DevicesRepository {
 			'device_id' => $device->getDeviceId(),
 			'device_pair_token' => $device->getPairToken(),
 			'secret' => $device->getSecret(),
+			'confirmed' => $device->isConfirmed(),
 		] );
 	}
 
@@ -76,6 +77,7 @@ class DatabaseDeviceRepository implements DevicesRepository {
 			'device_id' => $device->getDeviceId(),
 			'secret' => $device->getSecret(),
 			'device_pair_token' => null,
+			'confirmed' => $device->isConfirmed(),
 		], [
 			'device_user_id' => $device->getUserId(),
 		] );

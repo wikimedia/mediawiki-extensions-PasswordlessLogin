@@ -35,4 +35,18 @@ class DeviceTest extends MediaWikiTestCase {
 
 		$this->assertNotEquals($device->getPairToken(), $secondDevice->getPairToken());
 	}
+
+	public function testIsNotConfirmed() {
+		$device = new Device(1);
+
+		$this->assertFalse($device->isConfirmed());
+	}
+
+	public function testIsConfirmed() {
+		$device = new Device(1);
+
+		$device->confirm();
+
+		$this->assertTrue($device->isConfirmed());
+	}
 }

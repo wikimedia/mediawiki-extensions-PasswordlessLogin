@@ -31,6 +31,7 @@ class DatabaseDeviceRepositoryTest extends MediaWikiTestCase {
 	public function testPersistsData() {
 		$user = User::newFromName( 'UTSysop' );
 		$device = new Device( $user->getId(), 'A_DEVICE_ID' );
+		$device->confirm();
 		$device->setSecret( 'A_SECRET' );
 
 		$this->repository->save( $device );
@@ -39,6 +40,7 @@ class DatabaseDeviceRepositoryTest extends MediaWikiTestCase {
 		$this->assertEquals( $device->getDeviceId(), $result->getDeviceId() );
 		$this->assertEquals( $device->getUserId(), $result->getUserId() );
 		$this->assertEquals( $device->getSecret(), $result->getSecret() );
+		$this->assertEquals( $device->isConfirmed(), $result->isConfirmed() );
 	}
 
 	public function testNoEntry() {

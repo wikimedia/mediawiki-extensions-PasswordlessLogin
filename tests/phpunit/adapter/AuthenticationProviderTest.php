@@ -5,11 +5,11 @@ namespace PasswordlessLogin\adapter;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
-use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\Auth\PrimaryAuthenticationProvider;
 use MediaWikiTestCase;
 use PasswordlessLogin\model\Challenge;
 use PasswordlessLogin\model\ChallengesRepository;
+use PasswordlessLogin\model\ConfirmRequest;
 use PasswordlessLogin\model\Device;
 use PasswordlessLogin\model\DevicesRepository;
 use PasswordlessLogin\model\LinkRequest;
@@ -36,8 +36,10 @@ class PasswordlessLoginPrimaryAuthenticationProviderTest extends MediaWikiTestCa
 
 		$this->devicesRepository = new FakeDevicesRepository();
 		$this->challengesRepository = new FakeChallengesRepository();
+		$this->fakeFirebase = new FakeFirebase();
 		$this->setService( DevicesRepository::SERVICE_NAME, $this->devicesRepository );
 		$this->setService( ChallengesRepository::SERVICE_NAME, $this->challengesRepository );
+		$this->setService( FirebaseMessageSender::SERVICE_NAME, $this->fakeFirebase );
 	}
 
 	/**
@@ -153,9 +155,9 @@ class PasswordlessLoginPrimaryAuthenticationProviderTest extends MediaWikiTestCa
 		$this->challengesRepository->byUser = Challenge::forUser( User::newFromName( 'UTSysop' ) );
 		$this->challengesRepository->byUser->setSuccess( true );
 
-		$this->assertEquals( AuthenticationResponse::newPass('UTSysop'),
+		$this->assertEquals( AuthenticationResponse::newPass( 'UTSysop' ),
 			$provider->continuePrimaryAuthentication( [ $request ] ) );
-		$this->assertEquals('UTSysop', $this->challengesRepository->removed->getName());
+		$this->assertEquals( 'UTSysop', $this->challengesRepository->removed->getName() );
 	}
 
 	/**
@@ -272,17 +274,85 @@ class PasswordlessLoginPrimaryAuthenticationProviderTest extends MediaWikiTestCa
 				[ new LinkRequest() ] );
 
 		$authenticationResponse =
-			AuthenticationResponse::newUI( [ new QRCodeRequest( '' ) ],
+			AuthenticationResponse::newUI( [ new QRCodeRequest( $this->devicesRepository->savedDevice->getPairToken() ) ],
 				new RawMessage( 'Pair device' ) );
-		$this->assertEquals( $authenticationResponse->status, $result->status );
-		$this->assertInstanceOf( QRCodeRequest::class, $result->neededRequests[0] );
-		$this->assertNotNull( $this->devicesRepository->savedDevice );
+		$this->assertEquals( $authenticationResponse, $result );
+	}
+
+	/**
+	 * @covers \PasswordlessLogin\adapter\AuthenticationProvider::beginPrimaryAccountLink
+	 */
+	public function testContinuePrimaryAccountLinkNoDeviceReturnsUI() {
+		$provider = new AuthenticationProvider();
+
+		$result =
+			$provider->continuePrimaryAccountLink( User::newFromName( 'UTSysop' ),
+				[ new QRCodeRequest( 'A_PAIR_TOKEN' ) ] );
+
+		$authenticationResponse =
+			AuthenticationResponse::newUI( [ new QRCodeRequest( 'A_PAIR_TOKEN' ) ],
+				new RawMessage( 'No device paired, yet.' ) );
+		$this->assertEquals( $authenticationResponse, $result );
+	}
+
+	/**
+	 * @covers \PasswordlessLogin\adapter\AuthenticationProvider::beginPrimaryAccountLink
+	 */
+	public function testContinuePrimaryAccountLinkDeviceReturnsConfirmUI() {
+		$provider = new AuthenticationProvider();
+		$user = User::newFromName( 'UTSysop' );
+		$this->devicesRepository->byUserId = Device::forUser( $user );
+		$this->devicesRepository->byUserId->setDeviceId("A_DEVICE_ID");
+
+		$result =
+			$provider->continuePrimaryAccountLink( $user,
+				[ new QRCodeRequest( 'A_PAIR_TOKEN' ) ] );
+
+		$authenticationResponse =
+			AuthenticationResponse::newUI( [ new ConfirmRequest() ],
+				new RawMessage( 'Verify login on your smartphone' ) );
+		$this->assertEquals( $authenticationResponse, $result );
+	}
+
+	/**
+	 * @covers \PasswordlessLogin\adapter\AuthenticationProvider::beginPrimaryAccountLink
+	 */
+	public function testContinuePrimaryAccountLinkNotConfirmedUI() {
+		$provider = new AuthenticationProvider();
+		$user = User::newFromName( 'UTSysop' );
+		$this->devicesRepository->byUserId = Device::forUser( $user );
+		$this->challengesRepository->byUser = Challenge::forUser( $user );
+
+		$result = $provider->continuePrimaryAccountLink( $user, [ new ConfirmRequest() ] );
+
+		$authenticationResponse =
+			AuthenticationResponse::newUI( [ new ConfirmRequest() ],
+				new RawMessage( 'Verify login on your smartphone' ) );
+		$this->assertEquals( $authenticationResponse, $result );
+	}
+
+	/**
+	 * @covers \PasswordlessLogin\adapter\AuthenticationProvider::beginPrimaryAccountLink
+	 */
+	public function testContinuePrimaryAccountLinkConfirmedSuccess() {
+		$provider = new AuthenticationProvider();
+		$user = User::newFromName( 'UTSysop' );
+		$this->devicesRepository->byUserId = Device::forUser( $user );
+		$this->challengesRepository->byUser = Challenge::forUser( $user );
+		$this->challengesRepository->byUser->setSuccess(true);
+
+		$result = $provider->continuePrimaryAccountLink( $user, [ new ConfirmRequest() ] );
+
+		$authenticationResponse = AuthenticationResponse::newPass();
+		$this->assertEquals( $authenticationResponse, $result );
 	}
 }
 
 class FakeDevicesRepository implements DevicesRepository {
+	/** @var Device|null */
 	public $byUserId = null;
 	public $removedFor = null;
+	/** @var Device|null */
 	public $savedDevice = null;
 
 	function findByUserId( $userId ) {
@@ -321,5 +391,14 @@ class FakeChallengesRepository implements ChallengesRepository {
 
 	public function remove( User $user ) {
 		$this->removed = $user;
+	}
+}
+
+class FakeFirebase extends FirebaseMessageSender {
+	public function __construct() {
+		parent::__construct( \GlobalVarConfig::newInstance(), "" );
+	}
+
+	public function send( Device $device, Challenge $challenge ) {
 	}
 }
