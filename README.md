@@ -5,6 +5,8 @@ This allows users to login easier and it also may be a good way to fight against
 
 The extension verifies the login to the MediaWiki application by answering a randomly generated challenge with a pre-shared secret key, hashed by a modern and secure hash algorithm.
 
+This extension requires the [gd PHP extension](https://www.php.net/manual/de/book.image.php) to be installed in order to generate a QR Code for a user to pair their device.
+
 ## Android app
 
 This extension requires an app being installed on the users smartphone.
@@ -17,11 +19,3 @@ There's no iOS app for now, feel free to create one ;)
 ## Demo
 
 The extension can be seen live (on a local development environment) in [this YouTube video](https://youtu.be/7QXdG_Bl3k4).
-
-## jquery.qrcode.min.js
-
-The JQuery plugin actually creating the QR Code for the user to scan is from:
-
- https://jeromeetienne.github.io/jquery-qrcode/
-
-licensed under the [MIT license](https://github.com/jeromeetienne/jquery-qrcode/blob/master/MIT-LICENSE.txt). 

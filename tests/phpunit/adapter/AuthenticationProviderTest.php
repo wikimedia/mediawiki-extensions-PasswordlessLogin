@@ -17,7 +17,6 @@ use PasswordlessLogin\model\LoginRequest;
 use PasswordlessLogin\model\QRCodeRequest;
 use PasswordlessLogin\model\RemoveRequest;
 use PasswordlessLogin\model\VerifyRequest;
-use RawMessage;
 use StatusValue;
 use User;
 
@@ -114,7 +113,7 @@ class PasswordlessLoginPrimaryAuthenticationProviderTest extends MediaWikiTestCa
 		$this->devicesRepository->byUserId = Device::forUser( User::newFromName( 'UTSysop' ) );
 
 		$this->assertEquals( AuthenticationResponse::newUI( [ new VerifyRequest() ],
-			new RawMessage( 'Please verify your login on your phone.' ) ),
+			wfMessage( 'passwordlesslogin-verify-request' ) ),
 			$provider->beginPrimaryAuthentication( [ $request ] ) );
 	}
 
@@ -141,7 +140,7 @@ class PasswordlessLoginPrimaryAuthenticationProviderTest extends MediaWikiTestCa
 		$this->challengesRepository->byUser = Challenge::forUser( User::newFromName( 'UTSysop' ) );
 
 		$this->assertEquals( AuthenticationResponse::newUI( [ new VerifyRequest() ],
-			new RawMessage( 'Login not verified, yet.' ) ),
+			wfMessage( 'passwordlesslogin-verification-pending' ) ),
 			$provider->continuePrimaryAuthentication( [ $request ] ) );
 	}
 
@@ -275,7 +274,7 @@ class PasswordlessLoginPrimaryAuthenticationProviderTest extends MediaWikiTestCa
 
 		$authenticationResponse =
 			AuthenticationResponse::newUI( [ new QRCodeRequest( $this->devicesRepository->savedDevice->getPairToken() ) ],
-				new RawMessage( 'Pair device' ) );
+				wfMessage( 'passwordlesslogin-pair-device-step' ) );
 		$this->assertEquals( $authenticationResponse, $result );
 	}
 
@@ -291,7 +290,7 @@ class PasswordlessLoginPrimaryAuthenticationProviderTest extends MediaWikiTestCa
 
 		$authenticationResponse =
 			AuthenticationResponse::newUI( [ new QRCodeRequest( 'A_PAIR_TOKEN' ) ],
-				new RawMessage( 'No device paired, yet.' ) );
+				wfMessage( 'passwordlesslogin-no-device-paired' ) );
 		$this->assertEquals( $authenticationResponse, $result );
 	}
 
@@ -302,15 +301,14 @@ class PasswordlessLoginPrimaryAuthenticationProviderTest extends MediaWikiTestCa
 		$provider = new AuthenticationProvider();
 		$user = User::newFromName( 'UTSysop' );
 		$this->devicesRepository->byUserId = Device::forUser( $user );
-		$this->devicesRepository->byUserId->setDeviceId("A_DEVICE_ID");
+		$this->devicesRepository->byUserId->setDeviceId( "A_DEVICE_ID" );
 
 		$result =
-			$provider->continuePrimaryAccountLink( $user,
-				[ new QRCodeRequest( 'A_PAIR_TOKEN' ) ] );
+			$provider->continuePrimaryAccountLink( $user, [ new QRCodeRequest( 'A_PAIR_TOKEN' ) ] );
 
 		$authenticationResponse =
 			AuthenticationResponse::newUI( [ new ConfirmRequest() ],
-				new RawMessage( 'Verify login on your smartphone' ) );
+				wfMessage( 'passwordlesslogin-verify-pair' ) );
 		$this->assertEquals( $authenticationResponse, $result );
 	}
 
@@ -327,7 +325,7 @@ class PasswordlessLoginPrimaryAuthenticationProviderTest extends MediaWikiTestCa
 
 		$authenticationResponse =
 			AuthenticationResponse::newUI( [ new ConfirmRequest() ],
-				new RawMessage( 'Verify login on your smartphone' ) );
+				wfMessage( 'passwordlesslogin-verify-pair' ) );
 		$this->assertEquals( $authenticationResponse, $result );
 	}
 
@@ -339,7 +337,7 @@ class PasswordlessLoginPrimaryAuthenticationProviderTest extends MediaWikiTestCa
 		$user = User::newFromName( 'UTSysop' );
 		$this->devicesRepository->byUserId = Device::forUser( $user );
 		$this->challengesRepository->byUser = Challenge::forUser( $user );
-		$this->challengesRepository->byUser->setSuccess(true);
+		$this->challengesRepository->byUser->setSuccess( true );
 
 		$result = $provider->continuePrimaryAccountLink( $user, [ new ConfirmRequest() ] );
 

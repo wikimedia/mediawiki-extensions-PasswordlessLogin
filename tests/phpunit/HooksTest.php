@@ -17,25 +17,6 @@ class HooksTest extends MediaWikiTestCase {
 		$this->assertEquals([], $out->getModules());
 	}
 
-	public function testNotAddingLinksIfNotRequested() {
-		$out = new OutputPage(RequestContext::getMain());
-		$out->setTitle(Title::makeTitle(NS_SPECIAL, 'LinkAccounts'));
-
-		Hooks::$addFrontendModules = true;
-		Hooks::onBeforePageDisplay($out, RequestContext::getMain()->getSkin());
-
-		$this->assertEquals(['ext.PasswordlessLogin.link.scripts'], $out->getModules());
-	}
-
-	public function testAddsLinkModuleOnLinkPage() {
-		$out = new OutputPage(RequestContext::getMain());
-		$out->setTitle(Title::makeTitle(NS_SPECIAL, 'LinkAccounts'));
-
-		Hooks::onBeforePageDisplay($out, RequestContext::getMain()->getSkin());
-
-		$this->assertEquals(['ext.PasswordlessLogin.link.scripts'], $out->getModules());
-	}
-
 	public function testNotAddingLoginOnNonLoginPage() {
 		$out = new OutputPage(RequestContext::getMain());
 		$out->setTitle(Title::makeTitle(NS_SPECIAL, 'NoLoginPage'));

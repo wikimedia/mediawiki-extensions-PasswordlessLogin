@@ -24,6 +24,9 @@
 		],
 		"BeforePageDisplay": [
 			"PasswordlessLogin\\Hooks::onBeforePageDisplay"
+		],
+		"AuthChangeFormFields": [
+			"PasswordlessLogin\\Hooks::onAuthChangeFormFields"
 		]
 	},
 	"ConfigRegistry": {
@@ -50,18 +53,6 @@
 		}
 	},
 	"ResourceModules": {
-		"ext.PasswordlessLogin.link.scripts": {
-			"dependencies": [
-				"mediawiki.api"
-			],
-			"scripts": [
-				"ui/jquery.qrcode.min.js",
-				"ui/link.js"
-			],
-			"styles": [
-				"ui/link.css"
-			]
-		},
 		"ext.PasswordlessLogin.login": {
 			"dependencies": [
 				"oojs-ui-core.styles"
