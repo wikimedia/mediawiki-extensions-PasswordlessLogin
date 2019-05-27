@@ -13,8 +13,8 @@ class LoginRequest extends AuthenticationRequest {
 			],
 			'passwordless' => [
 				'type' => 'button',
-				'label' => new \RawMessage('Login with your Smartphone'),
-			]
+				'label' => wfMessage( 'passwordlesslogin-login' ),
+			],
 		];
 	}
 }

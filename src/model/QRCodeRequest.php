@@ -7,7 +7,7 @@ use MediaWiki\Auth\AuthenticationRequest;
 class QRCodeRequest extends AuthenticationRequest {
 	public $pairToken;
 
-	public function __construct($pairToken) {
+	public function __construct( $pairToken ) {
 		$this->pairToken = $pairToken;
 	}
 
@@ -15,19 +15,19 @@ class QRCodeRequest extends AuthenticationRequest {
 		return [
 			'firstStep' => [
 				'type' => 'null',
-				'value' => '1. Download the MediaWiki PasswordlessLogin app',
+				'label' => wfMessage( 'passwordlesslogin-pair-step-1' ),
 			],
 			'secondStep' => [
 				'type' => 'null',
-				'value' => '2. Scan the QR Code (JavaScript required) with the app',
+				'label' => wfMessage( 'passwordlesslogin-pair-step-2' ),
 			],
 			'pairToken' => [
 				'type' => 'hidden',
-				'value' => $this->pairToken
+				'value' => $this->pairToken,
 			],
 			'thirdStep' => [
 				'type' => 'null',
-				'value' => '3. Once the app is setup, click the button',
+				'label' => wfMessage( 'passwordlesslogin-pair-step-3' ),
 			],
 		];
 	}

@@ -3,13 +3,12 @@
 namespace PasswordlessLogin\model;
 
 use MediaWiki\Auth\AuthenticationRequest;
-use RawMessage;
 
 class RemoveRequest extends AuthenticationRequest {
 	public function describeCredentials() {
 		return [
-			'provider' => new RawMessage('PasswordlessLogin'),
-			'account' => 'Authentication App'
+			'provider' => wfMessage( 'passwordlesslogin' ),
+			'account' => wfMessage( 'passwordlesslogin-authentication-app' ),
 		];
 	}
 

@@ -3,6 +3,8 @@
 	"version": "0.0.1",
 	"author": "Florian Schmidt",
 	"url": "https://www.mediawiki.org/wiki/Extension:PasswordlessLogin",
+	"descriptionmsg": "passwordlesslogin-desc",
+	"namemsg": "passwordlesslogin",
 	"license-name": "MIT",
 	"type": "auth",
 	"requires": {
@@ -10,6 +12,11 @@
 	},
 	"AutoloadNamespaces": {
 		"PasswordlessLogin\\": "src/"
+	},
+	"MessagesDirs": {
+		"PasswordlessLogin": [
+			"i18n"
+		]
 	},
 	"Hooks": {
 		"LoadExtensionSchemaUpdates": [

@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Florian Schmidt"
+		]
+	},
+	"passwordlesslogin": "Passwordless Login",
+	"passwordlesslogin-desc": "Provides a way to login without a password by confirming the login on a connected device.",
+	"passwordlesslogin-verify-request": "Please verify your login on your phone.",
+	"passwordlesslogin-error-no-authentication-workflow": "Authentication workflow ended unexpectedly.",
+	"passwordlesslogin-no-challenge": "No active challenge to confirm, please try to authenticate again.",
+	"passwordlesslogin-verification-pending": "The authentication was not verified, yet. Please verify your login request on your connected device.",
+	"passwordlesslogin-pair-device-step": "Please follow the instructions to pair your new device.",
+	"passwordlesslogin-no-device-paired": "There is no device paired, yet.",
+	"passwordlesslogin-verify-pair": "We've send a login request to your device to verify that it is registered correctly. Please confirm the request and continue.",
+	"passwordlesslogin-pair-device": "Pair device for passwordless login",
+	"passwordlesslogin-login": "Login with your Smartphone",
+	"passwordlesslogin-pair-step-1": "1. Download the MediaWiki PasswordlessLogin app",
+	"passwordlesslogin-pair-step-2": "2. Scan the QR Code with the app",
+	"passwordlesslogin-pair-step-3": "3. Once the app setup is finished, continue to the next step",
+	"passwordlesslogin-authentication-app": "Authentication App"
+}

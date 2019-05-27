@@ -18,7 +18,6 @@ use PasswordlessLogin\model\LoginRequest;
 use PasswordlessLogin\model\QRCodeRequest;
 use PasswordlessLogin\model\RemoveRequest;
 use PasswordlessLogin\model\VerifyRequest;
-use RawMessage;
 use StatusValue;
 use User;
 
@@ -74,7 +73,7 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 		Hooks::$addFrontendModules = true;
 
 		return AuthenticationResponse::newUI( [ new VerifyRequest() ],
-			new RawMessage( 'Please verify your login on your phone.' ) );
+			wfMessage( 'passwordlesslogin-verify-request' ) );
 	}
 
 	private function newChallenge( User $user, Device $device ) {
@@ -98,10 +97,11 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 				Hooks::$addFrontendModules = true;
 
 				return AuthenticationResponse::newUI( [ new VerifyRequest() ],
-					new RawMessage( 'Login not verified, yet.' ) );
+					wfMessage( 'passwordlesslogin-verification-pending' ) );
 			case self::CHALLENGE_SOLVED:
 				return AuthenticationResponse::newPass( $user->getName() );
 		}
+
 		return AuthenticationResponse::newAbstain();
 	}
 
@@ -127,7 +127,7 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 		Hooks::$addFrontendModules = true;
 
 		return AuthenticationResponse::newUI( [ new QRCodeRequest( $device->getPairToken() ) ],
-			new RawMessage( 'Pair device' ) );
+			wfMessage( 'passwordlesslogin-pair-device-step' ) );
 	}
 
 	public function continuePrimaryAccountLink( $user, array $reqs ) {
@@ -139,13 +139,13 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 				Hooks::$addFrontendModules = true;
 
 				return AuthenticationResponse::newUI( [ $request ],
-					new RawMessage( 'No device paired, yet.' ) );
+					wfMessage( 'passwordlesslogin-no-device-paired' ) );
 			}
 
 			$this->newChallenge( $user, $device );
 
 			return AuthenticationResponse::newUI( [ new ConfirmRequest() ],
-				new RawMessage( 'Verify login on your smartphone' ) );
+				wfMessage( 'passwordlesslogin-verify-pair' ) );
 		}
 
 		/** @var ConfirmRequest $request */
@@ -156,7 +156,7 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 					return AuthenticationResponse::newFail( wfMessage( 'passwordlesslogin-no-challenge' ) );
 				case self::CHALLENGE_FAILED:
 					return AuthenticationResponse::newUI( $reqs,
-						new RawMessage( 'Verify login on your smartphone' ) );
+						wfMessage( 'passwordlesslogin-verify-pair' ) );
 				case self::CHALLENGE_SOLVED:
 					return AuthenticationResponse::newPass();
 			}
