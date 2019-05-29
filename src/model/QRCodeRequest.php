@@ -5,6 +5,7 @@ namespace PasswordlessLogin\model;
 use Endroid\QrCode\QrCode;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\MediaWikiServices;
+use PasswordlessLogin\Hooks;
 
 class QRCodeRequest extends AuthenticationRequest {
 	public $pairToken;
@@ -18,7 +19,7 @@ class QRCodeRequest extends AuthenticationRequest {
 		$config =
 			MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'passwordless' );
 
-		$apiUrl = constructApiUrl( $mainConfig, $config );
+		$apiUrl = Hooks::constructApiUrl( $mainConfig, $config );
 		$accountName = $mainConfig->get( 'Sitename' );
 		$qrCode = new QrCode( $accountName . ';' . $apiUrl . ';' . $this->pairToken );
 
@@ -26,6 +27,9 @@ class QRCodeRequest extends AuthenticationRequest {
 			'firstStep' => [
 				'type' => 'null',
 				'label' => wfMessage( 'passwordlesslogin-pair-step-1' ),
+			],
+			'googleplay' => [
+				'type' => 'null',
 			],
 			'secondStep' => [
 				'type' => 'null',

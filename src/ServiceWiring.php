@@ -1,5 +1,6 @@
 <?php
 
+use PasswordlessLogin\Hooks;
 use MediaWiki\MediaWikiServices;
 use PasswordlessLogin\adapter\DatabaseChallengesRepository;
 use PasswordlessLogin\adapter\DatabaseDeviceRepository;
@@ -20,7 +21,7 @@ return [
 		$config = $services->getConfigFactory()->makeConfig( 'passwordless' );
 		$mainConfig = $services->getMainConfig();
 
-		$apiUrl = constructApiUrl( $mainConfig, $config );
+		$apiUrl = Hooks::constructApiUrl( $mainConfig, $config );
 
 		return new FirebaseMessageSender( $config, $apiUrl );
 	},

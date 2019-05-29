@@ -2,16 +2,28 @@
 
 namespace PasswordlessLogin;
 
+use Config;
 use DatabaseUpdater;
 use MediaWiki\Auth\AuthenticationRequest;
 use OutputPage;
 use PasswordlessLogin\adapter\HTMLImageField;
+use PasswordlessLogin\adapter\HTMLPlayStoreField;
 use PasswordlessLogin\model\QRCodeRequest;
 use Skin;
 use Title;
 
 class Hooks {
 	public static $addFrontendModules = false;
+
+	public static function constructApiUrl( Config $mainConfig, Config $config ) {
+		if ( $config->has( 'PLDevApiUrl' ) ) {
+			$apiUrl = $config->get( 'PLDevApiUrl' );
+		} else {
+			$apiUrl = $mainConfig->get( 'Server' ) . wfScript( 'api' );
+		}
+
+		return $apiUrl;
+	}
 
 	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater = null ) {
 		$sql = __DIR__ . '/sql';
@@ -52,5 +64,7 @@ class Hooks {
 
 		$formDescriptor['qrCode']['class'] = HTMLImageField::class;
 		$formDescriptor['qrCode']['data-uri'] = $formDescriptor['qrCode']['default'];
+
+		$formDescriptor['googleplay']['class'] = HTMLPlayStoreField::class;
 	}
 }
