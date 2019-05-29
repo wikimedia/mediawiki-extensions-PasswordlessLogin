@@ -11,7 +11,7 @@ class DeviceTest extends MediaWikiTestCase {
 	 * @covers \PasswordlessLogin\model\Device::forUser
 	 */
 	public function testForUser() {
-		$user = User::newFromName( 'UTSysOp' );
+		$user = User::newFromName( 'UTSysop' );
 		$user->setId( 1 );
 
 		$device = Device::forUser( $user );
@@ -27,7 +27,7 @@ class DeviceTest extends MediaWikiTestCase {
 	}
 
 	public function testForUserUnique() {
-		$user = User::newFromName( 'UTSysOp' );
+		$user = User::newFromName( 'UTSysop' );
 		$user->setId( 1 );
 
 		$device = Device::forUser( $user );

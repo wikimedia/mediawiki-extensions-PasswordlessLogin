@@ -124,8 +124,6 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 		$this->devicesRepository->remove( $user );
 		$this->devicesRepository->save( $device );
 
-		Hooks::$addFrontendModules = true;
-
 		return AuthenticationResponse::newUI( [ new QRCodeRequest( $device->getPairToken() ) ],
 			wfMessage( 'passwordlesslogin-pair-device-step' ) );
 	}
@@ -136,8 +134,6 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 		if ( $request !== null ) {
 			$device = $this->devicesRepository->findByUserId( $user->getId() );
 			if ( $device == null || $device->getDeviceId() == null ) {
-				Hooks::$addFrontendModules = true;
-
 				return AuthenticationResponse::newUI( [ $request ],
 					wfMessage( 'passwordlesslogin-no-device-paired' ) );
 			}

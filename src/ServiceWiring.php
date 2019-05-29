@@ -18,13 +18,9 @@ return [
 
 	FirebaseMessageSender::SERVICE_NAME => function ( MediaWikiServices $services ) {
 		$config = $services->getConfigFactory()->makeConfig( 'passwordless' );
-		$apiUrl = '';
-		if ( $config->has( 'PLDevApiUrl' ) ) {
-			$apiUrl = $config->get( 'PLDevApiUrl' );
-		} else {
-			$mainConfig = $services->getMainConfig();
-			$apiUrl = $mainConfig->get( 'Server' ) . wfScript( 'api' );
-		}
+		$mainConfig = $services->getMainConfig();
+
+		$apiUrl = constructApiUrl( $mainConfig, $config );
 
 		return new FirebaseMessageSender( $config, $apiUrl );
 	},

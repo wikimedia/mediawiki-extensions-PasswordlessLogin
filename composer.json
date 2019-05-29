@@ -3,7 +3,8 @@
 	"license": "MIT",
 	"require": {
 		"ext-openssl": "*",
-		"ext-curl": "*"
+		"ext-curl": "*",
+		"endroid/qr-code": "3.6.1"
 	},
 	"require-dev": {
 		"jakub-onderka/php-parallel-lint": "1.0.0",
