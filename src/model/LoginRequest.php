@@ -5,6 +5,9 @@ namespace PasswordlessLogin\model;
 use MediaWiki\Auth\AuthenticationRequest;
 
 class LoginRequest extends AuthenticationRequest {
+	/** @var string Password */
+	public $password = null;
+
 	/**
 	 * @inheritDoc
 	 */
@@ -14,9 +17,9 @@ class LoginRequest extends AuthenticationRequest {
 				'type' => 'string',
 				'help' => wfMessage( 'authmanager-username-help' ),
 			],
-			'passwordless' => [
-				'type' => 'button',
-				'label' => wfMessage( 'passwordlesslogin-login' ),
+			'password' => [
+				'type' => 'password',
+				'optional' => true,
 			],
 		];
 	}

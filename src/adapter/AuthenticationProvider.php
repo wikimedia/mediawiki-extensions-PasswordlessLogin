@@ -68,6 +68,9 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 		if ( $request === null ) {
 			return AuthenticationResponse::newAbstain();
 		}
+		if ( $request->password !== '' ) {
+			return AuthenticationResponse::newAbstain();
+		}
 
 		$user = User::newFromName( $request->username );
 		$device = $this->devicesRepository->findByUserId( $user->getId() );
