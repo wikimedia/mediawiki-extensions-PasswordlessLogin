@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hedda"
+		]
+	},
+	"passwordlesslogin": "Şifresiz giriş",
+	"passwordlesslogin-desc": "Bağlı bir cihazdaki girişi onaylayarak şifre olmadan giriş yapmanıza olanak sağlar.",
+	"passwordlesslogin-verify-request": "Lütfen giriş bilgilerinizi telefonunuzda doğrulayın.",
+	"passwordlesslogin-error-no-authentication-workflow": "Kimlik doğrulama iş akışı beklenmedik bir şekilde sona erdi.",
+	"passwordlesslogin-no-challenge": "Onaylamak için aktif bir sorun yok, lütfen tekrar doğrulamayı deneyin.",
+	"passwordlesslogin-verification-pending": "Kimlik doğrulama henüz doğrulanmadı. Lütfen bağlı cihazınızdaki giriş isteğinizi doğrulayın.",
+	"passwordlesslogin-pair-device-step": "Yeni cihazınızı eşleştirmek için lütfen talimatları izleyin.",
+	"passwordlesslogin-no-device-paired": "Henüz eşleştirilmiş cihaz yok.",
+	"passwordlesslogin-verify-pair": "Doğru şekilde kaydedildiğini doğrulamak için cihazınıza bir giriş isteği gönderdik. Lütfen isteği onaylayın ve devam edin.",
+	"passwordlesslogin-pair-device": "Şifresiz giriş için cihazı eşleştirin",
+	"passwordlesslogin-login": "Akıllı telefonunuzla giriş yapın",
+	"passwordlesslogin-pair-step-1": "1. MediaWiki PasswordlessLogin uygulamasını indirin",
+	"passwordlesslogin-pair-step-2": "2. QR kodunu uygulama ile tarayın",
+	"passwordlesslogin-pair-step-3": "3. Uygulama ayarları tamamlandığında bir sonraki adıma geçin",
+	"passwordlesslogin-authentication-app": "Kimlik Doğrulama Uygulaması"
+}

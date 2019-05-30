@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kassem7899"
+		]
+	},
+	"passwordlesslogin": "تسجيل دخول لا يحتاج إلى كلمة سر",
+	"passwordlesslogin-desc": "يقدم طريقة لتسجيل الدخول دون الحاجة إلى كلمة سر، عن طريق تأكيد تسجيل الدخول على الجهاز الموصول.",
+	"passwordlesslogin-verify-request": "رجاءً أكد على هاتفك تسجيل الدخول الذي أجريته.",
+	"passwordlesslogin-error-no-authentication-workflow": "تعطل سير عمل التصديق فجأةً.",
+	"passwordlesslogin-no-challenge": "لا يوجد تحدٍ نشط يمكن التحقق منه؛ رجاءً أعد بدء عملية التصديق.",
+	"passwordlesslogin-verification-pending": "لم يتم التحقق من التصديق بعد. رجاءً قم بتأكيد طلب تسجيل الدخول على جهازك الموصول.",
+	"passwordlesslogin-pair-device-step": "رجاءً اتبع التعلميات لكي تكون قادراً على إقران جهازك الجديد.",
+	"passwordlesslogin-no-device-paired": "لم يتم إقران أي جهاز بعد.",
+	"passwordlesslogin-verify-pair": "لقد قمنا بإرسال طلب تسجيل دخول إلى جهازك للتأكد أنه تم وصله بشكل صحيح. رجاءً أكد الطلب واستمر.",
+	"passwordlesslogin-pair-device": "قم بإقران الجهاز لتسجيل الدخول دون كلمة سر",
+	"passwordlesslogin-login": "سجل الدخول بواسطة هاتفك الذكي",
+	"passwordlesslogin-pair-step-1": "1. قم بتحمبل تطبيق ميدياويكي الذي يسمح لك بتسجيل الدخول دون استعمال كلمة سر.",
+	"passwordlesslogin-pair-step-2": "2. عالج رمز الاستجابة السريعة باستخدام التطبيق",
+	"passwordlesslogin-pair-step-3": "3. عندما تنتهي عملية إعداد التطبيق، انتقل إلى الخطوة التالية",
+	"passwordlesslogin-authentication-app": "تطبيق التصديق"
+}
