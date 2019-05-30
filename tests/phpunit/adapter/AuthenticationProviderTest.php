@@ -106,11 +106,25 @@ class AuthenticationProviderTest extends MediaWikiTestCase {
 	/**
 	 * @covers \PasswordlessLogin\adapter\AuthenticationProvider::beginPrimaryAuthentication
 	 */
+	public function testBeginPrimaryAuthenticationNoConfirmedDevice() {
+		$provider = new AuthenticationProvider();
+		$request = new LoginRequest();
+		$request->username = 'UTSysop';
+		$this->devicesRepository->byUserId = Device::forUser( User::newFromName( 'UTSysop' ) );
+
+		$this->assertEquals( AuthenticationResponse::newAbstain(),
+			$provider->beginPrimaryAuthentication( [ $request ] ) );
+	}
+
+	/**
+	 * @covers \PasswordlessLogin\adapter\AuthenticationProvider::beginPrimaryAuthentication
+	 */
 	public function testBeginPrimaryAuthenticationDevice() {
 		$provider = new AuthenticationProvider();
 		$request = new LoginRequest();
 		$request->username = 'UTSysop';
 		$this->devicesRepository->byUserId = Device::forUser( User::newFromName( 'UTSysop' ) );
+		$this->devicesRepository->byUserId->confirm();
 
 		$this->assertEquals( AuthenticationResponse::newUI( [ new VerifyRequest() ],
 			wfMessage( 'passwordlesslogin-verify-request' ) ),
