@@ -23,10 +23,8 @@ class HTMLPlayStoreField extends HTMLFormField {
 	 * @inheritDoc
 	 */
 	public function getInputHTML( $value ) {
-		$scriptPath = MediaWikiServices::getInstance()->getMainConfig()->get( 'ScriptPath' );
-		$badgeUrl =
-			htmlspecialchars( str_replace( '//', '/', $scriptPath . '/' ) .
-				'extensions/PasswordlessLogin/ui/google-play-badge.png' );
+		$assets = MediaWikiServices::getInstance()->getMainConfig()->get( 'ExtensionAssetsPath' );
+		$badgeUrl = htmlspecialchars( $assets . '/PasswordlessLogin/ui/google-play-badge.png' );
 
 		return '
 <a target="_blank"href="https://play.google.com/store/apps/details?id=org.droidwiki.passwordless">
