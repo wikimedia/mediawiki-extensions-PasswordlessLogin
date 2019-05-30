@@ -170,6 +170,14 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 					return AuthenticationResponse::newUI( $reqs,
 						wfMessage( 'passwordlesslogin-verify-pair' ) );
 				case self::CHALLENGE_SOLVED:
+					$device = $this->devicesRepository->findByUserId( $user->getId() );
+					if ( $device == null ) {
+						return AuthenticationResponse::newUI( [ $request ],
+							wfMessage( 'passwordlesslogin-no-device-paired' ) );
+					}
+					$device->confirm();
+					$this->devicesRepository->save( $device );
+
 					return AuthenticationResponse::newPass();
 			}
 		}

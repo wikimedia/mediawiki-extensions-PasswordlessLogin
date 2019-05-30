@@ -360,5 +360,6 @@ class AuthenticationProviderTest extends MediaWikiTestCase {
 
 		$authenticationResponse = AuthenticationResponse::newPass();
 		$this->assertEquals( $authenticationResponse, $result );
+		$this->assertTrue( $this->devicesRepository->savedDevice->isConfirmed() );
 	}
 }
