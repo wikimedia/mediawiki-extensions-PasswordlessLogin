@@ -20,7 +20,7 @@ use PasswordlessLogin\model\VerifyRequest;
 use StatusValue;
 use User;
 
-class PasswordlessLoginPrimaryAuthenticationProviderTest extends MediaWikiTestCase {
+class AuthenticationProviderTest extends MediaWikiTestCase {
 	/**
 	 * @var FakeDevicesRepository
 	 */
@@ -126,7 +126,8 @@ class PasswordlessLoginPrimaryAuthenticationProviderTest extends MediaWikiTestCa
 		$request->username = 'UTSysop';
 		$this->challengesRepository->byUser = null;
 
-		$this->assertEquals( AuthenticationResponse::newFail( wfMessage( 'passwordlesslogin-no-challenge' ) ),
+		$this->assertEquals( AuthenticationResponse::newFail(
+			wfMessage( 'passwordlesslogin-no-challenge' ) ),
 			$provider->continuePrimaryAuthentication( [ $request ] ) );
 	}
 
@@ -174,8 +175,8 @@ class PasswordlessLoginPrimaryAuthenticationProviderTest extends MediaWikiTestCa
 	public function testProviderAllowsAuthenticationDataChangeNonPasswordlessLogin() {
 		$provider = new AuthenticationProvider();
 
-		$result =
-			$provider->providerAllowsAuthenticationDataChange( $this->createMock( AuthenticationRequest::class ) );
+		$result = $provider->providerAllowsAuthenticationDataChange(
+			$this->createMock( AuthenticationRequest::class ) );
 
 		$this->assertEquals( StatusValue::newGood( 'ignored' ), $result );
 	}
@@ -257,7 +258,8 @@ class PasswordlessLoginPrimaryAuthenticationProviderTest extends MediaWikiTestCa
 	public function testProviderChangeAuthenticationDataNoRemove() {
 		$provider = new AuthenticationProvider();
 
-		$provider->providerAllowsAuthenticationDataChange( $this->createMock( AuthenticationRequest::class ) );
+		$provider->providerAllowsAuthenticationDataChange(
+			$this->createMock( AuthenticationRequest::class ) );
 
 		$this->assertEquals( null, $this->devicesRepository->removedFor );
 	}
@@ -273,7 +275,8 @@ class PasswordlessLoginPrimaryAuthenticationProviderTest extends MediaWikiTestCa
 				[ new LinkRequest() ] );
 
 		$authenticationResponse =
-			AuthenticationResponse::newUI( [ new QRCodeRequest( $this->devicesRepository->savedDevice->getPairToken() ) ],
+			AuthenticationResponse::newUI(
+				[ new QRCodeRequest( $this->devicesRepository->savedDevice->getPairToken() ) ],
 				wfMessage( 'passwordlesslogin-pair-device-step' ) );
 		$this->assertEquals( $authenticationResponse, $result );
 	}
@@ -343,60 +346,5 @@ class PasswordlessLoginPrimaryAuthenticationProviderTest extends MediaWikiTestCa
 
 		$authenticationResponse = AuthenticationResponse::newPass();
 		$this->assertEquals( $authenticationResponse, $result );
-	}
-}
-
-class FakeDevicesRepository implements DevicesRepository {
-	/** @var Device|null */
-	public $byUserId = null;
-	public $removedFor = null;
-	/** @var Device|null */
-	public $savedDevice = null;
-
-	function findByUserId( $userId ) {
-		return $this->byUserId;
-	}
-
-	function remove( User $user ) {
-		$this->removedFor = $user;
-	}
-
-	function save( Device $device ) {
-		$this->savedDevice = $device;
-	}
-
-	function findByPairToken( $pairToken ) {
-	}
-}
-
-class FakeChallengesRepository implements ChallengesRepository {
-	/** @var Challenge */
-	public $byUser;
-	/**
-	 * @var User
-	 */
-	public $removed;
-
-	public function save( Challenge $challenge ) {
-	}
-
-	public function findByChallenge( $challenge ) {
-	}
-
-	public function findByUser( User $user ) {
-		return $this->byUser;
-	}
-
-	public function remove( User $user ) {
-		$this->removed = $user;
-	}
-}
-
-class FakeFirebase extends FirebaseMessageSender {
-	public function __construct() {
-		parent::__construct( \GlobalVarConfig::newInstance(), "" );
-	}
-
-	public function send( Device $device, Challenge $challenge ) {
 	}
 }

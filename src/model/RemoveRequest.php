@@ -5,6 +5,9 @@ namespace PasswordlessLogin\model;
 use MediaWiki\Auth\AuthenticationRequest;
 
 class RemoveRequest extends AuthenticationRequest {
+	/**
+	 * @inheritDoc
+	 */
 	public function describeCredentials() {
 		return [
 			'provider' => wfMessage( 'passwordlesslogin' ),
@@ -12,7 +15,10 @@ class RemoveRequest extends AuthenticationRequest {
 		];
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function getFieldInfo() {
-		// TODO: Implement getFieldInfo() method.
+		return [];
 	}
 }

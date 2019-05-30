@@ -17,11 +17,24 @@ class FirebaseMessageSender {
 	/** @var string */
 	private $apiUrl;
 
+	/**
+	 * FirebaseMessageSender constructor.
+	 * @param Config $config
+	 * @param string $apiUrl
+	 */
 	public function __construct( Config $config, $apiUrl ) {
 		$this->config = $config;
 		$this->apiUrl = $apiUrl;
 	}
 
+	/**
+	 * Sends a data message to the Device with the required data from the Challenge to present
+	 * the user with a login request.
+	 *
+	 * @param Device $device The device to send the message to
+	 * @param Challenge $challenge The login challenge the device needs to solve
+	 * @throws MWException
+	 */
 	public function send( Device $device, Challenge $challenge ) {
 		$curlSession = $this->curlSession( $device, $challenge );
 
@@ -32,11 +45,6 @@ class FirebaseMessageSender {
 		}
 	}
 
-	/**
-	 * @param Device $device
-	 * @param Challenge $challenge
-	 * @return array
-	 */
 	private function messageContent( Device $device, Challenge $challenge ) {
 		$messageContent = [
 			'to' => $device->getDeviceId(),
@@ -50,9 +58,6 @@ class FirebaseMessageSender {
 		return json_encode( $messageContent );
 	}
 
-	/**
-	 * @return array
-	 */
 	private function messageHeaders() {
 		return [
 			$this->fcmAuthorization(),
@@ -60,25 +65,18 @@ class FirebaseMessageSender {
 		];
 	}
 
-	/**
-	 * @return string
-	 */
 	private function fcmAuthorization() {
 		return 'Authorization: key=' . $this->config->get( 'PLFirebaseAccessToken' );
 	}
 
-	/**
-	 * @param Device $device
-	 * @param Challenge $challenge
-	 * @return false|resource
-	 */
 	private function curlSession( Device $device, Challenge $challenge ) {
 		$curlSession = curl_init();
 		curl_setopt( $curlSession, CURLOPT_URL, self::FCM_SEND_URL );
 		curl_setopt( $curlSession, CURLOPT_POST, true );
 		curl_setopt( $curlSession, CURLOPT_HTTPHEADER, $this->messageHeaders() );
 		curl_setopt( $curlSession, CURLOPT_RETURNTRANSFER, true );
-		curl_setopt( $curlSession, CURLOPT_POSTFIELDS, $this->messageContent( $device, $challenge ) );
+		curl_setopt( $curlSession, CURLOPT_POSTFIELDS,
+			$this->messageContent( $device, $challenge ) );
 
 		return $curlSession;
 	}

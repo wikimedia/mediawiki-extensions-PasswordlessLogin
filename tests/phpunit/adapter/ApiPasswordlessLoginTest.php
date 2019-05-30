@@ -44,7 +44,7 @@ class ApiPasswordlessLoginTest extends ApiTestCase {
 			'action' => 'passwordlesslogin',
 			'pairToken' => $device->getPairToken(),
 			'deviceId' => 'DEVICE_ID',
-			'secret' => urlencode('A+SECRET'),
+			'secret' => urlencode( 'A+SECRET' ),
 		] );
 
 		$this->assertEquals( 'Success', $result[0]['register']['result'] );

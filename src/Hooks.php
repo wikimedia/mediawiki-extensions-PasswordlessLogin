@@ -15,6 +15,14 @@ use Title;
 class Hooks {
 	public static $addFrontendModules = false;
 
+	/**
+	 * Constructs the API URL for this server based on the provided config. The API URL may be
+	 * overwritten by an extension configuration parameter.
+	 *
+	 * @param Config $mainConfig The MediaWiki main configuration object
+	 * @param Config $config The extension configuration object
+	 * @return string
+	 */
 	public static function constructApiUrl( Config $mainConfig, Config $config ) {
 		if ( $config->has( 'PLDevApiUrl' ) ) {
 			$apiUrl = $config->get( 'PLDevApiUrl' );
@@ -25,6 +33,12 @@ class Hooks {
 		return $apiUrl;
 	}
 
+	/**
+	 * The LoadExtensionSchemaUpdates hook handler to add the required extension database tables.
+	 *
+	 * @param DatabaseUpdater|null $updater
+	 * @return bool
+	 */
 	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater = null ) {
 		$sql = __DIR__ . '/sql';
 		$updater->addExtensionUpdate( [
@@ -43,6 +57,13 @@ class Hooks {
 		return true;
 	}
 
+	/**
+	 * The BeforePageDisplay hook handler to add necessary styles modules to the OutputPage when
+	 * on the UserLogin page.
+	 *
+	 * @param OutputPage &$out
+	 * @param Skin &$skin
+	 */
 	public static function onBeforePageDisplay( OutputPage &$out, Skin &$skin ) {
 		if ( !self::$addFrontendModules ) {
 			return;
@@ -53,6 +74,14 @@ class Hooks {
 		}
 	}
 
+	/**
+	 * Converts the extension specific auth form fields into actual HTMLForm fields.
+	 *
+	 * @param array $requests
+	 * @param array $fieldInfo
+	 * @param array &$formDescriptor
+	 * @param string $action one of the AuthManager::ACTION_* constants
+	 */
 	public function onAuthChangeFormFields(
 		array $requests, array $fieldInfo, array &$formDescriptor, $action
 	) {

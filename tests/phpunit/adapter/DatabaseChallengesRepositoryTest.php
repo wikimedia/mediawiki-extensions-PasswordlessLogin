@@ -5,8 +5,6 @@ namespace PasswordlessLogin\adapter;
 use MediaWiki\MediaWikiServices;
 use MediaWikiTestCase;
 use PasswordlessLogin\model\Challenge;
-use PasswordlessLogin\model\ChallengesRepository;
-use PasswordlessLogin\model\Device;
 use User;
 
 /**
@@ -23,10 +21,15 @@ class DatabaseChallengesRepositoryTest extends MediaWikiTestCase {
 		$this->tablesUsed[] = 'passwordlesslogin_challenges';
 
 		$this->repository =
-			new DatabaseChallengesRepository( MediaWikiServices::getInstance()->getDBLoadBalancer() );
-		$this->db->delete('passwordlesslogin_challenges', '*');
+			new DatabaseChallengesRepository( MediaWikiServices::getInstance()
+				->getDBLoadBalancer() );
+		$this->db->delete( 'passwordlesslogin_challenges', '*' );
 	}
 
+	/**
+	 * @covers \PasswordlessLogin\adapter\DatabaseChallengesRepository::save
+	 * @covers \PasswordlessLogin\adapter\DatabaseChallengesRepository::findByChallenge
+	 */
 	public function testPersistsData() {
 		$user = User::newFromName( 'UTSysop' );
 		$challenge = Challenge::forUser( $user );
@@ -37,6 +40,9 @@ class DatabaseChallengesRepositoryTest extends MediaWikiTestCase {
 		$this->assertEquals( $challenge, $result );
 	}
 
+	/**
+	 * @covers \PasswordlessLogin\adapter\DatabaseChallengesRepository::remove
+	 */
 	public function testRemovesEntries() {
 		$user = User::newFromName( 'UTSysop' );
 		$challenge = Challenge::forUser( $user );
@@ -44,13 +50,18 @@ class DatabaseChallengesRepositoryTest extends MediaWikiTestCase {
 
 		$this->repository->remove( $user );
 
-		$this->assertEquals( null, $this->repository->findByChallenge( $challenge->getChallenge() ) );
+		$this->assertEquals( null,
+			$this->repository->findByChallenge( $challenge->getChallenge() ) );
 	}
 
+	/**
+	 * @covers \PasswordlessLogin\adapter\DatabaseChallengesRepository::save
+	 * @covers \PasswordlessLogin\adapter\DatabaseChallengesRepository::findByChallenge
+	 */
 	public function testUpdatesExistingEntry() {
 		$challenge = Challenge::forUser( User::newFromName( 'UTSysop' ) );
 		$this->repository->save( $challenge );
-		$challenge->setSuccess(true);
+		$challenge->setSuccess( true );
 
 		$this->repository->save( $challenge );
 		$result = $this->repository->findByChallenge( $challenge->getChallenge() );

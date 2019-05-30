@@ -13,6 +13,11 @@
 	"AutoloadNamespaces": {
 		"PasswordlessLogin\\": "src/"
 	},
+	"AutoloadClasses": {
+		"PasswordlessLogin\\adapter\\FakeChallengesRepository": "tests/phpunit/adapter/FakeChallengesRepository.php",
+		"PasswordlessLogin\\adapter\\FakeDevicesRepository": "tests/phpunit/adapter/FakeDevicesRepository.php",
+		"PasswordlessLogin\\adapter\\FakeFirebase": "tests/phpunit/adapter/FakeFirebase.php"
+	},
 	"MessagesDirs": {
 		"PasswordlessLogin": [
 			"i18n"

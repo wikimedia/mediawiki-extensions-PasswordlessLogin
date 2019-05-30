@@ -43,6 +43,9 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 			$mediaWikiServices->getService( FirebaseMessageSender::SERVICE_NAME );
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function getAuthenticationRequests( $action, array $options ) {
 		if ( $action === AuthManager::ACTION_REMOVE ) {
 			return [ new RemoveRequest() ];
@@ -57,6 +60,9 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 		return [];
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function beginPrimaryAuthentication( array $reqs ) {
 		$request = AuthenticationRequest::getRequestByClass( $reqs, LoginRequest::class );
 		if ( $request === null ) {
@@ -83,11 +89,15 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 		$this->firebaseMessageSender->send( $device, $challenge );
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function continuePrimaryAuthentication( array $reqs ) {
 		/** @var VerifyRequest $request */
 		$request = AuthenticationRequest::getRequestByClass( $reqs, VerifyRequest::class );
 		if ( $request === null ) {
-			return AuthenticationResponse::newFail( wfMessage( 'passwordlesslogin-error-no-authentication-workflow' ) );
+			return AuthenticationResponse::newFail(
+				wfMessage( 'passwordlesslogin-error-no-authentication-workflow' ) );
 		}
 		$user = User::newFromName( $request->username );
 		switch ( $this->isChallengeSolved( $user ) ) {
@@ -119,6 +129,9 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 		return self::CHALLENGE_SOLVED;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function beginPrimaryAccountLink( $user, array $reqs ) {
 		$device = Device::forUser( $user );
 		$this->devicesRepository->remove( $user );
@@ -128,6 +141,9 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 			wfMessage( 'passwordlesslogin-pair-device-step' ) );
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function continuePrimaryAccountLink( $user, array $reqs ) {
 		/** @var QRCodeRequest $request */
 		$request = AuthenticationRequest::getRequestByClass( $reqs, QRCodeRequest::class );
@@ -158,13 +174,20 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 			}
 		}
 
-		return AuthenticationResponse::newFail( wfMessage( 'passwordlesslogin-error-no-authentication-workflow' ) );
+		return AuthenticationResponse::newFail(
+			wfMessage( 'passwordlesslogin-error-no-authentication-workflow' ) );
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function testUserExists( $username, $flags = User::READ_NORMAL ) {
 		return false;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function providerAllowsAuthenticationDataChange(
 		AuthenticationRequest $req, $checkData = true
 	) {
@@ -184,6 +207,9 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 		return StatusValue::newGood();
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function providerChangeAuthenticationData( AuthenticationRequest $req ) {
 		if ( get_class( $req ) !== RemoveRequest::class ) {
 			return;
@@ -198,10 +224,16 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 		$this->devicesRepository->remove( $user );
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function accountCreationType() {
 		return self::TYPE_LINK;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function beginPrimaryAccountCreation( $user, $creator, array $reqs ) {
 		return AuthenticationResponse::newAbstain();
 	}

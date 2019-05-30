@@ -20,12 +20,18 @@ class DeviceTest extends MediaWikiTestCase {
 		$this->assertNotNull( $device->getPairToken() );
 	}
 
+	/**
+	 * @covers \PasswordlessLogin\model\Device::__construct
+	 */
 	public function testConstructorEmptyPairToken() {
 		$device = new Device( 1 );
 
 		$this->assertNull( $device->getPairToken() );
 	}
 
+	/**
+	 * @covers \PasswordlessLogin\model\Device::forUser
+	 */
 	public function testForUserUnique() {
 		$user = User::newFromName( 'UTSysop' );
 		$user->setId( 1 );
@@ -33,20 +39,27 @@ class DeviceTest extends MediaWikiTestCase {
 		$device = Device::forUser( $user );
 		$secondDevice = Device::forUser( $user );
 
-		$this->assertNotEquals($device->getPairToken(), $secondDevice->getPairToken());
+		$this->assertNotEquals( $device->getPairToken(), $secondDevice->getPairToken() );
 	}
 
+	/**
+	 * @covers \PasswordlessLogin\model\Device::isConfirmed
+	 */
 	public function testIsNotConfirmed() {
-		$device = new Device(1);
+		$device = new Device( 1 );
 
-		$this->assertFalse($device->isConfirmed());
+		$this->assertFalse( $device->isConfirmed() );
 	}
 
+	/**
+	 * @covers \PasswordlessLogin\model\Device::isConfirmed
+	 * @covers \PasswordlessLogin\model\Device::confirm
+	 */
 	public function testIsConfirmed() {
-		$device = new Device(1);
+		$device = new Device( 1 );
 
 		$device->confirm();
 
-		$this->assertTrue($device->isConfirmed());
+		$this->assertTrue( $device->isConfirmed() );
 	}
 }

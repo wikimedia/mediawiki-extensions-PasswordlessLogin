@@ -2,9 +2,8 @@
 	"name": "mediawiki/passwordlesslogin",
 	"license": "MIT",
 	"require": {
-		"ext-openssl": "*",
 		"ext-curl": "*",
-		"endroid/qr-code": "3.6.1"
+		"endroid/qr-code": "2.5.1"
 	},
 	"require-dev": {
 		"jakub-onderka/php-parallel-lint": "1.0.0",

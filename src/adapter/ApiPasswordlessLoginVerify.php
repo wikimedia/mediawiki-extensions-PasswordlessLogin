@@ -31,6 +31,14 @@ class ApiPasswordlessLoginVerify extends ApiBase {
 		}
 		$device = $devicesRepository->findByUserId( $challenge->getUserId() );
 
+		if ( $device->getSecret() === null ) {
+			$this->getResult()->addValue( null, 'verify', [
+				'result' => 'Failed',
+			] );
+
+			return;
+		}
+
 		if ( !$challenge->verify( $device, $response ) ) {
 			$this->getResult()->addValue( null, 'verify', [
 				'result' => 'Failed',
@@ -45,6 +53,9 @@ class ApiPasswordlessLoginVerify extends ApiBase {
 		] );
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function getAllowedParams() {
 		return [
 			'challenge' => [

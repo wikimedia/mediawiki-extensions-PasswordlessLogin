@@ -43,6 +43,10 @@ class DatabaseDeviceRepositoryTest extends MediaWikiTestCase {
 		$this->assertEquals( $device->isConfirmed(), $result->isConfirmed() );
 	}
 
+	/**
+	 * @covers \PasswordlessLogin\adapter\DatabaseChallengesRepository::save
+	 * @covers \PasswordlessLogin\adapter\DatabaseDeviceRepository::findByUserId
+	 */
 	public function testNoEntry() {
 		$user = User::newFromName( 'UTSysop' );
 
@@ -50,7 +54,6 @@ class DatabaseDeviceRepositoryTest extends MediaWikiTestCase {
 
 		$this->assertEquals( null, $result );
 	}
-
 
 	/**
 	 * @covers \PasswordlessLogin\adapter\DatabaseDeviceRepository::save

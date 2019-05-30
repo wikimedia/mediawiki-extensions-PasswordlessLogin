@@ -3,9 +3,11 @@
 namespace PasswordlessLogin\model;
 
 use MediaWiki\Auth\AuthenticationRequest;
-use RawMessage;
 
 class VerifyRequest extends AuthenticationRequest {
+	/**
+	 * @inheritDoc
+	 */
 	public function getFieldInfo() {
 		return [
 			'request' => [

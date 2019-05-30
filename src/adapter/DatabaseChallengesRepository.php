@@ -9,13 +9,20 @@ use Wikimedia\Rdbms\LoadBalancer;
 
 class DatabaseChallengesRepository implements ChallengesRepository {
 	const TABLE_NAME = 'passwordlesslogin_challenges';
-	const FETCH_FIELDS = [ 'challenge', 'challenge_user_id', 'success' ];
+	private $FETCH_FIELDS = [ 'challenge', 'challenge_user_id', 'success' ];
 	private $loadBalancer;
 
+	/**
+	 * DatabaseChallengesRepository constructor.
+	 * @param LoadBalancer $loadBalancer
+	 */
 	public function __construct( LoadBalancer $loadBalancer ) {
 		$this->loadBalancer = $loadBalancer;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function save( Challenge $challenge ) {
 		if ( $this->findByChallenge( $challenge->getChallenge() ) === null ) {
 			$this->insertChallenge( $challenge );
@@ -42,10 +49,13 @@ class DatabaseChallengesRepository implements ChallengesRepository {
 		] );
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function findByChallenge( $challenge ) {
 		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
 		$result =
-			$dbr->select( self::TABLE_NAME, self::FETCH_FIELDS, [ 'challenge' => $challenge ] );
+			$dbr->select( self::TABLE_NAME, $this->FETCH_FIELDS, [ 'challenge' => $challenge ] );
 
 		if ( $result->numRows() !== 1 ) {
 			return null;
@@ -57,9 +67,12 @@ class DatabaseChallengesRepository implements ChallengesRepository {
 			(bool)$challenge->success );
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function findByUser( User $user ) {
 		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
-		$result = $dbr->select( self::TABLE_NAME, self::FETCH_FIELDS, [
+		$result = $dbr->select( self::TABLE_NAME, $this->FETCH_FIELDS, [
 			'challenge_user_id' => $user->getId(),
 		] );
 
@@ -73,6 +86,9 @@ class DatabaseChallengesRepository implements ChallengesRepository {
 			(bool)$challenge->success );
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function remove( User $user ) {
 		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
 		$dbw->delete( self::TABLE_NAME, [

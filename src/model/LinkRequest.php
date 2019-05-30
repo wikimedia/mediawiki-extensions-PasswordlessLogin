@@ -5,6 +5,9 @@ namespace PasswordlessLogin\model;
 use MediaWiki\Auth\AuthenticationRequest;
 
 class LinkRequest extends AuthenticationRequest {
+	/**
+	 * @inheritDoc
+	 */
 	public function getFieldInfo() {
 		return [
 			'passwordless' => [

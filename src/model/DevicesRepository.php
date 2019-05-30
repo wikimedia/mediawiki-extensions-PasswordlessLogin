@@ -11,23 +11,23 @@ interface DevicesRepository {
 	 * @param Device $device
 	 * @return void
 	 */
-	function save( Device $device );
+	public function save( Device $device );
 
 	/**
-	 * @param $userId
+	 * @param int $userId
 	 * @return Device|null
 	 */
-	function findByUserId( $userId );
+	public function findByUserId( $userId );
 
 	/**
-	 * @param $pairToken
+	 * @param string $pairToken
 	 * @return Device|null
 	 */
-	function findByPairToken( $pairToken );
+	public function findByPairToken( $pairToken );
 
 	/**
 	 * @param User $user
 	 * @return void
 	 */
-	function remove( User $user );
+	public function remove( User $user );
 }

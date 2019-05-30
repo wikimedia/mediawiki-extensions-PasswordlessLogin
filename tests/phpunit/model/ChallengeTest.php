@@ -7,6 +7,9 @@ use PasswordlessLogin\model\Challenge;
 use User;
 
 class ChallengeTest extends MediaWikiTestCase {
+	/**
+	 * @covers \PasswordlessLogin\model\Challenge::forUser
+	 */
 	public function testForUser() {
 		$user = User::newFromName( 'UTSysop' );
 		$user->setId( 1 );
@@ -17,6 +20,9 @@ class ChallengeTest extends MediaWikiTestCase {
 		$this->assertNotNull( $challenge->getChallenge() );
 	}
 
+	/**
+	 * @covers \PasswordlessLogin\model\Challenge::forUser
+	 */
 	public function testForUserUnique() {
 		$user = User::newFromName( 'UTSysop' );
 		$user->setId( 1 );

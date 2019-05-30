@@ -30,8 +30,8 @@ class ApiPasswordlessLoginVerifyTest extends ApiTestCase {
 		$this->devicesRepository =
 			MediaWikiServices::getInstance()->getService( DevicesRepository::SERVICE_NAME );
 
-		$this->db->delete('passwordlesslogin_devices', '*');
-		$this->db->delete('passwordlesslogin_challenges', '*');
+		$this->db->delete( 'passwordlesslogin_devices', '*' );
+		$this->db->delete( 'passwordlesslogin_challenges', '*' );
 	}
 
 	public function testNoChallenge() {
@@ -44,11 +44,29 @@ class ApiPasswordlessLoginVerifyTest extends ApiTestCase {
 		$this->assertEquals( 'Failed', $result[0]['verify']['result'] );
 	}
 
+	public function testNoSecret() {
+		$user = User::newFromName( 'UTSysop' );
+		$challenge = Challenge::forUser( $user );
+		$this->challengesRepository->save( $challenge );
+		$device = Device::forUser( $user );
+		$this->devicesRepository->save( $device );
+
+		$result = $this->doApiRequest( [
+			'action' => 'passwordlesslogin-verify',
+			'challenge' => $challenge->getChallenge(),
+			'response' => 'A_RESPONSE',
+		] );
+
+		$this->assertEquals( 'Failed', $result[0]['verify']['result'] );
+	}
+
 	public function testInvalidResponse() {
 		$user = User::newFromName( 'UTSysop' );
 		$challenge = Challenge::forUser( $user );
 		$this->challengesRepository->save( $challenge );
 		$device = Device::forUser( $user );
+		$device->setSecret( "A_SECRET" );
+		$device->confirm();
 		$this->devicesRepository->save( $device );
 
 		$result = $this->doApiRequest( [
@@ -65,6 +83,8 @@ class ApiPasswordlessLoginVerifyTest extends ApiTestCase {
 		$challenge = Challenge::forUser( $user );
 		$this->challengesRepository->save( $challenge );
 		$device = Device::forUser( $user );
+		$device->setSecret( "A_SECRET" );
+		$device->confirm();
 		$this->devicesRepository->save( $device );
 
 		$result = $this->doApiRequest( [

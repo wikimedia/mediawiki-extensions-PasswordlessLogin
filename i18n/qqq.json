@@ -18,5 +18,12 @@
 	"passwordlesslogin-pair-step-1": "Label for the first step of the instructions to pair a new device, which is to download the app for the smartphone.",
 	"passwordlesslogin-pair-step-2": "Label for the second step of the instructions to pair a new device, which is to scan the QR code with the app.",
 	"passwordlesslogin-pair-step-3": "Label for the second step of the instructions to pair a new device, which is to confirm the pairing by continuing (clicking a button).",
-	"passwordlesslogin-authentication-app": "The label of the registered device on [[Special:RemoveCredentials]]."
+	"passwordlesslogin-authentication-app": "The label of the registered device on [[Special:RemoveCredentials]].",
+	"apihelp-passwordlesslogin-summary": "{{doc-apihelp-summary|passwordlesslogin}}",
+	"apihelp-passwordlesslogin-param-pairToken": "{{doc-apihelp-param|passwordlesslogin|pairToken}}",
+	"apihelp-passwordlesslogin-param-deviceId": "{{doc-apihelp-param|passwordlesslogin|deviceId}}",
+	"apihelp-passwordlesslogin-param-secret": "{{doc-apihelp-param|passwordlesslogin|secret}}",
+	"apihelp-passwordlesslogin-verify-summary": "{{doc-apihelp-summary|passwordlesslogin-verify}}",
+	"apihelp-passwordlesslogin-verify-param-challenge": "{{doc-apihelp-param|passwordlesslogin-verify|challenge}}",
+	"apihelp-passwordlesslogin-verify-param-response": "{{doc-apihelp-param|passwordlesslogin-verify|response}}"
 }

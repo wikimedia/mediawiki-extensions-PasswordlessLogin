@@ -10,10 +10,17 @@ use PasswordlessLogin\Hooks;
 class QRCodeRequest extends AuthenticationRequest {
 	public $pairToken;
 
+	/**
+	 * QRCodeRequest constructor.
+	 * @param string $pairToken
+	 */
 	public function __construct( $pairToken ) {
 		$this->pairToken = $pairToken;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function getFieldInfo() {
 		$mainConfig = MediaWikiServices::getInstance()->getMainConfig();
 		$config =

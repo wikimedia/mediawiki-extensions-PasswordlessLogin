@@ -10,29 +10,42 @@ use Wikimedia\Rdbms\LoadBalancer;
 
 class DatabaseDeviceRepository implements DevicesRepository {
 	const TABLE_NAME = 'passwordlesslogin_devices';
-	const FETCH_FIELDS = [ 'id', 'device_id', 'device_user_id', 'secret', 'confirmed' ];
+	private $FETCH_FIELDS = [ 'id', 'device_id', 'device_user_id', 'secret', 'confirmed' ];
 	private $loadBalancer;
 
+	/**
+	 * DatabaseDeviceRepository constructor.
+	 * @param LoadBalancer $loadBalancer
+	 */
 	public function __construct( LoadBalancer $loadBalancer ) {
 		$this->loadBalancer = $loadBalancer;
 	}
 
-	function findByUserId( $userId ) {
+	/**
+	 * @inheritDoc
+	 */
+	public function findByUserId( $userId ) {
 		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
 		$result =
-			$dbr->select( self::TABLE_NAME, self::FETCH_FIELDS, [ 'device_user_id' => $userId ] );
+			$dbr->select( self::TABLE_NAME, $this->FETCH_FIELDS, [ 'device_user_id' => $userId ] );
 
 		return $this->extractDevice( $result );
 	}
 
-	function remove( User $user ) {
+	/**
+	 * @inheritDoc
+	 */
+	public function remove( User $user ) {
 		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
 		$dbw->delete( self::TABLE_NAME, [
 			'device_user_id' => $user->getId(),
 		] );
 	}
 
-	function save( Device $device ) {
+	/**
+	 * @inheritDoc
+	 */
+	public function save( Device $device ) {
 		if ( $this->findByUserId( $device->getUserId() ) === null ) {
 			$this->insertDevice( $device );
 		} else {
@@ -40,10 +53,13 @@ class DatabaseDeviceRepository implements DevicesRepository {
 		}
 	}
 
-	function findByPairToken( $pairToken ) {
+	/**
+	 * @inheritDoc
+	 */
+	public function findByPairToken( $pairToken ) {
 		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
 		$result =
-			$dbr->select( self::TABLE_NAME, self::FETCH_FIELDS,
+			$dbr->select( self::TABLE_NAME, $this->FETCH_FIELDS,
 				[ 'device_pair_token' => $pairToken ] );
 
 		return $this->extractDevice( $result );

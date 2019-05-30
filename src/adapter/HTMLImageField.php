@@ -2,10 +2,10 @@
 
 namespace PasswordlessLogin\adapter;
 
-use OOUI\HtmlSnippet;
-use OOUI\Widget;
 use HTMLFormField;
 use MWException;
+use OOUI\HtmlSnippet;
+use OOUI\Widget;
 
 /**
  * A field that shows an image, either by loading it from an URL or as a data uri.
@@ -19,6 +19,7 @@ class HTMLImageField extends HTMLFormField {
 	 * @var null|string
 	 */
 	private $dataUri;
+
 	/**
 	 * @param array $info
 	 *   In adition to the usual HTMLFormField parameters, this can take the following fields:
@@ -38,24 +39,34 @@ class HTMLImageField extends HTMLFormField {
 		parent::__construct( $info );
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function getInputHTML( $value ) {
 		return '<img src="' . $this->getSource() . '" alt="' . $this->getLabel() . '" />';
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function getInputOOUI( $value ) {
 		return new Widget( [
 			'content' => new HtmlSnippet( $this->getInputHTML( $value ) ),
 		] );
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	protected function needsLabel() {
 		return false;
 	}
 
 	private function getSource() {
-		if ($this->source) {
+		if ( $this->source ) {
 			return $this->source;
 		}
+
 		return $this->dataUri;
 	}
 }

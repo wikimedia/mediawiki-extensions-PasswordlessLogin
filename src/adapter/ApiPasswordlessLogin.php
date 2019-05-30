@@ -16,7 +16,7 @@ class ApiPasswordlessLogin extends ApiBase {
 		$params = $this->extractRequestParams();
 		$pairToken = $params['pairToken'];
 		$deviceId = $params['deviceId'];
-		$secret = rawurldecode($params['secret']);
+		$secret = rawurldecode( $params['secret'] );
 
 		$device = $devicesRepository->findByPairToken( $pairToken );
 		if ( $device == null ) {
@@ -36,6 +36,9 @@ class ApiPasswordlessLogin extends ApiBase {
 		] );
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function getAllowedParams() {
 		return [
 			'pairToken' => [
