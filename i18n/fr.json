@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wladek92"
+		]
+	},
+	"passwordlesslogin": "Connexion sans mot de passe",
+	"passwordlesslogin-no-device-paired": "Il n'y a pas encore d'appareil appairé.",
+	"passwordlesslogin-login": "Connectez-vous avec votre Smartphone",
+	"passwordlesslogin-pair-step-1": "1. Télécharger l'application PasswordlessLogin de MediaWiki",
+	"passwordlesslogin-pair-step-2": "2. Scanner le QR Code avec l'application",
+	"passwordlesslogin-authentication-app": "Application d'authentification",
+	"apihelp-passwordlesslogin-verify-summary": "Vérifier une demande de connexion envoyée à un appareil."
+}

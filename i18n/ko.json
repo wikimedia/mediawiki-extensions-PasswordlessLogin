@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ykhwong"
+		]
+	},
+	"passwordlesslogin": "비밀번호 없는 로그인",
+	"passwordlesslogin-no-device-paired": "페어링된 장치가 아직 없습니다.",
+	"passwordlesslogin-login": "내 스마트폰으로 로그인"
+}

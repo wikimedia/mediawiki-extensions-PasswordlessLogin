@@ -18,5 +18,8 @@
 	"passwordlesslogin-pair-step-1": "1. قم بتحمبل تطبيق ميدياويكي الذي يسمح لك بتسجيل الدخول دون استعمال كلمة سر.",
 	"passwordlesslogin-pair-step-2": "2. عالج رمز الاستجابة السريعة باستخدام التطبيق",
 	"passwordlesslogin-pair-step-3": "3. عندما تنتهي عملية إعداد التطبيق، انتقل إلى الخطوة التالية",
-	"passwordlesslogin-authentication-app": "تطبيق التصديق"
+	"passwordlesslogin-authentication-app": "تطبيق التصديق",
+	"apihelp-passwordlesslogin-summary": "قم بتسجيل جهاز جديد لرمزان مزدوجان تم توليدهما من قبل.",
+	"apihelp-passwordlesslogin-param-deviceId": "برنامح متميز مختص بالتعرف على الأجهزة بالإضافة إلى إرسال إشعارات لها عن طريق نظام المراسلة الافتراضي الموجود في الجهاز (على سبيل المثال، برنامج فايربيس للمراسلة السحابية أو الأجهزة التي تعمل على نظام الأندروريد)",
+	"apihelp-passwordlesslogin-verify-summary": "قم بالتحقق من طلب تسجيل دخول تم إرساله إلى جهاز."
 }
