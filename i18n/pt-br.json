@@ -19,6 +19,7 @@
 	"passwordlesslogin-pair-step-2": "2. Digitalize o QR Code com o aplicativo",
 	"passwordlesslogin-pair-step-3": "3. Quando a configuração do aplicativo estiver concluída, continue com a próxima etapa",
 	"passwordlesslogin-authentication-app": "Aplicativo de autenticação",
+	"apihelp-passwordlesslogin-param-pairToken": "O token de par gerado anteriormente para identificar a qual usuário o dispositivo deve ser registrado.",
 	"apihelp-passwordlesslogin-param-deviceId": "Um identificador de dispositivo exclusivo que pode ser usado para identificar um dispositivo, além de enviar notificações para ele com o sistema de mensagens padrão do dispositivo (por exemplo, Firebase Cloud Messaging para dispositivos Android).",
 	"apihelp-passwordlesslogin-param-secret": "Um segredo gerado no dispositivo que será usado para assinar os desafios enviados ao dispositivo. Esse segredo está sendo usado para verificar uma resposta de desafio de solicitação de login e precisa ser mantido em segredo.",
 	"apihelp-passwordlesslogin-verify-summary": "Verifique se uma solicitação de entrada é enviada para um dispositivo.",
