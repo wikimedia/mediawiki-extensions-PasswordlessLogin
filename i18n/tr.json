@@ -18,5 +18,12 @@
 	"passwordlesslogin-pair-step-1": "1. MediaWiki PasswordlessLogin uygulamasını indirin",
 	"passwordlesslogin-pair-step-2": "2. QR kodunu uygulama ile tarayın",
 	"passwordlesslogin-pair-step-3": "3. Uygulama ayarları tamamlandığında bir sonraki adıma geçin",
-	"passwordlesslogin-authentication-app": "Kimlik Doğrulama Uygulaması"
+	"passwordlesslogin-authentication-app": "Kimlik Doğrulama Uygulaması",
+	"apihelp-passwordlesslogin-summary": "Önceden oluşturulmuş bir çift jeton için yeni bir cihaz kaydedin.",
+	"apihelp-passwordlesslogin-param-pairToken": "Önceden oluşturulan çift jeton, cihazın hangi kullanıcıya kaydedileceğini tanımlamak için kullanılır.",
+	"apihelp-passwordlesslogin-param-deviceId": "Bir cihazı tanımlamanın yanı sıra, cihazın varsayılan mesajlaşma sistemiyle (örneğin, Android cihazlar için Firebase Cloud Messaging) bildirim göndermenin yanı sıra kullanılabilen benzersiz bir cihaz tanımlayıcısı.",
+	"apihelp-passwordlesslogin-param-secret": "Cihaza gönderilen zorlukları imzalamak için kullanılacak cihaz üzerinde bir sır oluşturuldu. Bu sır, bir oturum açma isteği sorgusu yanıtının doğrulandığını onaylamak için kullanılıyor ve gizli tutulması gerekiyor.",
+	"apihelp-passwordlesslogin-verify-summary": "Bir aygıta gönderilen bir oturum açma isteğini doğrulayın.",
+	"apihelp-passwordlesslogin-verify-param-challenge": "Aygıta gönderilen ve çözülecek olan kimlik sorma.",
+	"apihelp-passwordlesslogin-verify-param-response": "Kimlik sormaya cevap (çözüm). Çözüm şöyle olmalı:<br />&#160;1. İmza algoritması olarak SHA512'li bir HMAC<br />&#160;2. Simetrik bir anahtar malzeme olarak önceden paylaşılan sır<br />&#160;3. MAC verisi bir bayt dizisi olarak kimlik sormadır<br />&#160;4. Yanıt onaltılık bir dizi olmalı<br />&#160;5. Yanıtın küçük harf olması gerekir"
 }
