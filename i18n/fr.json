@@ -20,7 +20,7 @@
 	"passwordlesslogin-pair-step-2": "2. Scanner le QR Code avec l'application",
 	"passwordlesslogin-pair-step-3": "3. Une fois l’installation de l’application terminée, poursuivre à l’étape suivante.",
 	"passwordlesslogin-authentication-app": "Application d'authentification",
-	"apihelp-passwordlesslogin-summary": "Enregistrer un nouvel appareil pour un jeton de pair précédemment généré.",
+	"apihelp-passwordlesslogin-summary": "Enregistrer un nouvel appareil pour un jeton de paire précédemment généré.",
 	"apihelp-passwordlesslogin-param-pairToken": "Le jeton de pair précédemment généré pour identifier pour quel utilisateur enregistrer l’appareil.",
 	"apihelp-passwordlesslogin-param-deviceId": "Un identifiant d’appareil unique qui peut être utilisé pour identifier un appareil aussi bien que pour lui envoyer des notifications avec le système de messages par défaut de l’appareil (par ex. Firebase Cloud Messaging pour les appareils Android).",
 	"apihelp-passwordlesslogin-param-secret": "Un secret généré sur l’appareil qui sera utilisé pour signer les défis envoyés à l’appareil. Ce secret est utilisé pour vérifier une réponse de défi de requête de connexion et doit être gardé secret.",
