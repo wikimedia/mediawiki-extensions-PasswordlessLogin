@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Florian Schmidt"
+			"Florian Schmidt",
+			"Umherirrender"
 		]
 	},
-	"passwordlesslogin": "Name of the extension.",
+	"passwordlesslogin": "{{name}}",
 	"passwordlesslogin-desc": "{{desc}}",
 	"passwordlesslogin-verify-request": "Used to ask the user to verify their login request on their registered device.",
 	"passwordlesslogin-error-no-authentication-workflow": "Error message in cases where a workflow step is started, but there's no active authentication flow running already.",
