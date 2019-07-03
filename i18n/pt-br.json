@@ -24,5 +24,6 @@
 	"apihelp-passwordlesslogin-param-deviceId": "Um identificador de dispositivo exclusivo que pode ser usado para identificar um dispositivo, além de enviar notificações para ele com o sistema de mensagens padrão do dispositivo (por exemplo, Firebase Cloud Messaging para dispositivos Android).",
 	"apihelp-passwordlesslogin-param-secret": "Um segredo gerado no dispositivo que será usado para assinar os desafios enviados ao dispositivo. Esse segredo está sendo usado para verificar uma resposta de desafio de solicitação de login e precisa ser mantido em segredo.",
 	"apihelp-passwordlesslogin-verify-summary": "Verifique se uma solicitação de entrada é enviada para um dispositivo.",
-	"apihelp-passwordlesslogin-verify-param-challenge": "O desafio que foi enviado para o dispositivo e que está sendo resolvido."
+	"apihelp-passwordlesslogin-verify-param-challenge": "O desafio que foi enviado para o dispositivo e que está sendo resolvido.",
+	"apihelp-passwordlesslogin-verify-param-response": "A resposta (solução) ao desafio. A solução precisa ser:<br />&#160;1. Um HMAC com SHA512 como um algoritmo de assinatura<br />&#160;2. O segredo pré-compartilhado como um material de chave simétrica<br />&#160;3. Os dados do MAC são o desafio como um byte array<br />&#160;4. A resposta precisa ser um hexadecimal string<br />&#160;5. A resposta precisa ser minúscula"
 }
