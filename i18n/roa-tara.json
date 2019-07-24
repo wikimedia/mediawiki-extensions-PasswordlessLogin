@@ -1,0 +1,25 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joetaras"
+		]
+	},
+	"passwordlesslogin": "Tràse senza passuord",
+	"passwordlesslogin-desc": "Dèje 'nu mode de trasè senze 'na passuord da confermà quanne se trase sus a 'nu dispositive connesse.",
+	"passwordlesslogin-verify-request": "Pe piacere condrolle l'accesse tune sus a 'u mobbile tune.",
+	"passwordlesslogin-error-no-authentication-workflow": "Flusse de fatìe de l'autendicazione ave spicciate inaspettatamende.",
+	"passwordlesslogin-no-challenge": "Nisciuna sfida attive da confermà, pe piacere pruève a autendicarte arrete.",
+	"passwordlesslogin-verification-pending": "L'autendicazione non g'ha state verificate angore. Pe piacere condrolle 'a richieste de l'accesse tune sus a 'u dispositive connesse.",
+	"passwordlesslogin-pair-device-step": "Segue le 'struziune pe accoppià 'u dispositive tune.",
+	"passwordlesslogin-no-device-paired": "Non ge ste 'nu dispositive accoppiate angore.",
+	"passwordlesslogin-verify-pair": "T'amme inviate 'na richieste de accesse a 'u dispositive tune pe condrollà ce t'è reggistrate correttamende. Conferme 'a richieste e condinue.",
+	"passwordlesslogin-pair-device": "Dispositive accoppiate pe l'accesse senza passuord",
+	"passwordlesslogin-login": "Tràse cu 'u smartfone tune",
+	"passwordlesslogin-pair-step-1": "1. Scareche l'app MediaUicchi PasswordLessLogin",
+	"passwordlesslogin-pair-step-2": "2. Scanzione 'u codece QR cu l'app",
+	"passwordlesslogin-pair-step-3": "3. 'Na vote ca l'app ste configurate è spicciate, condinue cu 'u prosseme passagge",
+	"passwordlesslogin-authentication-app": "App de autendicazione",
+	"apihelp-passwordlesslogin-summary": "Reggìstre 'nu dispositive nuève pe 'nu gettone de accoppiamende generate apprime.",
+	"apihelp-passwordlesslogin-param-pairToken": "'U gettone de accoppiamende generate apprime idendifeche c'è utende ste reggistrate sus a 'u dispositive.",
+	"apihelp-passwordlesslogin-verify-summary": "Condrolle 'na richieste de accesse da mannà a 'nu dispositive."
+}
