@@ -4,5 +4,6 @@
 			"Vlad5250"
 		]
 	},
-	"passwordlesslogin": "Вхід без паролю"
+	"passwordlesslogin": "Вхід без паролю",
+	"passwordlesslogin-authentication-app": "Застосунок автентифікації"
 }
