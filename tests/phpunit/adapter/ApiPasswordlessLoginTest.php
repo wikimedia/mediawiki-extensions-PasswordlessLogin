@@ -19,7 +19,7 @@ class ApiPasswordlessLoginTest extends ApiTestCase {
 	/** @var DevicesRepository */
 	private $deviceRepository;
 
-	protected function setUp() {
+	protected function setUp() : void {
 		parent::setUp();
 		$this->deviceRepository =
 			MediaWikiServices::getInstance()->getService( DevicesRepository::SERVICE_NAME );
