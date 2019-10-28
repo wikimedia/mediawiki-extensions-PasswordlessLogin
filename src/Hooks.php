@@ -82,7 +82,7 @@ class Hooks {
 	 * @param array &$formDescriptor
 	 * @param string $action one of the AuthManager::ACTION_* constants
 	 */
-	public function onAuthChangeFormFields(
+	public static function onAuthChangeFormFields(
 		array $requests, array $fieldInfo, array &$formDescriptor, $action
 	) {
 		/** @var QRCodeRequest $req */
