@@ -1,13 +1,13 @@
 <?php
 
-namespace PasswordlessLogin\adapter;
+namespace PasswordlessLogin\adapter\api;
 
 use ApiBase;
 use MediaWiki\MediaWikiServices;
 use PasswordlessLogin\model\ChallengesRepository;
 use PasswordlessLogin\model\DevicesRepository;
 
-class ApiPasswordlessLoginVerify extends ApiBase {
+class ChallengeVerification extends ApiBase {
 	public function execute() {
 		/** @var ChallengesRepository $challengesRepository */
 		$challengesRepository =

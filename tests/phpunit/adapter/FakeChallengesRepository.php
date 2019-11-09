@@ -9,6 +9,8 @@ use User;
 class FakeChallengesRepository implements ChallengesRepository {
 	/** @var Challenge */
 	public $byUser;
+	/** @var Challenge */
+	public $savedChallenge;
 	/**
 	 * @var User
 	 */
@@ -18,6 +20,7 @@ class FakeChallengesRepository implements ChallengesRepository {
 	 * @inheritDoc
 	 */
 	public function save( Challenge $challenge ) {
+		$this->savedChallenge = $challenge;
 	}
 
 	/**

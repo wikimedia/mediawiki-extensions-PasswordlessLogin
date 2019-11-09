@@ -1,6 +1,6 @@
 <?php
 
-namespace PasswordlessLogin\adapter;
+namespace PasswordlessLogin\adapter\api;
 
 use ApiTestCase;
 use MediaWiki\MediaWikiServices;
@@ -15,9 +15,9 @@ use User;
  * @group Database
  * @group medium
  *
- * @covers \PasswordlessLogin\adapter\ApiPasswordlessLogin
+ * @covers \PasswordlessLogin\adapter\api\DeviceRegistrationTest
  */
-class ApiPasswordlessLoginVerifyTest extends ApiTestCase {
+class ChallengeVerificationTest extends ApiTestCase {
 	/** @var ChallengesRepository */
 	private $challengesRepository;
 	/** @var DevicesRepository */
@@ -36,7 +36,7 @@ class ApiPasswordlessLoginVerifyTest extends ApiTestCase {
 
 	public function testNoChallenge() {
 		$result = $this->doApiRequest( [
-			'action' => 'passwordlesslogin-verify',
+			'action' => 'passwordlesslogin-verify-challenge',
 			'challenge' => 'invalid',
 			'response' => 'A_DEVICE_ID',
 		] );
@@ -52,7 +52,7 @@ class ApiPasswordlessLoginVerifyTest extends ApiTestCase {
 		$this->devicesRepository->save( $device );
 
 		$result = $this->doApiRequest( [
-			'action' => 'passwordlesslogin-verify',
+			'action' => 'passwordlesslogin-verify-challenge',
 			'challenge' => $challenge->getChallenge(),
 			'response' => 'A_RESPONSE',
 		] );
@@ -70,7 +70,7 @@ class ApiPasswordlessLoginVerifyTest extends ApiTestCase {
 		$this->devicesRepository->save( $device );
 
 		$result = $this->doApiRequest( [
-			'action' => 'passwordlesslogin-verify',
+			'action' => 'passwordlesslogin-verify-challenge',
 			'challenge' => $challenge->getChallenge(),
 			'response' => 'invalid',
 		] );
@@ -88,7 +88,7 @@ class ApiPasswordlessLoginVerifyTest extends ApiTestCase {
 		$this->devicesRepository->save( $device );
 
 		$result = $this->doApiRequest( [
-			'action' => 'passwordlesslogin-verify',
+			'action' => 'passwordlesslogin-verify-challenge',
 			'challenge' => $challenge->getChallenge(),
 			'response' => hash_hmac( "sha512", $challenge->getChallenge(), $device->getSecret() ),
 		] );

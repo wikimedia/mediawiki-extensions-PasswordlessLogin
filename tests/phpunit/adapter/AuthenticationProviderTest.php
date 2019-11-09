@@ -2,11 +2,12 @@
 
 namespace PasswordlessLogin\adapter;
 
+use GlobalVarConfig;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\PrimaryAuthenticationProvider;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use PasswordlessLogin\model\Challenge;
 use PasswordlessLogin\model\ChallengesRepository;
 use PasswordlessLogin\model\ConfirmRequest;
@@ -19,8 +20,9 @@ use PasswordlessLogin\model\RemoveRequest;
 use PasswordlessLogin\model\VerifyRequest;
 use StatusValue;
 use User;
+use WebRequest;
 
-class AuthenticationProviderTest extends MediaWikiTestCase {
+class AuthenticationProviderTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @var FakeDevicesRepository
 	 */
@@ -148,6 +150,26 @@ class AuthenticationProviderTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * @covers \PasswordlessLogin\adapter\AuthenticationProvider::beginPrimaryAuthentication
+	 */
+	public function testPublishUsernameForApiVerification() {
+		$this->setMwGlobals( [ 'wgPLEnableApiVerification' => true ] );
+		$provider = new AuthenticationProvider();
+		$webRequest = new WebRequest();
+		$provider->setManager( new AuthManager( $webRequest, new GlobalVarConfig() ) );
+		$request = new LoginRequest();
+		$request->password = '';
+		$request->username = 'UTSysop';
+		$this->devicesRepository->byUserId = Device::forUser( User::newFromName( 'UTSysop' ) );
+		$this->devicesRepository->byUserId->confirm();
+
+		$provider->beginPrimaryAuthentication( [ $request ] );
+
+		$this->assertEquals( $this->challengesRepository->savedChallenge->getChallenge(),
+			$webRequest->getSessionData( AuthenticationProvider::CHALLENGE_SESSION_KEY ) );
+	}
+
+	/**
 	 * @covers \PasswordlessLogin\adapter\AuthenticationProvider::continuePrimaryAuthentication
 	 */
 	public function testContinuePrimaryAuthenticationNoChallenge() {
@@ -156,8 +178,7 @@ class AuthenticationProviderTest extends MediaWikiTestCase {
 		$request->username = 'UTSysop';
 		$this->challengesRepository->byUser = null;
 
-		$this->assertEquals( AuthenticationResponse::newFail(
-			wfMessage( 'passwordlesslogin-no-challenge' ) ),
+		$this->assertEquals( AuthenticationResponse::newFail( wfMessage( 'passwordlesslogin-no-challenge' ) ),
 			$provider->continuePrimaryAuthentication( [ $request ] ) );
 	}
 
@@ -205,8 +226,8 @@ class AuthenticationProviderTest extends MediaWikiTestCase {
 	public function testProviderAllowsAuthenticationDataChangeNonPasswordlessLogin() {
 		$provider = new AuthenticationProvider();
 
-		$result = $provider->providerAllowsAuthenticationDataChange(
-			$this->createMock( AuthenticationRequest::class ) );
+		$result =
+			$provider->providerAllowsAuthenticationDataChange( $this->createMock( AuthenticationRequest::class ) );
 
 		$this->assertEquals( StatusValue::newGood( 'ignored' ), $result );
 	}
@@ -288,8 +309,7 @@ class AuthenticationProviderTest extends MediaWikiTestCase {
 	public function testProviderChangeAuthenticationDataNoRemove() {
 		$provider = new AuthenticationProvider();
 
-		$provider->providerAllowsAuthenticationDataChange(
-			$this->createMock( AuthenticationRequest::class ) );
+		$provider->providerAllowsAuthenticationDataChange( $this->createMock( AuthenticationRequest::class ) );
 
 		$this->assertEquals( null, $this->devicesRepository->removedFor );
 	}
@@ -305,8 +325,7 @@ class AuthenticationProviderTest extends MediaWikiTestCase {
 				[ new LinkRequest() ] );
 
 		$authenticationResponse =
-			AuthenticationResponse::newUI(
-				[ new QRCodeRequest( $this->devicesRepository->savedDevice->getPairToken() ) ],
+			AuthenticationResponse::newUI( [ new QRCodeRequest( $this->devicesRepository->savedDevice->getPairToken() ) ],
 				wfMessage( 'passwordlesslogin-pair-device-step' ) );
 		$this->assertEquals( $authenticationResponse, $result );
 	}

@@ -5,6 +5,7 @@ namespace PasswordlessLogin;
 use Config;
 use DatabaseUpdater;
 use MediaWiki\Auth\AuthenticationRequest;
+use MediaWiki\MediaWikiServices;
 use OutputPage;
 use PasswordlessLogin\adapter\HTMLImageField;
 use PasswordlessLogin\adapter\HTMLPlayStoreField;
@@ -69,6 +70,9 @@ class Hooks {
 			return;
 		}
 		if ( $out->getTitle()->equals( Title::makeTitle( NS_SPECIAL, 'UserLogin' ) ) ) {
+			$config =
+				MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'passwordless' );
+			$out->addJsConfigVars( [ 'PLEnableApiVerification' => $config->get( 'PLEnableApiVerification' ) ] );
 			$out->addModules( 'ext.PasswordlessLogin.login' );
 			$out->addModuleStyles( 'ext.PasswordlessLogin.login.styles' );
 		}

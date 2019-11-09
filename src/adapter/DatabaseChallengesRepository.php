@@ -5,6 +5,7 @@ namespace PasswordlessLogin\adapter;
 use PasswordlessLogin\model\Challenge;
 use PasswordlessLogin\model\ChallengesRepository;
 use User;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LoadBalancer;
 
 class DatabaseChallengesRepository implements ChallengesRepository {
@@ -36,6 +37,7 @@ class DatabaseChallengesRepository implements ChallengesRepository {
 		$dbw->insert( self::TABLE_NAME, [
 			'challenge' => $challenge->getChallenge(),
 			'challenge_user_id' => $challenge->getUserId(),
+			'success' => (int)$challenge->getSuccess()
 		] );
 	}
 
@@ -53,7 +55,8 @@ class DatabaseChallengesRepository implements ChallengesRepository {
 	 * @inheritDoc
 	 */
 	public function findByChallenge( $challenge ) {
-		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnection( DB_MASTER, [], false,
+			ILoadBalancer::CONN_TRX_AUTOCOMMIT );
 		$result =
 			$dbr->select( self::TABLE_NAME, $this->FETCH_FIELDS, [ 'challenge' => $challenge ] );
 
@@ -71,7 +74,7 @@ class DatabaseChallengesRepository implements ChallengesRepository {
 	 * @inheritDoc
 	 */
 	public function findByUser( User $user ) {
-		$dbr = $this->loadBalancer->getConnection( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnection( DB_MASTER );
 		$result = $dbr->select( self::TABLE_NAME, $this->FETCH_FIELDS, [
 			'challenge_user_id' => $user->getId(),
 		] );

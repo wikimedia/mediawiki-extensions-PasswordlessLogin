@@ -40,14 +40,19 @@
 	"config": {
 		"PLFirebaseAccessToken": {
 			"value": ""
+		},
+		"PLEnableApiVerification": {
+			"value": false,
+			"description": "Uses the API to check that a login was already verified. This is a convenience feature for the UI only, the actual verification always happens at the backend. This feature is experimental and may result in much higher load to the server during the login process of users, as connections to the API are hold open for up to 30 seconds to save HTTP round-trips."
 		}
 	},
 	"ServiceWiringFiles": [
 		"src/ServiceWiring.php"
 	],
 	"APIModules": {
-		"passwordlesslogin": "PasswordlessLogin\\adapter\\ApiPasswordlessLogin",
-		"passwordlesslogin-verify": "PasswordlessLogin\\adapter\\ApiPasswordlessLoginVerify"
+		"passwordlesslogin": "PasswordlessLogin\\adapter\\api\\DeviceRegistration",
+		"passwordlesslogin-verify-challenge": "PasswordlessLogin\\adapter\\api\\ChallengeVerification",
+		"passwordlesslogin-verify-login": "PasswordlessLogin\\adapter\\api\\LoginVerification"
 	},
 	"AuthManagerAutoConfig": {
 		"primaryauth": {
@@ -60,7 +65,8 @@
 	"ResourceModules": {
 		"ext.PasswordlessLogin.login": {
 			"dependencies": [
-				"oojs-ui-core.styles"
+				"oojs-ui-core.styles",
+				"mediawiki.api"
 			],
 			"scripts": [
 				"ui/login.js"

@@ -1,6 +1,6 @@
 <?php
 
-namespace PasswordlessLogin\adapter;
+namespace PasswordlessLogin\adapter\api;
 
 use ApiTestCase;
 use MediaWiki\MediaWikiServices;
@@ -13,9 +13,9 @@ use User;
  * @group Database
  * @group medium
  *
- * @covers \PasswordlessLogin\adapter\ApiPasswordlessLogin
+ * @covers \PasswordlessLogin\adapter\api\DeviceRegistrationTest
  */
-class ApiPasswordlessLoginTest extends ApiTestCase {
+class DeviceRegistrationTest extends ApiTestCase {
 	/** @var DevicesRepository */
 	private $deviceRepository;
 

@@ -18,6 +18,7 @@ class HooksTest extends MediaWikiTestCase {
 
 		Hooks::onBeforePageDisplay( $out, $skin );
 
+		$this->assertNull( $out->getJsConfigVars()['PLEnableApiVerification'] );
 		$this->assertEquals( [], $out->getModules() );
 	}
 
@@ -31,6 +32,7 @@ class HooksTest extends MediaWikiTestCase {
 
 		Hooks::onBeforePageDisplay( $out, $skin );
 
+		$this->assertNull( $out->getJsConfigVars()['PLEnableApiVerification'] );
 		$this->assertEquals( [], $out->getModules() );
 		$this->assertEquals( [], $out->getModuleStyles() );
 	}
@@ -46,6 +48,7 @@ class HooksTest extends MediaWikiTestCase {
 		Hooks::$addFrontendModules = false;
 		Hooks::onBeforePageDisplay( $out, $skin );
 
+		$this->assertNull( $out->getJsConfigVars()['PLEnableApiVerification'] );
 		$this->assertEquals( [], $out->getModules() );
 		$this->assertEquals( [], $out->getModuleStyles() );
 	}
@@ -54,6 +57,9 @@ class HooksTest extends MediaWikiTestCase {
 	 * @covers \PasswordlessLogin\Hooks::onBeforePageDisplay
 	 */
 	public function testAddsLoginModule() {
+		$this->setMwGlobals( [
+			'wgPLEnableApiVerification' => true,
+		] );
 		$out = new OutputPage( RequestContext::getMain() );
 		$skin = RequestContext::getMain()->getSkin();
 		$out->setTitle( Title::makeTitle( NS_SPECIAL, 'UserLogin' ) );
@@ -61,6 +67,7 @@ class HooksTest extends MediaWikiTestCase {
 		Hooks::$addFrontendModules = true;
 		Hooks::onBeforePageDisplay( $out, $skin );
 
+		$this->assertEquals( true, $out->getJsConfigVars()['PLEnableApiVerification'] );
 		$this->assertEquals( [ 'ext.PasswordlessLogin.login' ], $out->getModules() );
 		$this->assertEquals( [ 'ext.PasswordlessLogin.login.styles' ], $out->getModuleStyles() );
 	}

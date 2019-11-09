@@ -1,12 +1,12 @@
 <?php
 
-namespace PasswordlessLogin\adapter;
+namespace PasswordlessLogin\adapter\api;
 
 use ApiBase;
 use MediaWiki\MediaWikiServices;
 use PasswordlessLogin\model\DevicesRepository;
 
-class ApiPasswordlessLogin extends ApiBase {
+class DeviceRegistration extends ApiBase {
 	public function execute() {
 		/** @var DevicesRepository $devicesRepository */
 		$devicesRepository =

@@ -2,6 +2,7 @@
 
 namespace PasswordlessLogin\adapter;
 
+use Config;
 use MediaWiki\Auth\AbstractPrimaryAuthenticationProvider;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
@@ -25,6 +26,7 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 	const CHALLENGE_SOLVED = 'solved';
 	const CHALLENGE_NO_CHALLENGE = 'noChallenge';
 	const CHALLENGE_FAILED = 'failed';
+	const CHALLENGE_SESSION_KEY = 'passwordlesslogin:username';
 
 	/** @var DevicesRepository */
 	private $devicesRepository;
@@ -32,6 +34,8 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 	private $challengesRepository;
 	/** @var FirebaseMessageSender */
 	private $firebaseMessageSender;
+	/** @var Config */
+	private $plConfig;
 
 	public function __construct() {
 		$mediaWikiServices = MediaWikiServices::getInstance();
@@ -41,6 +45,7 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 			$mediaWikiServices->getService( ChallengesRepository::SERVICE_NAME );
 		$this->firebaseMessageSender =
 			$mediaWikiServices->getService( FirebaseMessageSender::SERVICE_NAME );
+		$this->plConfig = $mediaWikiServices->getConfigFactory()->makeConfig( 'passwordless' );
 	}
 
 	/**
@@ -77,9 +82,14 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 		if ( $device == null || !$device->isConfirmed() ) {
 			return AuthenticationResponse::newAbstain();
 		}
-		$this->newChallenge( $user, $device );
+		$challenge = $this->newChallenge( $user, $device );
 
 		Hooks::$addFrontendModules = true;
+
+		if ( $this->plConfig->get( 'PLEnableApiVerification' ) ) {
+			$this->manager->getRequest()
+				->setSessionData( self::CHALLENGE_SESSION_KEY, $challenge->getChallenge() );
+		}
 
 		return AuthenticationResponse::newUI( [ new VerifyRequest() ],
 			wfMessage( 'passwordlesslogin-verify-request' ) );
@@ -90,6 +100,8 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 		$challenge = Challenge::forUser( $user );
 		$this->challengesRepository->save( $challenge );
 		$this->firebaseMessageSender->send( $device, $challenge );
+
+		return $challenge;
 	}
 
 	/**
@@ -99,8 +111,7 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 		/** @var VerifyRequest $request */
 		$request = AuthenticationRequest::getRequestByClass( $reqs, VerifyRequest::class );
 		if ( $request === null ) {
-			return AuthenticationResponse::newFail(
-				wfMessage( 'passwordlesslogin-error-no-authentication-workflow' ) );
+			return AuthenticationResponse::newFail( wfMessage( 'passwordlesslogin-error-no-authentication-workflow' ) );
 		}
 		$user = User::newFromName( $request->username );
 		switch ( $this->isChallengeSolved( $user ) ) {
@@ -185,8 +196,7 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 			}
 		}
 
-		return AuthenticationResponse::newFail(
-			wfMessage( 'passwordlesslogin-error-no-authentication-workflow' ) );
+		return AuthenticationResponse::newFail( wfMessage( 'passwordlesslogin-error-no-authentication-workflow' ) );
 	}
 
 	/**
