@@ -18,7 +18,7 @@ class HooksTest extends MediaWikiTestCase {
 
 		Hooks::onBeforePageDisplay( $out, $skin );
 
-		$this->assertNull( $out->getJsConfigVars()['PLEnableApiVerification'] );
+		$this->assertFalse( isset( $out->getJsConfigVars()['PLEnableApiVerification'] ) );
 		$this->assertEquals( [], $out->getModules() );
 	}
 
@@ -32,7 +32,7 @@ class HooksTest extends MediaWikiTestCase {
 
 		Hooks::onBeforePageDisplay( $out, $skin );
 
-		$this->assertNull( $out->getJsConfigVars()['PLEnableApiVerification'] );
+		$this->assertFalse( isset( $out->getJsConfigVars()['PLEnableApiVerification'] ) );
 		$this->assertEquals( [], $out->getModules() );
 		$this->assertEquals( [], $out->getModuleStyles() );
 	}
@@ -48,7 +48,7 @@ class HooksTest extends MediaWikiTestCase {
 		Hooks::$addFrontendModules = false;
 		Hooks::onBeforePageDisplay( $out, $skin );
 
-		$this->assertNull( $out->getJsConfigVars()['PLEnableApiVerification'] );
+		$this->assertFalse( isset( $out->getJsConfigVars()['PLEnableApiVerification'] ) );
 		$this->assertEquals( [], $out->getModules() );
 		$this->assertEquals( [], $out->getModuleStyles() );
 	}

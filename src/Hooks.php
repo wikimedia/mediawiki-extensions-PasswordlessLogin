@@ -72,7 +72,9 @@ class Hooks {
 		if ( $out->getTitle()->equals( Title::makeTitle( NS_SPECIAL, 'UserLogin' ) ) ) {
 			$config =
 				MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'passwordless' );
-			$out->addJsConfigVars( [ 'PLEnableApiVerification' => $config->get( 'PLEnableApiVerification' ) ] );
+			$out->addJsConfigVars( [
+				'PLEnableApiVerification' => $config->get( 'PLEnableApiVerification' )
+			] );
 			$out->addModules( 'ext.PasswordlessLogin.login' );
 			$out->addModuleStyles( 'ext.PasswordlessLogin.login.styles' );
 		}

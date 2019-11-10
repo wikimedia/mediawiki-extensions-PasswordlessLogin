@@ -33,7 +33,7 @@ class LoginVerification extends ApiBase {
 
 		$retries = 0;
 		while ( $this->isPending( $challengeKey ) && $retries < self::MAX_RETRIES ) {
-			$retries ++;
+			$retries++;
 			sleep( 2 );
 		}
 		if ( $this->isPending( $challengeKey ) ) {

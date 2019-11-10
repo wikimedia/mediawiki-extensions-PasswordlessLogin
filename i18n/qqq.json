@@ -24,7 +24,8 @@
 	"apihelp-passwordlesslogin-param-pairToken": "{{doc-apihelp-param|passwordlesslogin|pairToken}}",
 	"apihelp-passwordlesslogin-param-deviceId": "{{doc-apihelp-param|passwordlesslogin|deviceId}}",
 	"apihelp-passwordlesslogin-param-secret": "{{doc-apihelp-param|passwordlesslogin|secret}}",
-	"apihelp-passwordlesslogin-verify-summary": "{{doc-apihelp-summary|passwordlesslogin-verify}}",
-	"apihelp-passwordlesslogin-verify-param-challenge": "{{doc-apihelp-param|passwordlesslogin-verify|challenge}}",
-	"apihelp-passwordlesslogin-verify-param-response": "{{doc-apihelp-param|passwordlesslogin-verify|response}}"
+	"apihelp-passwordlesslogin-verify-challenge-summary": "{{doc-apihelp-summary|passwordlesslogin-verify-challenge}}",
+	"apihelp-passwordlesslogin-verify-challenge-param-challenge": "{{doc-apihelp-param|passwordlesslogin-verify-challenge|challenge}}",
+	"apihelp-passwordlesslogin-verify-challenge-param-response": "{{doc-apihelp-param|passwordlesslogin-verify-challenge|response}}",
+	"apihelp-passwordlesslogin-verify-login-summary": "{{doc-apihelp-summary|passwordlesslogin-verify-login}}"
 }

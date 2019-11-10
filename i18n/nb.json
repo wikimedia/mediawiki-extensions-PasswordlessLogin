@@ -23,7 +23,7 @@
 	"apihelp-passwordlesslogin-param-pairToken": "Den tidligere genererte parnøkkelen for å identifisere hvilken bruker enheten skal registreres på.",
 	"apihelp-passwordlesslogin-param-deviceId": "En unik enhets-ID kan brukes for å identifisere enheten samt sende varsler til den med enhetens standard varslingssystem (f.eks. Firebase Cloud Messaging for Android-enheter).",
 	"apihelp-passwordlesslogin-param-secret": "En hemmelighet generert på enheten som skal brukes for å signere utfordringer sendt til enheten. Hemmeligheten brukes for å bekrefte at en utfordring til innlogging og må holdes hemmelig.",
-	"apihelp-passwordlesslogin-verify-summary": "Bekreft en innloggingsforespørsel sendt til en enhet.",
-	"apihelp-passwordlesslogin-verify-param-challenge": "Utfordringen som ble sendt til enheten og som skal løses.",
-	"apihelp-passwordlesslogin-verify-param-response": "Responsen (løsningen) til utfordringen. Løsningen må være:<br />&#160;1. En HMAC med SHA512 som signaturalgoritme<br />&#160;2. Den forhåndsdelte hemmeligheten som symmetrisk nøkkelmaterial<br />&#160;3. MAC-dataene er utfordringen som bytetabell<br />&#160;4. Responsen må være en heksadesimal streng<br />&#160;5. Responsen må være i små bokstaver"
+	"apihelp-passwordlesslogin-verify-challenge-summary": "Bekreft en innloggingsforespørsel sendt til en enhet.",
+	"apihelp-passwordlesslogin-verify-challenge-param-challenge": "Utfordringen som ble sendt til enheten og som skal løses.",
+	"apihelp-passwordlesslogin-verify-challenge-param-response": "Responsen (løsningen) til utfordringen. Løsningen må være:<br />&#160;1. En HMAC med SHA512 som signaturalgoritme<br />&#160;2. Den forhåndsdelte hemmeligheten som symmetrisk nøkkelmaterial<br />&#160;3. MAC-dataene er utfordringen som bytetabell<br />&#160;4. Responsen må være en heksadesimal streng<br />&#160;5. Responsen må være i små bokstaver"
 }

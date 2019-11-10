@@ -111,12 +111,14 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 		/** @var VerifyRequest $request */
 		$request = AuthenticationRequest::getRequestByClass( $reqs, VerifyRequest::class );
 		if ( $request === null ) {
-			return AuthenticationResponse::newFail( wfMessage( 'passwordlesslogin-error-no-authentication-workflow' ) );
+			return AuthenticationResponse::newFail(
+				wfMessage( 'passwordlesslogin-error-no-authentication-workflow' ) );
 		}
 		$user = User::newFromName( $request->username );
 		switch ( $this->isChallengeSolved( $user ) ) {
 			case self::CHALLENGE_NO_CHALLENGE:
-				return AuthenticationResponse::newFail( wfMessage( 'passwordlesslogin-no-challenge' ) );
+				return AuthenticationResponse::newFail(
+					wfMessage( 'passwordlesslogin-no-challenge' ) );
 			case self::CHALLENGE_FAILED:
 				Hooks::$addFrontendModules = true;
 
@@ -196,7 +198,8 @@ class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 			}
 		}
 
-		return AuthenticationResponse::newFail( wfMessage( 'passwordlesslogin-error-no-authentication-workflow' ) );
+		return AuthenticationResponse::newFail(
+			wfMessage( 'passwordlesslogin-error-no-authentication-workflow' ) );
 	}
 
 	/**

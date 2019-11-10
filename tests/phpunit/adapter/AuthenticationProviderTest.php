@@ -178,7 +178,8 @@ class AuthenticationProviderTest extends MediaWikiIntegrationTestCase {
 		$request->username = 'UTSysop';
 		$this->challengesRepository->byUser = null;
 
-		$this->assertEquals( AuthenticationResponse::newFail( wfMessage( 'passwordlesslogin-no-challenge' ) ),
+		$this->assertEquals(
+			AuthenticationResponse::newFail( wfMessage( 'passwordlesslogin-no-challenge' ) ),
 			$provider->continuePrimaryAuthentication( [ $request ] ) );
 	}
 
@@ -226,8 +227,8 @@ class AuthenticationProviderTest extends MediaWikiIntegrationTestCase {
 	public function testProviderAllowsAuthenticationDataChangeNonPasswordlessLogin() {
 		$provider = new AuthenticationProvider();
 
-		$result =
-			$provider->providerAllowsAuthenticationDataChange( $this->createMock( AuthenticationRequest::class ) );
+		$result = $provider->providerAllowsAuthenticationDataChange(
+			$this->createMock( AuthenticationRequest::class ) );
 
 		$this->assertEquals( StatusValue::newGood( 'ignored' ), $result );
 	}
@@ -309,7 +310,8 @@ class AuthenticationProviderTest extends MediaWikiIntegrationTestCase {
 	public function testProviderChangeAuthenticationDataNoRemove() {
 		$provider = new AuthenticationProvider();
 
-		$provider->providerAllowsAuthenticationDataChange( $this->createMock( AuthenticationRequest::class ) );
+		$provider->providerAllowsAuthenticationDataChange(
+			$this->createMock( AuthenticationRequest::class ) );
 
 		$this->assertEquals( null, $this->devicesRepository->removedFor );
 	}
@@ -324,9 +326,9 @@ class AuthenticationProviderTest extends MediaWikiIntegrationTestCase {
 			$provider->beginPrimaryAccountLink( User::newFromName( 'UTSysop' ),
 				[ new LinkRequest() ] );
 
-		$authenticationResponse =
-			AuthenticationResponse::newUI( [ new QRCodeRequest( $this->devicesRepository->savedDevice->getPairToken() ) ],
-				wfMessage( 'passwordlesslogin-pair-device-step' ) );
+		$authenticationResponse = AuthenticationResponse::newUI(
+			[ new QRCodeRequest( $this->devicesRepository->savedDevice->getPairToken() ) ],
+			wfMessage( 'passwordlesslogin-pair-device-step' ) );
 		$this->assertEquals( $authenticationResponse, $result );
 	}
 
