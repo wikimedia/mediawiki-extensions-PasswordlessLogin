@@ -11,7 +11,6 @@ use PasswordlessLogin\adapter\HTMLImageField;
 use PasswordlessLogin\adapter\HTMLPlayStoreField;
 use PasswordlessLogin\model\QRCodeRequest;
 use Skin;
-use Title;
 
 class Hooks {
 	public static $addFrontendModules = false;
@@ -69,7 +68,7 @@ class Hooks {
 		if ( !self::$addFrontendModules ) {
 			return;
 		}
-		if ( $out->getTitle()->equals( Title::makeTitle( NS_SPECIAL, 'UserLogin' ) ) ) {
+		if ( $out->getTitle()->isSpecial( 'Userlogin' ) ) {
 			$config =
 				MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'passwordless' );
 			$out->addJsConfigVars( [

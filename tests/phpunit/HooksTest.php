@@ -71,4 +71,24 @@ class HooksTest extends MediaWikiTestCase {
 		$this->assertEquals( [ 'ext.PasswordlessLogin.login' ], $out->getModules() );
 		$this->assertEquals( [ 'ext.PasswordlessLogin.login.styles' ], $out->getModuleStyles() );
 	}
+
+	/**
+	 * @covers \PasswordlessLogin\Hooks::onBeforePageDisplay
+	 */
+	public function testAddsLoginModuleForAnotherLanguage() {
+		$this->setMwGlobals( [
+			'wgPLEnableApiVerification' => true,
+			'wgLanguageCode' => 'de'
+		] );
+		$out = new OutputPage( RequestContext::getMain() );
+		$skin = RequestContext::getMain()->getSkin();
+		$out->setTitle( Title::makeTitle( NS_SPECIAL, 'Anmelden' ) );
+
+		Hooks::$addFrontendModules = true;
+		Hooks::onBeforePageDisplay( $out, $skin );
+
+		$this->assertEquals( true, $out->getJsConfigVars()['PLEnableApiVerification'] );
+		$this->assertEquals( [ 'ext.PasswordlessLogin.login' ], $out->getModules() );
+		$this->assertEquals( [ 'ext.PasswordlessLogin.login.styles' ], $out->getModuleStyles() );
+	}
 }
