@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Wladek92",
-			"Gomoko"
+			"Gomoko",
+			"Verdy p"
 		]
 	},
 	"passwordlesslogin": "Connexion sans mot de passe",
@@ -26,5 +27,6 @@
 	"apihelp-passwordlesslogin-param-secret": "Un secret généré sur l’appareil qui sera utilisé pour signer les défis envoyés à l’appareil. Ce secret est utilisé pour vérifier une réponse de défi de requête de connexion et doit être gardé secret.",
 	"apihelp-passwordlesslogin-verify-challenge-summary": "Vérifier une demande de connexion envoyée à un appareil.",
 	"apihelp-passwordlesslogin-verify-challenge-param-challenge": "Le défi qui a été envoyé à l’appareil et qui doit être résolu.",
-	"apihelp-passwordlesslogin-verify-challenge-param-response": "La réponse (solution) du défi. La solution doit être :<br />&#160;1. Un HMAC avec SHA512 comme algorithme de signature<br />&#160;2. Le secret pré-partagé comme matériau de clé symétrique<br />&#160;3. La donnée MAC est le défi sous forme de tableau d’octets<br />&#160;4. La réponse doit être une chaîne hexadécimale<br />&#160;5. La réponse doit être en minuscules"
+	"apihelp-passwordlesslogin-verify-challenge-param-response": "La réponse (solution) du défi. La solution doit être :<br />&#160;1. Un HMAC avec SHA512 comme algorithme de signature<br />&#160;2. Le secret pré-partagé comme matériau de clé symétrique<br />&#160;3. La donnée MAC est le défi sous forme de tableau d’octets<br />&#160;4. La réponse doit être une chaîne hexadécimale<br />&#160;5. La réponse doit être en minuscules",
+	"apihelp-passwordlesslogin-verify-login-summary": "Vérifie si une requête de connexion a déjà été vérifiée par l’appareil."
 }
