@@ -25,5 +25,6 @@
 	"apihelp-passwordlesslogin-param-secret": "在設備上所產生的密碼，會使用來簽署發送到設備的詢問。此密碼被用來核對登入請求詢問的回應，並請確實保管好密碼。",
 	"apihelp-passwordlesslogin-verify-challenge-summary": "核對發送到設備上的登入請求。",
 	"apihelp-passwordlesslogin-verify-challenge-param-challenge": "發送到設備上且將被解決的詢問。",
-	"apihelp-passwordlesslogin-verify-challenge-param-response": "詢問的回應（解答）。解答內容應為：<br />&#160;1. 以 SHA512 作為簽章演算法的雜湊訊息鑑別碼（HMAC）<br />&#160;2. 預分享密碼作為對稱密鑰要素<br />&#160;3. 訊息鑑別碼資料是作為位元組陣列的詢問<br />&#160;4. 回應需為十六進位的字串<br />&#160;5. 回應必須是小寫"
+	"apihelp-passwordlesslogin-verify-challenge-param-response": "詢問的回應（解答）。解答內容應為：<br />&#160;1. 以 SHA512 作為簽章演算法的雜湊訊息鑑別碼（HMAC）<br />&#160;2. 預分享密碼作為對稱密鑰要素<br />&#160;3. 訊息鑑別碼資料是作為位元組陣列的詢問<br />&#160;4. 回應需為十六進位的字串<br />&#160;5. 回應必須是小寫",
+	"apihelp-passwordlesslogin-verify-login-summary": "檢查是否有已被設備核對過的登入請求。"
 }
