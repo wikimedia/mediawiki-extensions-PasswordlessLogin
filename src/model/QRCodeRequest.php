@@ -27,8 +27,9 @@ class QRCodeRequest extends AuthenticationRequest {
 			MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'passwordless' );
 
 		$apiUrl = Hooks::constructApiUrl( $mainConfig, $config );
+		$senderId = $config->get( 'PLFirebaseSenderId' );
 		$accountName = $mainConfig->get( 'Sitename' );
-		$qrCode = new QrCode( $accountName . ';' . $apiUrl . ';' . $this->pairToken );
+		$qrCode = new QrCode( $accountName . ';' . $apiUrl . ';' . $this->pairToken . ';' . $senderId );
 
 		return [
 			'firstStep' => [

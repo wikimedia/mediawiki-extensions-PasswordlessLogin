@@ -39,7 +39,12 @@
 	},
 	"config": {
 		"PLFirebaseAccessToken": {
-			"value": ""
+			"value": "",
+			"description": "The Firebase server key out of the Firebase project Cloud Messaging settings."
+		},
+		"PLFirebaseSenderId": {
+			"value": "",
+			"description": "The Firebase Cloud Messaging Sender ID, which can be found in the Firebase project settings."
 		},
 		"PLEnableApiVerification": {
 			"value": false,
