@@ -75,11 +75,19 @@
 			],
 			"scripts": [
 				"ui/login.js"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
 			]
 		},
 		"ext.PasswordlessLogin.login.styles": {
 			"styles": [
 				"ui/login.less"
+			],
+			"targets": [
+				"mobile",
+				"desktop"
 			]
 		}
 	},
