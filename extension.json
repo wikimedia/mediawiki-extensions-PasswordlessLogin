@@ -6,7 +6,7 @@
 	"descriptionmsg": "passwordlesslogin-desc",
 	"namemsg": "passwordlesslogin",
 	"license-name": "MIT",
-	"type": "auth",
+	"type": "other",
 	"requires": {
 		"MediaWiki": ">= 1.33.0"
 	},
