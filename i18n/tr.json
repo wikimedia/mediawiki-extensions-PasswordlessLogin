@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hedda"
+			"Hedda",
+			"BaRaN6161 TURK"
 		]
 	},
 	"passwordlesslogin": "Şifresiz giriş",
@@ -25,5 +26,6 @@
 	"apihelp-passwordlesslogin-param-secret": "Cihaza gönderilen zorlukları imzalamak için kullanılacak cihaz üzerinde bir sır oluşturuldu. Bu sır, bir oturum açma isteği sorgusu yanıtının doğrulandığını onaylamak için kullanılıyor ve gizli tutulması gerekiyor.",
 	"apihelp-passwordlesslogin-verify-challenge-summary": "Bir aygıta gönderilen bir oturum açma isteğini doğrulayın.",
 	"apihelp-passwordlesslogin-verify-challenge-param-challenge": "Aygıta gönderilen ve çözülecek olan kimlik sorma.",
-	"apihelp-passwordlesslogin-verify-challenge-param-response": "Kimlik sormaya cevap (çözüm). Çözüm şöyle olmalı:<br />&#160;1. İmza algoritması olarak SHA512'li bir HMAC<br />&#160;2. Simetrik bir anahtar malzeme olarak önceden paylaşılan sır<br />&#160;3. MAC verisi bir bayt dizisi olarak kimlik sormadır<br />&#160;4. Yanıt onaltılık bir dizi olmalı<br />&#160;5. Yanıtın küçük harf olması gerekir"
+	"apihelp-passwordlesslogin-verify-challenge-param-response": "Kimlik sormaya cevap (çözüm). Çözüm şöyle olmalı:<br />&#160;1. İmza algoritması olarak SHA512'li bir HMAC<br />&#160;2. Simetrik bir anahtar malzeme olarak önceden paylaşılan sır<br />&#160;3. MAC verisi bir bayt dizisi olarak kimlik sormadır<br />&#160;4. Yanıt onaltılık bir dizi olmalı<br />&#160;5. Yanıtın küçük harf olması gerekir",
+	"apihelp-passwordlesslogin-verify-login-summary": "Bir giriş isteğinin cihaz tarafından doğrulanmış olup olmadığını kontrol edin."
 }
