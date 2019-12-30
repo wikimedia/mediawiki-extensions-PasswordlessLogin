@@ -13,7 +13,7 @@
 	"AutoloadNamespaces": {
 		"PasswordlessLogin\\": "src/"
 	},
-	"AutoloadClasses": {
+	"TestAutoloadClasses": {
 		"PasswordlessLogin\\adapter\\FakeChallengesRepository": "tests/phpunit/adapter/FakeChallengesRepository.php",
 		"PasswordlessLogin\\adapter\\FakeDevicesRepository": "tests/phpunit/adapter/FakeDevicesRepository.php",
 		"PasswordlessLogin\\adapter\\FakeFirebase": "tests/phpunit/adapter/FakeFirebase.php"
