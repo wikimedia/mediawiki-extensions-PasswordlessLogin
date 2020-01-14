@@ -218,7 +218,7 @@ class AuthenticationProviderTest extends MediaWikiIntegrationTestCase {
 	public function testTestUserExists() {
 		$provider = new AuthenticationProvider();
 
-		$this->assertEquals( false, $provider->testUserExists( 'A_USERNAME' ) );
+		$this->assertFalse( $provider->testUserExists( 'A_USERNAME' ) );
 	}
 
 	/**
@@ -287,7 +287,7 @@ class AuthenticationProviderTest extends MediaWikiIntegrationTestCase {
 
 		$provider->providerChangeAuthenticationData( $request );
 
-		$this->assertEquals( null, $this->devicesRepository->removedFor );
+		$this->assertNull( $this->devicesRepository->removedFor );
 	}
 
 	/**
@@ -313,7 +313,7 @@ class AuthenticationProviderTest extends MediaWikiIntegrationTestCase {
 		$provider->providerAllowsAuthenticationDataChange(
 			$this->createMock( AuthenticationRequest::class ) );
 
-		$this->assertEquals( null, $this->devicesRepository->removedFor );
+		$this->assertNull( $this->devicesRepository->removedFor );
 	}
 
 	/**

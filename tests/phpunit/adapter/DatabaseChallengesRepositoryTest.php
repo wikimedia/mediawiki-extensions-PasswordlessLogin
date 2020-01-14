@@ -50,8 +50,7 @@ class DatabaseChallengesRepositoryTest extends MediaWikiTestCase {
 
 		$this->repository->remove( $user );
 
-		$this->assertEquals( null,
-			$this->repository->findByChallenge( $challenge->getChallenge() ) );
+		$this->assertNull( $this->repository->findByChallenge( $challenge->getChallenge() ) );
 	}
 
 	/**

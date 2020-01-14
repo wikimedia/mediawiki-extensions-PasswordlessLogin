@@ -52,7 +52,7 @@ class DatabaseDeviceRepositoryTest extends MediaWikiTestCase {
 
 		$result = $this->repository->findByUserId( $user->getId() );
 
-		$this->assertEquals( null, $result );
+		$this->assertNull( $result );
 	}
 
 	/**
@@ -66,7 +66,7 @@ class DatabaseDeviceRepositoryTest extends MediaWikiTestCase {
 
 		$this->repository->remove( $user );
 
-		$this->assertEquals( null, $this->repository->findByUserId( $user->getId() ) );
+		$this->assertNull( $this->repository->findByUserId( $user->getId() ) );
 	}
 
 	/**

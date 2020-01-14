@@ -67,7 +67,7 @@ class HooksTest extends MediaWikiTestCase {
 		Hooks::$addFrontendModules = true;
 		Hooks::onBeforePageDisplay( $out, $skin );
 
-		$this->assertEquals( true, $out->getJsConfigVars()['PLEnableApiVerification'] );
+		$this->assertTrue( $out->getJsConfigVars()['PLEnableApiVerification'] );
 		$this->assertEquals( [ 'ext.PasswordlessLogin.login' ], $out->getModules() );
 		$this->assertEquals( [ 'ext.PasswordlessLogin.login.styles' ], $out->getModuleStyles() );
 	}
@@ -87,7 +87,7 @@ class HooksTest extends MediaWikiTestCase {
 		Hooks::$addFrontendModules = true;
 		Hooks::onBeforePageDisplay( $out, $skin );
 
-		$this->assertEquals( true, $out->getJsConfigVars()['PLEnableApiVerification'] );
+		$this->assertTrue( $out->getJsConfigVars()['PLEnableApiVerification'] );
 		$this->assertEquals( [ 'ext.PasswordlessLogin.login' ], $out->getModules() );
 		$this->assertEquals( [ 'ext.PasswordlessLogin.login.styles' ], $out->getModuleStyles() );
 	}

@@ -1,10 +1,10 @@
 <?php
 
-use PasswordlessLogin\Hooks;
 use MediaWiki\MediaWikiServices;
 use PasswordlessLogin\adapter\DatabaseChallengesRepository;
 use PasswordlessLogin\adapter\DatabaseDeviceRepository;
 use PasswordlessLogin\adapter\FirebaseMessageSender;
+use PasswordlessLogin\Hooks;
 use PasswordlessLogin\model\ChallengesRepository;
 use PasswordlessLogin\model\DevicesRepository;
 
