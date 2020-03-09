@@ -5,7 +5,7 @@
 			"Piramidion"
 		]
 	},
-	"passwordlesslogin": "Вхід без паролю",
+	"passwordlesslogin": "Вхід без пароля",
 	"passwordlesslogin-desc": "Надає спосіб увійти в систему без використання пароля, шляхом підтвердження входу на приєднаному пристрої.",
 	"passwordlesslogin-verify-request": "Будь ласка, верифікуйте вхід на вашому телефоні.",
 	"passwordlesslogin-error-no-authentication-workflow": "Процес автентифікації неочікувано завершився.",
