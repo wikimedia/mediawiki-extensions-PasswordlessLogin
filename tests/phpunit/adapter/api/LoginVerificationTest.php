@@ -53,7 +53,13 @@ class LoginVerificationTest extends ApiTestCase {
 	}
 
 	public function testOpenChallenge() {
-		AuthManager::singleton()
+		if ( method_exists( MediaWikiServices::class, 'getAuthManager' ) ) {
+			// MediaWiki 1.35+
+			$authManager = MediaWikiServices::getInstance()->getAuthManager();
+		} else {
+			$authManager = AuthManager::singleton();
+		}
+		$authManager
 			->setAuthenticationSessionData( AuthenticationProvider::CHALLENGE_SESSION_KEY,
 				'UTSysop' );
 		$user = User::newFromName( 'UTSysop' );
