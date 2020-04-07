@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Wladek92",
 			"Gomoko",
-			"Verdy p"
+			"Verdy p",
+			"Wladek92"
 		]
 	},
 	"passwordlesslogin": "Connexion sans mot de passe",
