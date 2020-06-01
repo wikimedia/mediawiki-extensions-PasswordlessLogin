@@ -16,7 +16,7 @@ class DeviceTest extends MediaWikiTestCase {
 
 		$device = Device::forUser( $user );
 
-		$this->assertEquals( 1, $device->getUserId() );
+		$this->assertSame( 1, $device->getUserId() );
 		$this->assertNotNull( $device->getPairToken() );
 	}
 

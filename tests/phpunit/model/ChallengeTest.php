@@ -16,7 +16,7 @@ class ChallengeTest extends MediaWikiTestCase {
 
 		$challenge = Challenge::forUser( $user );
 
-		$this->assertEquals( 1, $challenge->getUserId() );
+		$this->assertSame( 1, $challenge->getUserId() );
 		$this->assertNotNull( $challenge->getChallenge() );
 	}
 
