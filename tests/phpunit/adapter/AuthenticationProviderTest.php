@@ -7,6 +7,7 @@ use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\PrimaryAuthenticationProvider;
+use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
 use PasswordlessLogin\model\Challenge;
 use PasswordlessLogin\model\ChallengesRepository;
@@ -156,7 +157,13 @@ class AuthenticationProviderTest extends MediaWikiIntegrationTestCase {
 		$this->setMwGlobals( [ 'wgPLEnableApiVerification' => true ] );
 		$provider = new AuthenticationProvider();
 		$webRequest = new WebRequest();
-		$provider->setManager( new AuthManager( $webRequest, new GlobalVarConfig() ) );
+		$provider->setManager( new AuthManager(
+			$webRequest,
+			new GlobalVarConfig(),
+			MediaWikiServices::getInstance()->getObjectFactory(),
+			MediaWikiServices::getInstance()->getPermissionManager(),
+			MediaWikiServices::getInstance()->getHookContainer()
+		) );
 		$request = new LoginRequest();
 		$request->password = '';
 		$request->username = 'UTSysop';
