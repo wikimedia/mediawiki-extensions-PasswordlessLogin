@@ -10,7 +10,7 @@ use PasswordlessLogin\model\ChallengesRepository;
 class LoginVerification extends ApiBase {
 	const MAX_RETRIES = 5;
 
-	/** @var ChallengesRepository $challengesRepository */
+	/** @var ChallengesRepository */
 	private $challengesRepository;
 
 	public function execute() {
