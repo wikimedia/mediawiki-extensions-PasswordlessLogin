@@ -161,12 +161,12 @@ class AuthenticationProviderTest extends MediaWikiIntegrationTestCase {
 			$webRequest,
 			new GlobalVarConfig(),
 			MediaWikiServices::getInstance()->getObjectFactory(),
-			MediaWikiServices::getInstance()->getPermissionManager(),
 			MediaWikiServices::getInstance()->getHookContainer(),
 			MediaWikiServices::getInstance()->getReadOnlyMode(),
 			MediaWikiServices::getInstance()->getUserNameUtils(),
 			MediaWikiServices::getInstance()->getBlockManager(),
-			MediaWikiServices::getInstance()->getBlockErrorFormatter()
+			MediaWikiServices::getInstance()->getBlockErrorFormatter(),
+			MediaWikiServices::getInstance()->getWatchlistManager()
 		) );
 		$request = new LoginRequest();
 		$request->password = '';
