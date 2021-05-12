@@ -9,15 +9,15 @@ use PasswordlessLogin\model\ChallengesRepository;
 use PasswordlessLogin\model\DevicesRepository;
 
 return [
-	DevicesRepository::SERVICE_NAME => function ( MediaWikiServices $services ) {
+	DevicesRepository::SERVICE_NAME => static function ( MediaWikiServices $services ) {
 		return new DatabaseDeviceRepository( $services->getDBLoadBalancer() );
 	},
 
-	ChallengesRepository::SERVICE_NAME => function ( MediaWikiServices $services ) {
+	ChallengesRepository::SERVICE_NAME => static function ( MediaWikiServices $services ) {
 		return new DatabaseChallengesRepository( $services->getDBLoadBalancer() );
 	},
 
-	FirebaseMessageSender::SERVICE_NAME => function ( MediaWikiServices $services ) {
+	FirebaseMessageSender::SERVICE_NAME => static function ( MediaWikiServices $services ) {
 		$config = $services->getConfigFactory()->makeConfig( 'passwordless' );
 		$mainConfig = $services->getMainConfig();
 
