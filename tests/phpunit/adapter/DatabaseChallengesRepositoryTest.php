@@ -16,7 +16,7 @@ class DatabaseChallengesRepositoryTest extends MediaWikiTestCase {
 	 */
 	private $repository;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->tablesUsed[] = 'passwordlesslogin_challenges';
 

@@ -19,7 +19,7 @@ class DeviceRegistrationTest extends ApiTestCase {
 	/** @var DevicesRepository */
 	private $deviceRepository;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->deviceRepository =
 			MediaWikiServices::getInstance()->getService( DevicesRepository::SERVICE_NAME );

@@ -33,7 +33,7 @@ class AuthenticationProviderTest extends MediaWikiIntegrationTestCase {
 	 */
 	private $challengesRepository;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->devicesRepository = new FakeDevicesRepository();
