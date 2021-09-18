@@ -36,7 +36,7 @@ class DatabaseDeviceRepository implements DevicesRepository {
 	 * @inheritDoc
 	 */
 	public function remove( User $user ) {
-		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnection( DB_PRIMARY );
 		$dbw->delete( self::TABLE_NAME, [
 			'device_user_id' => $user->getId(),
 		] );
@@ -77,7 +77,7 @@ class DatabaseDeviceRepository implements DevicesRepository {
 	}
 
 	private function insertDevice( Device $device ) {
-		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnection( DB_PRIMARY );
 		$dbw->insert( self::TABLE_NAME, [
 			'device_user_id' => $device->getUserId(),
 			'device_id' => $device->getDeviceId(),
@@ -88,7 +88,7 @@ class DatabaseDeviceRepository implements DevicesRepository {
 	}
 
 	private function updateDevice( Device $device ) {
-		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnection( DB_PRIMARY );
 		$dbw->update( self::TABLE_NAME, [
 			'device_id' => $device->getDeviceId(),
 			'secret' => $device->getSecret(),
