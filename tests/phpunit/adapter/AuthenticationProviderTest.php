@@ -2,12 +2,10 @@
 
 namespace PasswordlessLogin\adapter;
 
-use GlobalVarConfig;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\PrimaryAuthenticationProvider;
-use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
 use PasswordlessLogin\model\Challenge;
 use PasswordlessLogin\model\ChallengesRepository;
@@ -155,19 +153,30 @@ class AuthenticationProviderTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testPublishUsernameForApiVerification() {
 		$this->setMwGlobals( [ 'wgPLEnableApiVerification' => true ] );
-		$provider = new AuthenticationProvider();
 		$webRequest = new WebRequest();
-		$provider->setManager( new AuthManager(
-			$webRequest,
-			new GlobalVarConfig(),
-			MediaWikiServices::getInstance()->getObjectFactory(),
-			MediaWikiServices::getInstance()->getHookContainer(),
-			MediaWikiServices::getInstance()->getReadOnlyMode(),
-			MediaWikiServices::getInstance()->getUserNameUtils(),
-			MediaWikiServices::getInstance()->getBlockManager(),
-			MediaWikiServices::getInstance()->getBlockErrorFormatter(),
-			MediaWikiServices::getInstance()->getWatchlistManager()
-		) );
+		$provider = new class( $webRequest ) extends AuthenticationProvider {
+			public function __construct( \WebRequest $webRequest ) {
+				parent::__construct();
+				$services = \MediaWiki\MediaWikiServices::getInstance();
+				$this->manager = new \MediaWiki\Auth\AuthManager(
+					$webRequest,
+					new \GlobalVarConfig(),
+					$services->getObjectFactory(),
+					$services->getHookContainer(),
+					$services->getReadOnlyMode(),
+					$services->getUserNameUtils(),
+					$services->getBlockManager(),
+					$services->getWatchlistManager(),
+					$services->getDBLoadBalancer(),
+					$services->getContentLanguage(),
+					$services->getLanguageConverterFactory(),
+					$services->getBotPasswordStore(),
+					$services->getUserFactory(),
+					$services->getUserIdentityLookup(),
+					$services->getUserOptionsManager()
+				);
+			}
+		};
 		$request = new LoginRequest();
 		$request->password = '';
 		$request->username = 'UTSysop';
