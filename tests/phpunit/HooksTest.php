@@ -2,12 +2,12 @@
 
 namespace PasswordlessLogin;
 
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use OutputPage;
 use RequestContext;
 use Title;
 
-class HooksTest extends MediaWikiTestCase {
+class HooksTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \PasswordlessLogin\Hooks::onBeforePageDisplay
 	 */

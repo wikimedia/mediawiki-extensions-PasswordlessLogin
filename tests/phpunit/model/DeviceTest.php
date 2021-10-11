@@ -2,11 +2,11 @@
 
 namespace PasswordlessLogin\adapter;
 
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use PasswordlessLogin\model\Device;
 use User;
 
-class DeviceTest extends MediaWikiTestCase {
+class DeviceTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \PasswordlessLogin\model\Device::forUser
 	 */

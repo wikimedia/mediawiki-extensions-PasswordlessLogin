@@ -3,14 +3,14 @@
 namespace PasswordlessLogin\adapter;
 
 use MediaWiki\MediaWikiServices;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use PasswordlessLogin\model\Challenge;
 use User;
 
 /**
  * @group Database
  */
-class DatabaseChallengesRepositoryTest extends MediaWikiTestCase {
+class DatabaseChallengesRepositoryTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @var DatabaseChallengesRepository
 	 */

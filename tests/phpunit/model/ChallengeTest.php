@@ -2,11 +2,11 @@
 
 namespace PasswordlessLogin\adapter;
 
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use PasswordlessLogin\model\Challenge;
 use User;
 
-class ChallengeTest extends MediaWikiTestCase {
+class ChallengeTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \PasswordlessLogin\model\Challenge::forUser
 	 */
