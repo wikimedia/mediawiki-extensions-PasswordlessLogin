@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Duckson32"
+			"Duckson32",
+			"McDutchie"
 		]
 	},
 	"passwordlesslogin": "Wachtwoordloze login",
 	"passwordlesslogin-login": "Log in met uw smartphone",
-	"passwordlesslogin-authentication-app": "Authenticatie App"
+	"passwordlesslogin-authentication-app": "Authenticatie-app"
 }
