@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Kly"
+			"Kly",
+			"Winston Sung"
 		]
 	},
 	"passwordlesslogin": "Passwordless Login",
@@ -14,7 +15,7 @@
 	"passwordlesslogin-no-device-paired": "尚未有設備配對。",
 	"passwordlesslogin-verify-pair": "我們已發送登入請求到您的設備上，以核對是否有正確註冊。請確認請求並繼續。",
 	"passwordlesslogin-pair-device": "用於無密碼登入的配對設備",
-	"passwordlesslogin-login": "以您的智慧手機來登入",
+	"passwordlesslogin-login": "以您的智慧型手機登入",
 	"passwordlesslogin-pair-step-1": "1. 下載 MediaWiki PasswordlessLogin 應用程式",
 	"passwordlesslogin-pair-step-2": "2. 以應用程式掃描二維碼",
 	"passwordlesslogin-pair-step-3": "3. 一旦應用程式設定完畢後，繼續下個步驟",
