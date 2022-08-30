@@ -1,0 +1,11 @@
+{
+	"@metadata": {
+		"authors": [
+			"Brettchenweber"
+		]
+	},
+	"passwordlesslogin-login": "Melde dich über dein Smartphone an.",
+	"passwordlesslogin-pair-step-1": "1. Lade die „MediaWiki PasswordlessLogin“-App herunter",
+	"passwordlesslogin-pair-step-2": "Scanne mit der App den QR-Code",
+	"passwordlesslogin-pair-step-3": "Sobald die Einrichtung der App abgeschlossen ist, kannst du mit dem nächsten Schritt fortfahren"
+}
