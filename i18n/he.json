@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Amire80"
+		]
+	},
+	"passwordlesslogin-desc": "אספקת דרך להתחבר ללא סיסמה על־ידי אישור הכניסה במכשיר מחובר.",
+	"passwordlesslogin-pair-device": "שיוך מכשיר לכניסה ללא סיסמה",
+	"passwordlesslogin-pair-step-1": "1. יש להוריד את יישום MediaWiki PasswordlessLogin"
+}
