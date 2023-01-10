@@ -1,0 +1,30 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eleassar"
+		]
+	},
+	"passwordlesslogin": "Prijava brez gesla",
+	"passwordlesslogin-desc": "Omogoča način prijave brez gesla s potrditvijo prijave na povezani napravi.",
+	"passwordlesslogin-verify-request": "Preverite svojo prijavo na telefonu.",
+	"passwordlesslogin-error-no-authentication-workflow": "Delovni tok avtentikacije se je nepričakovano končal.",
+	"passwordlesslogin-no-challenge": "Ni aktivnega izziva za potrditev, poskusite s ponovno avtentikacijo.",
+	"passwordlesslogin-verification-pending": "Avtentikacija še ni bila preverjena. Preverite svoj zahtevek za prijavo na povezani napravi.",
+	"passwordlesslogin-pair-device-step": "Sledite navodilom za uparitev vaše nove naprave.",
+	"passwordlesslogin-no-device-paired": "Nobena naprava še ni uparjena.",
+	"passwordlesslogin-verify-pair": "Vaši napravi smo poslali zahtevek za prijavo, da preverimo, ali je pravilno registrirana. Prosimo, potrdite zahtevek in nadaljujte.",
+	"passwordlesslogin-pair-device": "Uparite napravo za prijavo brez gesla",
+	"passwordlesslogin-login": "Prijavite se s pametnim telefonom",
+	"passwordlesslogin-pair-step-1": "1. Prenesite aplikacijo za MediaWiki »PasswordlessLogin«",
+	"passwordlesslogin-pair-step-2": "2. Skenirajte kodo QR z aplikacijo",
+	"passwordlesslogin-pair-step-3": "3. Ko se nameščanje aplikacije konča, nadaljujte z naslednjim korakom",
+	"passwordlesslogin-authentication-app": "Avtentikacijska aplikacija",
+	"apihelp-passwordlesslogin-summary": "Registrirajte novo napravo za predhodno ustvarjeni uparitvni žeton.",
+	"apihelp-passwordlesslogin-param-pairToken": "Predhodno ustvarjeni uparitveni žeton za identifikacijo uporabnika, na katerega bo naprava registrirana.",
+	"apihelp-passwordlesslogin-param-deviceId": "Enolični identifikator naprave, ki se lahko uporablja za identifikacijo naprave in pošiljanje obvestil napravi s privzetim sporočilnim sistemom  naprave (npr. Firebase Cloud Messaging pri napravah Android).",
+	"apihelp-passwordlesslogin-param-secret": "Skrivnost, ustvarjena v napravi, ki se bo uporabljala za podpisovanje izzivov, poslanih napravi. Ta skrivnost se uporablja za preverjanje odgovora na prijavni zahtevek in mora ostati skrivnost.",
+	"apihelp-passwordlesslogin-verify-challenge-summary": "Preveri napravi poslani prijavni zahtevek.",
+	"apihelp-passwordlesslogin-verify-challenge-param-challenge": "Izziv, ki je bil poslan napravi in ga mora ta rešiti.",
+	"apihelp-passwordlesslogin-verify-challenge-param-response": "Odgovor na izzi (rešitev izziva). Rešitev mora biti:<br />&#160;1. HMAC s SHA512 kot podpisnim algoritmom<br />&#160;2. Vnaprej sporočena skrivnost kot material simetričnega ključa<br />&#160;3. Podatki MAC so izziv kot polje zlogov<br />&#160;4. Odgovor mora biti šestnajstiški niz<br />&#160;5. Odgovor mora biti napisan z malimi črkami",
+	"apihelp-passwordlesslogin-verify-login-summary": "Preveri, ali je naprava že preverila zahtevek za prijavo."
+}
