@@ -3,6 +3,7 @@
 namespace PasswordlessLogin\model;
 
 use Endroid\QrCode\QrCode;
+use Endroid\QrCode\Writer\PngWriter;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\MediaWikiServices;
 use PasswordlessLogin\Hooks;
@@ -29,7 +30,8 @@ class QRCodeRequest extends AuthenticationRequest {
 		$apiUrl = Hooks::constructApiUrl( $mainConfig, $config );
 		$senderId = $config->get( 'PLFirebaseSenderId' );
 		$accountName = $mainConfig->get( 'Sitename' );
-		$qrCode = new QrCode( $accountName . ';' . $apiUrl . ';' . $this->pairToken . ';' . $senderId );
+		$qrCode = QrCode::create( $accountName . ';' . $apiUrl . ';' . $this->pairToken . ';' . $senderId );
+		$writer = new PngWriter();
 
 		return [
 			'firstStep' => [
@@ -45,8 +47,7 @@ class QRCodeRequest extends AuthenticationRequest {
 			],
 			'qrCode' => [
 				'type' => 'null',
-				'value' => 'data:' . $qrCode->getContentType() . ';base64,' .
-					base64_encode( $qrCode->writeString() ),
+				'value' => $writer->write($qrCode)->getDataUri(),
 			],
 			'pairToken' => [
 				'type' => 'hidden',

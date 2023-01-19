@@ -5,8 +5,8 @@ namespace PasswordlessLogin\adapter;
 use PasswordlessLogin\model\Device;
 use PasswordlessLogin\model\DevicesRepository;
 use User;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
-use Wikimedia\Rdbms\LoadBalancer;
 
 class DatabaseDeviceRepository implements DevicesRepository {
 	const TABLE_NAME = 'passwordlesslogin_devices';
@@ -15,9 +15,9 @@ class DatabaseDeviceRepository implements DevicesRepository {
 
 	/**
 	 * DatabaseDeviceRepository constructor.
-	 * @param LoadBalancer $loadBalancer
+	 * @param ILoadBalancer $loadBalancer
 	 */
-	public function __construct( LoadBalancer $loadBalancer ) {
+	public function __construct( ILoadBalancer $loadBalancer ) {
 		$this->loadBalancer = $loadBalancer;
 	}
 

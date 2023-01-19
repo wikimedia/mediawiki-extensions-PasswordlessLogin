@@ -14,10 +14,6 @@ class HTMLImageField extends HTMLFormField {
 	/**
 	 * @var null|string
 	 */
-	private $source;
-	/**
-	 * @var null|string
-	 */
 	private $dataUri;
 
 	/**
@@ -29,11 +25,10 @@ class HTMLImageField extends HTMLFormField {
 	 */
 	public function __construct( $info ) {
 		$info['nodata'] = true;
-		if ( !$info['source'] && !$info['data-uri'] ) {
+		if ( !$info['data-uri'] ) {
 			throw new MWException( 'At least one of source or data-uri is required, none given.' );
 		}
 
-		$this->source = $info['source'];
 		$this->dataUri = $info['data-uri'];
 
 		parent::__construct( $info );
@@ -63,10 +58,6 @@ class HTMLImageField extends HTMLFormField {
 	}
 
 	private function getSource() {
-		if ( $this->source ) {
-			return $this->source;
-		}
-
 		return $this->dataUri;
 	}
 }

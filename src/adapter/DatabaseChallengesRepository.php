@@ -6,7 +6,6 @@ use PasswordlessLogin\model\Challenge;
 use PasswordlessLogin\model\ChallengesRepository;
 use User;
 use Wikimedia\Rdbms\ILoadBalancer;
-use Wikimedia\Rdbms\LoadBalancer;
 
 class DatabaseChallengesRepository implements ChallengesRepository {
 	const TABLE_NAME = 'passwordlesslogin_challenges';
@@ -15,9 +14,9 @@ class DatabaseChallengesRepository implements ChallengesRepository {
 
 	/**
 	 * DatabaseChallengesRepository constructor.
-	 * @param LoadBalancer $loadBalancer
+	 * @param ILoadBalancer $loadBalancer
 	 */
-	public function __construct( LoadBalancer $loadBalancer ) {
+	public function __construct( ILoadBalancer $loadBalancer ) {
 		$this->loadBalancer = $loadBalancer;
 	}
 
