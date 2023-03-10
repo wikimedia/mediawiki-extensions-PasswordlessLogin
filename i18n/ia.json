@@ -24,6 +24,6 @@
 	"apihelp-passwordlesslogin-param-secret": "Un secreto generate sur le apparato que essera usate pro signar le defias inviate al apparato. Iste secreto se usa pro verificar un responsa al defia de requesta de apertura de session e debe esser guardate in secreto.",
 	"apihelp-passwordlesslogin-verify-challenge-summary": "Verificar un requesta de apertura de session inviate a un apparato.",
 	"apihelp-passwordlesslogin-verify-challenge-param-challenge": "Le defia que ha essite inviate al dispositivo e que debe esser resolvite.",
-	"apihelp-passwordlesslogin-verify-challenge-param-response": "Le responsa (solution) al defia. Le solution debe esser:<br />&#160;1. Un HMAC con SHA512 como algorithmo de signatura<br />&#160;2. Le secreto pre-condividite como material de clave symmetric<br />&#160;3. Le datos MAC es le defia como array de bytes<br />&#160;4. Le responsa debe esser un catena hexadecimal<br />&#160;5. Le responsa debe esser in minusculas",
+	"apihelp-passwordlesslogin-verify-challenge-param-response": "Le responsa (solution) al defia. Le solution debe esser:<br />&#160;1. Un HMAC con SHA512 como algorithmo de signatura<br />&#160;2. Le secreto pre-condividite como material de clave symmetric<br />&#160;3. Le datos MAC es le defia in forma de matrice de bytes<br />&#160;4. Le responsa debe esser un catena hexadecimal<br />&#160;5. Le responsa debe esser in minusculas",
 	"apihelp-passwordlesslogin-verify-login-summary": "Verificar si un requesta de apertura de session ha ja essite verificate per le apparato."
 }
