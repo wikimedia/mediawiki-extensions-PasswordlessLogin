@@ -47,7 +47,7 @@ class QRCodeRequest extends AuthenticationRequest {
 			],
 			'qrCode' => [
 				'type' => 'null',
-				'value' => $writer->write($qrCode)->getDataUri(),
+				'value' => $writer->write( $qrCode )->getDataUri(),
 			],
 			'pairToken' => [
 				'type' => 'hidden',
