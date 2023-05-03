@@ -1,11 +1,18 @@
-@import '../../lib/ooui/wikimedia-ui-base';
+// TODO: As soon as extension requirement is ready to be bumped to MediaWiki 1.41,
+// use the following instead and remove the local variables:
+// @import 'mediawiki.skin.variables.less';
+
+@border-style-base: solid;
+@border-color-base: #a2a9b1;
+@border-color-progressive: #36c;
+@border-radius-circle: 50%;
 
 .mw-htmlform-field-HTMLSubmitField::before {
 	width: 24px;
 	height: 24px;
-	border: 5px solid @wmui-color-base50;
-	border-top: 5px solid @wmui-color-accent50;
-	border-radius: 50%;
+	border: 5px @border-style-base @border-color-base;
+	border-top: 5px @border-style-base @border-color-progressive;
+	border-radius: @border-radius-circle;
 	margin: 0 auto 1em;
 	animation: spin 1s linear infinite;
 	content: ' ';
