@@ -24,5 +24,6 @@
 	"apihelp-passwordlesslogin-param-secret": "סוד שנוצר במכשיר שישמש לחתימה על אתגרים שנשלחים למכשיר. הסוד הזה משמש לאימות תגובת אתגר בקשת כניסה ויש לשמור אותו בסוד.",
 	"apihelp-passwordlesslogin-verify-challenge-summary": "אימות בקשת כניסה שנשלח למכשיר.",
 	"apihelp-passwordlesslogin-verify-challenge-param-challenge": "האתגר שנשלח למכשיר ושעומד להיפתר.",
+	"apihelp-passwordlesslogin-verify-challenge-param-response": "התשובה (הפתרון) לאתגר. הפתרון צריך להיות:<br />&#160;1. HMAC עם SHA512 כאלגוריתם חתימה<br />&#160;2 הסוד המשותף מראש כחומר מפתח סימטרי<br />&#160;3. נתוני ה־MAC הם האתגר כמערך בתים<br />&#160;4. התשובה צריכה להיות מחרוזת הקסדצימלית<br />&#160;5. התשובה צריכה להיות כתובה באותיות קטנות",
 	"apihelp-passwordlesslogin-verify-login-summary": "בדיקה אם בקשת הכניסה כבר אומתה על־ידי המכשיר."
 }
