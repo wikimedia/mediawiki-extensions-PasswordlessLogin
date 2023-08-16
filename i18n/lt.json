@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nokeoo"
+		]
+	},
+	"passwordlesslogin-desc": "Leidžia prisijungti be slaptažodžio, patvirtinant prisijungimą prijungtame įrenginyje.",
+	"passwordlesslogin-verify-request": "Patvirtinkite savo prisijungimą savo telefone.",
+	"passwordlesslogin-error-no-authentication-workflow": "Autentifikavimo eiga netikėtai baigėsi.",
+	"passwordlesslogin-verification-pending": "Autentifikavimas kol kas nepatvirtintas. Prašome patvirtinti savo prisijungimo užklausą savo prijungtame įrenginyje.",
+	"passwordlesslogin-pair-device-step": "Sekite instrukcijas, kad prijungtumėte savo naują įrenginį.",
+	"passwordlesslogin-no-device-paired": "Dar nėra prisijungto įrenginio.",
+	"passwordlesslogin-verify-pair": "Nusiuntėme prisijungimo užklausą į jūsų įrenginį, kad patvirtintume registracijos teisingumą. Prašome patvirtinti užklausą ir tęsti.",
+	"passwordlesslogin-pair-device": "Prijunkite įrenginį, kad prisijungtumėte be slaptažodžio",
+	"passwordlesslogin-login": "Prisijungti su išmaniuoju telefonu",
+	"passwordlesslogin-pair-step-1": "1. Atsisiųskite MediaWiki PasswordlessLogin programėlę",
+	"passwordlesslogin-pair-step-2": "2. Nuskenuokite QR kodą su programėle",
+	"passwordlesslogin-pair-step-3": "3. Kai programėlės parengtis baigta, tęskite toliau",
+	"passwordlesslogin-authentication-app": "Autentifikavimo programėlė",
+	"apihelp-passwordlesslogin-param-deviceId": "Unikalus identifikatorius, kuris gali būti naudojamas identifikuoti įrenginį ir siųsti pranešimus jam, per numatytąją įrenginio pranešimo sistemą (pvz., Firebase Cloud Messaging Android įrenginiams).",
+	"apihelp-passwordlesslogin-verify-login-summary": "Patikrinkite ar prisijungimo užklausa jau patvirtinta įrenginio."
+}
