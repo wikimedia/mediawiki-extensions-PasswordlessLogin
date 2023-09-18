@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Eleassar"
 		]
 	},
@@ -21,7 +22,7 @@
 	"passwordlesslogin-authentication-app": "Avtentikacijska aplikacija",
 	"apihelp-passwordlesslogin-summary": "Registrirajte novo napravo za predhodno ustvarjeni uparitvni žeton.",
 	"apihelp-passwordlesslogin-param-pairToken": "Predhodno ustvarjeni uparitveni žeton za identifikacijo uporabnika, na katerega bo naprava registrirana.",
-	"apihelp-passwordlesslogin-param-deviceId": "Enolični identifikator naprave, ki se lahko uporablja za identifikacijo naprave in pošiljanje obvestil napravi s privzetim sporočilnim sistemom  naprave (npr. Firebase Cloud Messaging pri napravah Android).",
+	"apihelp-passwordlesslogin-param-deviceId": "Enolični identifikator naprave, ki se lahko uporablja za identifikacijo naprave in pošiljanje obvestil napravi s privzetim sporočilnim sistemom naprave (npr. Firebase Cloud Messaging pri napravah Android).",
 	"apihelp-passwordlesslogin-param-secret": "Skrivnost, ustvarjena v napravi, ki se bo uporabljala za podpisovanje izzivov, poslanih napravi. Ta skrivnost se uporablja za preverjanje odgovora na prijavni zahtevek in mora ostati skrivnost.",
 	"apihelp-passwordlesslogin-verify-challenge-summary": "Preveri napravi poslani prijavni zahtevek.",
 	"apihelp-passwordlesslogin-verify-challenge-param-challenge": "Izziv, ki je bil poslan napravi in ga mora ta rešiti.",
