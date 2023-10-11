@@ -55,4 +55,8 @@ class DeviceRegistration extends ApiBase {
 			],
 		];
 	}
+
+	public function mustBePosted() {
+		return true;
+	}
 }

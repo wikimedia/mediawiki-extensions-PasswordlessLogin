@@ -68,4 +68,8 @@ class ChallengeVerification extends ApiBase {
 			],
 		];
 	}
+
+	public function mustBePosted() {
+		return true;
+	}
 }
