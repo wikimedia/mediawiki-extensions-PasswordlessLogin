@@ -6,6 +6,26 @@
 		]
 	},
 	"passwordlesslogin": "Wachtwoordloze login",
+	"passwordlesslogin-desc": "Biedt een manier om zich zonder wachtwoord aan te melden door de aanmelding op een aangesloten apparaat te bevestigen.",
+	"passwordlesslogin-verify-request": "Controleer uw aanmelding op uw telefoon.",
+	"passwordlesslogin-error-no-authentication-workflow": "De authenticatieprocedure is onverwacht beëindigd.",
+	"passwordlesslogin-no-challenge": "Er is geen actieve uitdaging om te bevestigen. Probeer uzelf opnieuw te authenticeren.",
+	"passwordlesslogin-verification-pending": "De authenticatie is nog niet geverifieerd. Controleer uw aanmeldingsverzoek op uw verbonden apparaat.",
+	"passwordlesslogin-pair-device-step": "Volg de instructies om uw nieuwe apparaat te koppelen.",
+	"passwordlesslogin-no-device-paired": "Er is nog geen apparaat gekoppeld.",
+	"passwordlesslogin-verify-pair": "We hebben een aanmeldingsverzoek naar uw apparaat gestuurd om te controleren dat het juist is geregistreerd. Bevestig het verzoek en ga verder.",
+	"passwordlesslogin-pair-device": "Apparaat koppelen voor wachtwoordloos inloggen",
 	"passwordlesslogin-login": "Log in met uw smartphone",
-	"passwordlesslogin-authentication-app": "Authenticatie-app"
+	"passwordlesslogin-pair-step-1": "1. Download de app MediaWiki PasswordlessLogin",
+	"passwordlesslogin-pair-step-2": "2. Scan de QR-code met de app",
+	"passwordlesslogin-pair-step-3": "3. Zodra de app-installatie is voltooid, gaat u verder met de volgende stap",
+	"passwordlesslogin-authentication-app": "Authenticatie-app",
+	"apihelp-passwordlesslogin-summary": "Registreer een nieuw apparaat voor een eerder gegenereerd paartoken.",
+	"apihelp-passwordlesslogin-param-pairToken": "Het eerder gegenereerde paartoken om te bepalen bij welke gebruiker het apparaat moet worden geregistreerd.",
+	"apihelp-passwordlesslogin-param-deviceId": "Een unieke apparaat-ID die kan worden gebruikt om een apparaat te identificeren en er meldingen naartoe te sturen met het gewone berichtensysteem van het apparaat (voor Android-apparaten is dat bijvoorbeeld Firebase Cloud Messaging).",
+	"apihelp-passwordlesslogin-param-secret": "Een geheim dat op het apparaat wordt gegenereerd en dat wordt gebruikt om uitdagingen te ondertekenen die naar het apparaat worden verzonden. Dit geheim wordt gebruikt om een reactie op een aanmeldingsverzoek te controleren en moet geheim worden gehouden.",
+	"apihelp-passwordlesslogin-verify-challenge-summary": "Een aanmeldingsverzoek controleren dat naar een apparaat is verzonden.",
+	"apihelp-passwordlesslogin-verify-challenge-param-challenge": "De uitdaging die naar het apparaat is gestuurd en die moet worden opgelost.",
+	"apihelp-passwordlesslogin-verify-challenge-param-response": "Het antwoord (oplossing) op de uitdaging. De oplossing moet zijn:<br />&#160;1. Een HMAC met SHA512 als handtekeningsalgoritme<br />&#160;2. Het vooraf gedeelde geheim als symmetrisch sleutelmateriaal<br />&#160;3. De MAC-gegevens vormen de uitdaging als byte-array<br />&#160;4. Het antwoord moet een hexadecimale tekenreeks zijn<br />&#160;5. Het antwoord moet in kleine letters zijn",
+	"apihelp-passwordlesslogin-verify-login-summary": "Controleren of een aanmeldingsverzoek al door het apparaat is geverifieerd."
 }
