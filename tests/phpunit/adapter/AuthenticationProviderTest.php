@@ -21,6 +21,9 @@ use StatusValue;
 use User;
 use WebRequest;
 
+/**
+ * @group Database
+ */
 class AuthenticationProviderTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @var FakeDevicesRepository
