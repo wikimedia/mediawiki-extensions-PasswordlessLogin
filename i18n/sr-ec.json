@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Milicevic01"
+		]
+	},
+	"passwordlesslogin-desc": "Омогућава пријављивање без лозинке, помоћу паметног телефона.",
+	"passwordlesslogin-no-device-paired": "Још увек нема упарених уређаја.",
+	"passwordlesslogin-login": "Пријавите се помоћу паметног телефона"
+}
