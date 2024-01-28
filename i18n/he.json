@@ -7,7 +7,7 @@
 	"passwordlesslogin-desc": "אספקת דרך להתחבר ללא סיסמה על־ידי אישור הכניסה במכשיר מחובר.",
 	"passwordlesslogin-verify-request": "נא לאשר את הכניסה שלך בטלפון שלך.",
 	"passwordlesslogin-error-no-authentication-workflow": "תהליך האימות הסתיים באופן בלתי־צפוי.",
-	"passwordlesslogin-no-challenge": "אין אתגר פעיל לאישור, נא לנסות לאמת שוב.",
+	"passwordlesslogin-no-challenge": "אין אתגר פעיל לאישור. נא לנסות לאמת שוב.",
 	"passwordlesslogin-verification-pending": "האימות עדיין לא נבדק. נא לאמת את בקשת הכניסה שלך במכשיר המחובר שלך.",
 	"passwordlesslogin-pair-device-step": "נא לעקוב אחר ההוראות כדי להתאים את המכשיר החדש שלך.",
 	"passwordlesslogin-no-device-paired": "עדיין אין מכשיר משויך.",
@@ -23,7 +23,7 @@
 	"apihelp-passwordlesslogin-param-deviceId": "מזהה מכשיר ייחודי שניתן להשתמש בו לזיהוי מכשיר וכן לשלוח אליו הודעות עם מערכת ברירת המחדל של העברת ההודעות של המכשיר (למשל Firebase Cloud Messaging למכשירי אנדרואיד).",
 	"apihelp-passwordlesslogin-param-secret": "סוד שנוצר במכשיר שישמש לחתימה על אתגרים שנשלחים למכשיר. הסוד הזה משמש לאימות תגובת אתגר בקשת כניסה ויש לשמור אותו בסוד.",
 	"apihelp-passwordlesslogin-verify-challenge-summary": "אימות בקשת כניסה שנשלח למכשיר.",
-	"apihelp-passwordlesslogin-verify-challenge-param-challenge": "האתגר שנשלח למכשיר ושעומד להיפתר.",
+	"apihelp-passwordlesslogin-verify-challenge-param-challenge": "האתגר שנשלח למכשיר ושצריך לפתור.",
 	"apihelp-passwordlesslogin-verify-challenge-param-response": "התשובה (הפתרון) לאתגר. הפתרון צריך להיות:<br />&#160;1. HMAC עם SHA512 כאלגוריתם חתימה<br />&#160;2 הסוד המשותף מראש כחומר מפתח סימטרי<br />&#160;3. נתוני ה־MAC הם האתגר כמערך בתים<br />&#160;4. התשובה צריכה להיות מחרוזת הקסדצימלית<br />&#160;5. התשובה צריכה להיות כתובה באותיות קטנות",
 	"apihelp-passwordlesslogin-verify-login-summary": "בדיקה אם בקשת הכניסה כבר אומתה על־ידי המכשיר."
 }
