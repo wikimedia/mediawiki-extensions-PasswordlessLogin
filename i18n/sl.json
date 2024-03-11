@@ -26,6 +26,6 @@
 	"apihelp-passwordlesslogin-param-secret": "Skrivnost, ustvarjena v napravi, ki se bo uporabljala za podpisovanje izzivov, poslanih napravi. Ta skrivnost se uporablja za preverjanje odgovora na prijavni zahtevek in mora ostati skrivnost.",
 	"apihelp-passwordlesslogin-verify-challenge-summary": "Preveri napravi poslani prijavni zahtevek.",
 	"apihelp-passwordlesslogin-verify-challenge-param-challenge": "Izziv, ki je bil poslan napravi in ga mora ta rešiti.",
-	"apihelp-passwordlesslogin-verify-challenge-param-response": "Odgovor na izziv (rešitev izziva). Rešitev mora biti:<br />&#160;1. HMAC s SHA512 kot podpisnim algoritmom<br />&#160;2. Vnaprej sporočena skrivnost kot gradivo simetričnega ključa<br />&#160;3. Podatki MAC so izziv kot zlogovna matrika<br />&#160;4. Odgovor mora biti šestnajstiški niz<br />&#160;5. Odgovor mora biti napisan z malimi črkami",
+	"apihelp-passwordlesslogin-verify-challenge-param-response": "Odgovor na izziv (rešitev izziva). Rešitev mora biti:<br />&#160;1. HMAC s SHA512 kot podpisnim algoritmom<br />&#160;2. Vnaprej sporočena skrivnost kot gradivo simetričnega ključa<br />&#160;3. Podatki MAC so izziv kot zlogovna matrika<br />&#160;4. Odgovor mora biti šestnajstiški niz<br />&#160;5. Odgovor mora biti napisan z malimi črkami.",
 	"apihelp-passwordlesslogin-verify-login-summary": "Preveri, ali je naprava že preverila zahtevek za prijavo."
 }
