@@ -39,10 +39,10 @@ class AuthenticationProviderTest extends MediaWikiIntegrationTestCase {
 
 		$this->devicesRepository = new FakeDevicesRepository();
 		$this->challengesRepository = new FakeChallengesRepository();
-		$this->fakeFirebase = new FakeFirebase();
+		$fakeFirebase = new FakeFirebase();
 		$this->setService( DevicesRepository::SERVICE_NAME, $this->devicesRepository );
 		$this->setService( ChallengesRepository::SERVICE_NAME, $this->challengesRepository );
-		$this->setService( FirebaseMessageSender::SERVICE_NAME, $this->fakeFirebase );
+		$this->setService( FirebaseMessageSender::SERVICE_NAME, $fakeFirebase );
 	}
 
 	/**
