@@ -30,8 +30,8 @@ class ChallengeVerificationTest extends ApiTestCase {
 		$this->devicesRepository =
 			MediaWikiServices::getInstance()->getService( DevicesRepository::SERVICE_NAME );
 
-		$this->db->delete( 'passwordlesslogin_devices', '*' );
-		$this->db->delete( 'passwordlesslogin_challenges', '*' );
+		$this->getDb()->delete( 'passwordlesslogin_devices', '*' );
+		$this->getDb()->delete( 'passwordlesslogin_challenges', '*' );
 	}
 
 	public function testNoChallenge() {

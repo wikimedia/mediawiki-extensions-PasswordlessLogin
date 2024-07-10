@@ -23,7 +23,7 @@ class DatabaseChallengesRepositoryTest extends MediaWikiIntegrationTestCase {
 		$this->repository =
 			new DatabaseChallengesRepository( MediaWikiServices::getInstance()
 				->getDBLoadBalancer() );
-		$this->db->delete( 'passwordlesslogin_challenges', '*' );
+		$this->getDb()->delete( 'passwordlesslogin_challenges', '*' );
 	}
 
 	/**
