@@ -26,7 +26,7 @@ class LoginVerificationTest extends ApiTestCase {
 		$this->challengesRepository =
 			MediaWikiServices::getInstance()->getService( ChallengesRepository::SERVICE_NAME );
 
-		$this->db->delete( 'passwordlesslogin_challenges', '*' );
+		$this->getDB()->delete( 'passwordlesslogin_challenges', '*' );
 	}
 
 	public function testNoChallenge() {
