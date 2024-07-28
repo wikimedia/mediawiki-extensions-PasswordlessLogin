@@ -3,7 +3,6 @@
 namespace PasswordlessLogin\adapter\api;
 
 use ApiTestCase;
-use MediaWiki\MediaWikiServices;
 use PasswordlessLogin\model\Challenge;
 use PasswordlessLogin\model\ChallengesRepository;
 use PasswordlessLogin\model\Device;
@@ -26,9 +25,9 @@ class ChallengeVerificationTest extends ApiTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		$this->challengesRepository =
-			MediaWikiServices::getInstance()->getService( ChallengesRepository::SERVICE_NAME );
+			$this->getServiceContainer()->getService( ChallengesRepository::SERVICE_NAME );
 		$this->devicesRepository =
-			MediaWikiServices::getInstance()->getService( DevicesRepository::SERVICE_NAME );
+			$this->getServiceContainer()->getService( DevicesRepository::SERVICE_NAME );
 
 		$this->getDb()->delete( 'passwordlesslogin_devices', '*' );
 		$this->getDb()->delete( 'passwordlesslogin_challenges', '*' );

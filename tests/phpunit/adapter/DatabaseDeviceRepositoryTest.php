@@ -2,7 +2,6 @@
 
 namespace PasswordlessLogin\adapter;
 
-use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
 use PasswordlessLogin\model\Device;
 use User;
@@ -21,7 +20,7 @@ class DatabaseDeviceRepositoryTest extends MediaWikiIntegrationTestCase {
 		$this->tablesUsed[] = 'passwordlesslogin_devices';
 
 		$this->repository =
-			new DatabaseDeviceRepository( MediaWikiServices::getInstance()->getDBLoadBalancer() );
+			new DatabaseDeviceRepository( $this->getServiceContainer()->getDBLoadBalancer() );
 	}
 
 	/**

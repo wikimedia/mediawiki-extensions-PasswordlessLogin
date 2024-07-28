@@ -2,7 +2,6 @@
 
 namespace PasswordlessLogin\adapter;
 
-use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
 use PasswordlessLogin\model\Challenge;
 use User;
@@ -21,7 +20,7 @@ class DatabaseChallengesRepositoryTest extends MediaWikiIntegrationTestCase {
 		$this->tablesUsed[] = 'passwordlesslogin_challenges';
 
 		$this->repository =
-			new DatabaseChallengesRepository( MediaWikiServices::getInstance()
+			new DatabaseChallengesRepository( $this->getServiceContainer()
 				->getDBLoadBalancer() );
 		$this->getDb()->delete( 'passwordlesslogin_challenges', '*' );
 	}

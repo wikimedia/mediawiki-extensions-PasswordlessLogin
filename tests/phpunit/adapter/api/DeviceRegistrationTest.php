@@ -3,7 +3,6 @@
 namespace PasswordlessLogin\adapter\api;
 
 use ApiTestCase;
-use MediaWiki\MediaWikiServices;
 use PasswordlessLogin\model\Device;
 use PasswordlessLogin\model\DevicesRepository;
 use User;
@@ -22,7 +21,7 @@ class DeviceRegistrationTest extends ApiTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		$this->deviceRepository =
-			MediaWikiServices::getInstance()->getService( DevicesRepository::SERVICE_NAME );
+			$this->getServiceContainer()->getService( DevicesRepository::SERVICE_NAME );
 	}
 
 	public function testInvalidPairToken() {
