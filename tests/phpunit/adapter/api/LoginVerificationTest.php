@@ -3,7 +3,6 @@
 namespace PasswordlessLogin\adapter\api;
 
 use ApiTestCase;
-use MediaWiki\Auth\AuthManager;
 use MediaWiki\MediaWikiServices;
 use PasswordlessLogin\adapter\AuthenticationProvider;
 use PasswordlessLogin\model\Challenge;
@@ -53,12 +52,7 @@ class LoginVerificationTest extends ApiTestCase {
 	}
 
 	public function testOpenChallenge() {
-		if ( method_exists( MediaWikiServices::class, 'getAuthManager' ) ) {
-			// MediaWiki 1.35+
-			$authManager = MediaWikiServices::getInstance()->getAuthManager();
-		} else {
-			$authManager = AuthManager::singleton();
-		}
+		$authManager = MediaWikiServices::getInstance()->getAuthManager();
 		$authManager
 			->setAuthenticationSessionData( AuthenticationProvider::CHALLENGE_SESSION_KEY,
 				'UTSysop' );
