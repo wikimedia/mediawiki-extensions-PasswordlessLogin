@@ -155,7 +155,7 @@ class AuthenticationProviderTest extends MediaWikiIntegrationTestCase {
 	 * @covers \PasswordlessLogin\adapter\AuthenticationProvider::beginPrimaryAuthentication
 	 */
 	public function testPublishUsernameForApiVerification() {
-		$this->setMwGlobals( [ 'wgPLEnableApiVerification' => true ] );
+		$this->overrideConfigValue( 'PLEnableApiVerification', true );
 		$webRequest = new WebRequest();
 		$provider = new class( $webRequest ) extends AuthenticationProvider {
 			public function __construct( \WebRequest $webRequest ) {
