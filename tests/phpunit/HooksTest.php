@@ -2,6 +2,7 @@
 
 namespace PasswordlessLogin;
 
+use MediaWiki\MainConfigNames;
 use MediaWikiIntegrationTestCase;
 use OutputPage;
 use RequestContext;
@@ -57,9 +58,7 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	 * @covers \PasswordlessLogin\Hooks::onBeforePageDisplay
 	 */
 	public function testAddsLoginModule() {
-		$this->setMwGlobals( [
-			'wgPLEnableApiVerification' => true,
-		] );
+		$this->overrideConfigValue( 'PLEnableApiVerification', true );
 		$out = new OutputPage( RequestContext::getMain() );
 		$skin = RequestContext::getMain()->getSkin();
 		$out->setTitle( Title::makeTitle( NS_SPECIAL, 'UserLogin' ) );
@@ -76,9 +75,9 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	 * @covers \PasswordlessLogin\Hooks::onBeforePageDisplay
 	 */
 	public function testAddsLoginModuleForAnotherLanguage() {
-		$this->setMwGlobals( [
-			'wgPLEnableApiVerification' => true,
-			'wgLanguageCode' => 'de'
+		$this->overrideConfigValues( [
+			'PLEnableApiVerification' => true,
+			MainConfigNames::LanguageCode => 'de',
 		] );
 		$out = new OutputPage( RequestContext::getMain() );
 		$skin = RequestContext::getMain()->getSkin();
