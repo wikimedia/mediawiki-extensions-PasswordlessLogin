@@ -3,6 +3,7 @@
 		"authors": [
 			"Gomoko",
 			"MacOS Weed",
+			"Mahabarata",
 			"Verdy p",
 			"Wladek92"
 		]
@@ -11,7 +12,7 @@
 	"passwordlesslogin-desc": "Fournit un moyen de se connecter sans mot de passe en confirmant la connexion depuis un appareil connecté.",
 	"passwordlesslogin-verify-request": "Veuillez vérifier votre connexion sur votre téléphone.",
 	"passwordlesslogin-error-no-authentication-workflow": "Le processus d’authentification s’est terminé de façon inattendue.",
-	"passwordlesslogin-no-challenge": "Aucun défi actif à confirmer, veuillez essayer de vous authentifier à nouveau.",
+	"passwordlesslogin-no-challenge": "Aucun défi actif à confirmer. Veuillez essayer de vous authentifier à nouveau.",
 	"passwordlesslogin-verification-pending": "L’authentification n’a pas encore été vérifiée. Veuillez vérifier votre requête de connexion sur votre appareil connecté.",
 	"passwordlesslogin-pair-device-step": "Veuillez suivre les instructions pour appairer votre nouvel appareil.",
 	"passwordlesslogin-no-device-paired": "Il n’y a encore aucun appareil appairé.",
@@ -25,7 +26,7 @@
 	"apihelp-passwordlesslogin-summary": "Inscrire un nouvel appareil pour un jeton de paire généré précédemment.",
 	"apihelp-passwordlesslogin-param-pairToken": "Le jeton de pair généré précédemment pour identifier pour quel utilisateur inscrire l’appareil.",
 	"apihelp-passwordlesslogin-param-deviceId": "Un identifiant d’appareil unique qui peut être utilisé pour identifier un appareil aussi bien que pour lui envoyer des notifications avec le système de messages par défaut de l’appareil (par ex. « Firebase Cloud Messaging » pour les appareils Android).",
-	"apihelp-passwordlesslogin-param-secret": "Un secret généré sur l’appareil qui sera utilisé pour signer les défis envoyés à l’appareil. Ce secret est utilisé pour vérifier une réponse au défi de la demande de connexion et doit être gardé secret.",
+	"apihelp-passwordlesslogin-param-secret": "Un code secret généré sur l’appareil qui sera utilisé pour signer les défis envoyés à l’appareil. Ce code secret est utilisé pour vérifier une réponse au défi de la demande de connexion et doit être gardé secret.",
 	"apihelp-passwordlesslogin-verify-challenge-summary": "Vérifier une demande de connexion envoyée à un appareil.",
 	"apihelp-passwordlesslogin-verify-challenge-param-challenge": "Le défi qui a été envoyé à l’appareil et qui doit être résolu.",
 	"apihelp-passwordlesslogin-verify-challenge-param-response": "La réponse (solution) du défi. La solution doit être :<br />  1. Un HMAC avec SHA512 comme algorithme de signature.<br />  2. Le secret pré-partagé comme matériau de clé symétrique.<br />  3. La donnée MAC est le défi sous forme de tableau d’octets.<br />  4. La réponse doit être une chaîne hexadécimale.<br />  5. La réponse doit être en minuscules.",
