@@ -39,7 +39,7 @@ class Hooks {
 	 * @param DatabaseUpdater|null $updater
 	 * @return bool
 	 */
-	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater = null ) {
+	public static function onLoadExtensionSchemaUpdates( ?DatabaseUpdater $updater = null ) {
 		$sql = __DIR__ . '/sql';
 		$updater->addExtensionUpdate( [
 			'addTable',
