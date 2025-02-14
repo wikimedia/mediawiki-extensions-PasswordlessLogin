@@ -17,7 +17,6 @@ class DatabaseChallengesRepositoryTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->tablesUsed[] = 'passwordlesslogin_challenges';
 
 		$this->repository =
 			new DatabaseChallengesRepository( $this->getServiceContainer()

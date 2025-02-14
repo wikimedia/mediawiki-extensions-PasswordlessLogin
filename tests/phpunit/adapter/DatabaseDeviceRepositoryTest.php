@@ -17,7 +17,6 @@ class DatabaseDeviceRepositoryTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
-		$this->tablesUsed[] = 'passwordlesslogin_devices';
 
 		$this->repository =
 			new DatabaseDeviceRepository( $this->getServiceContainer()->getDBLoadBalancer() );
