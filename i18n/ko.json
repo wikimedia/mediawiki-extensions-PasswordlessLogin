@@ -17,7 +17,7 @@
 	"passwordlesslogin-login": "내 스마트폰으로 로그인",
 	"passwordlesslogin-pair-step-1": "1. MediaWiki PasswordlessLogin 앱을 다운로드하세요",
 	"passwordlesslogin-pair-step-2": "2. 앱으로 QR코드를 스캔하세요",
-	"passwordlesslogin-pair-step-3": "3. 앱 설정이 완료되면 다음 단계로 계속하십시오",
+	"passwordlesslogin-pair-step-3": "3. 앱 설정이 완료되면 다음 단계로 계속하세요",
 	"passwordlesslogin-authentication-app": "인증 앱",
 	"apihelp-passwordlesslogin-verify-challenge-summary": "기기에 보낸 로그인 요청을 확인합니다."
 }
