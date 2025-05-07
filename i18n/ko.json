@@ -1,7 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Ykhwong"
+			"Ykhwong",
+			"Suleiman the Magnificent Television",
+			"아라"
 		]
 	},
 	"passwordlesslogin": "비밀번호 없는 로그인",
@@ -13,8 +15,8 @@
 	"passwordlesslogin-no-device-paired": "페어링된 장치가 아직 없습니다.",
 	"passwordlesslogin-pair-device": "비밀번호 없는 로그인을 위해 장치를 페어링합니다",
 	"passwordlesslogin-login": "내 스마트폰으로 로그인",
-	"passwordlesslogin-pair-step-1": "1. MediaWiki PasswordlessLogin 앱을 다운로드합니다",
-	"passwordlesslogin-pair-step-2": "2. 앱으로 QR 코드를 스캔합니다",
-	"passwordlesslogin-pair-step-3": "3. 앱 설치가 끝나면 다음 단계로 계속합니다",
+	"passwordlesslogin-pair-step-1": "1. MediaWiki PasswordlessLogin 앱을 다운로드하세요",
+	"passwordlesslogin-pair-step-2": "2. 앱으로 QR코드를 스캔하세요",
+	"passwordlesslogin-pair-step-3": "3. 앱 설정이 완료되면 다음 단계로 계속하세요",
 	"passwordlesslogin-authentication-app": "인증 앱"
 }
