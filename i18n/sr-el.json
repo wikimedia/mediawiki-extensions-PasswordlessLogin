@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": []
+	},
+	"passwordlesslogin-desc": "Omogućava prijavljivanje bez lozinke, pomoću pametnog telefona.",
+	"passwordlesslogin-no-device-paired": "Još uvek nema uparenih uređaja.",
+	"passwordlesslogin-login": "Prijavite se pomoću pametnog telefona"
+}
