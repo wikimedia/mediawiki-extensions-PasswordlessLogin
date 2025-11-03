@@ -3,10 +3,10 @@
 namespace PasswordlessLogin;
 
 use MediaWiki\MainConfigNames;
+use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
 use OutputPage;
 use RequestContext;
-use Title;
 
 class HooksTest extends MediaWikiIntegrationTestCase {
 	/**
