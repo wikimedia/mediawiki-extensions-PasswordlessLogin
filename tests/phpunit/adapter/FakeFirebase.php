@@ -2,7 +2,7 @@
 
 namespace PasswordlessLogin\adapter;
 
-use GlobalVarConfig;
+use MediaWiki\Config\GlobalVarConfig;
 use PasswordlessLogin\model\Challenge;
 use PasswordlessLogin\model\Device;
 

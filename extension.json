@@ -8,7 +8,7 @@
 	"license-name": "MIT",
 	"type": "other",
 	"requires": {
-		"MediaWiki": ">= 1.39.4"
+		"MediaWiki": ">= 1.41.0"
 	},
 	"AutoloadNamespaces": {
 		"PasswordlessLogin\\": "src/"
@@ -35,7 +35,7 @@
 		]
 	},
 	"ConfigRegistry": {
-		"passwordless": "GlobalVarConfig::newInstance"
+		"passwordless": "MediaWiki\\Config\\GlobalVarConfig::newInstance"
 	},
 	"config": {
 		"PLFirebaseAccessToken": {

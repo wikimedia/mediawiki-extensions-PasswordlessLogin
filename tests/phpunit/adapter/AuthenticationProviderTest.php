@@ -6,6 +6,7 @@ use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\PrimaryAuthenticationProvider;
+use MediaWiki\Config\GlobalVarConfig;
 use MediaWikiIntegrationTestCase;
 use PasswordlessLogin\model\Challenge;
 use PasswordlessLogin\model\ChallengesRepository;
@@ -163,7 +164,7 @@ class AuthenticationProviderTest extends MediaWikiIntegrationTestCase {
 				$services = \MediaWiki\MediaWikiServices::getInstance();
 				$this->manager = new \MediaWiki\Auth\AuthManager(
 					$webRequest,
-					new \GlobalVarConfig(),
+					new GlobalVarConfig(),
 					$services->getObjectFactory(),
 					$services->getHookContainer(),
 					$services->getReadOnlyMode(),
