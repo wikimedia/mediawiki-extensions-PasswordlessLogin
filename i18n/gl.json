@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Toliño"
+		]
+	},
+	"passwordlesslogin": "Inicio de sesión sen contrasinal",
+	"passwordlesslogin-verify-request": "Verifica o teu inicio de sesión no teu teléfono.",
+	"passwordlesslogin-error-no-authentication-workflow": "O proceso de autenticación rematou inesperadamente.",
+	"passwordlesslogin-pair-device-step": "Sigue as instrucións para emparellar o teu novo dispositivo.",
+	"passwordlesslogin-pair-device": "Emparellar o dispositivo para iniciar sesión sen contrasinal",
+	"passwordlesslogin-pair-step-1": "1. Descarga a aplicación PasswordlessLogin de MediaWiki",
+	"passwordlesslogin-pair-step-2": "2. Escanea o código QR coa aplicación",
+	"passwordlesslogin-pair-step-3": "3. Unha vez finalizada a configuración da aplicación, continúa co seguinte paso",
+	"passwordlesslogin-authentication-app": "Aplicación de autenticación",
+	"apihelp-passwordlesslogin-summary": "Rexistra un dispositivo novo para un token de emparellamento xerado anteriormente.",
+	"apihelp-passwordlesslogin-param-pairToken": "O token de emparellamento xerado anteriormente para identificar a que usuario se lle rexistra o dispositivo.",
+	"apihelp-passwordlesslogin-verify-challenge-param-response": "A resposta (solución) ao desafío. A solución debe ser:<br />&#160;1. Un HMAC con SHA512 como algoritmo de sinatura<br />&#160;2. O código secreto compartido previamente como material de clave simétrica<br />&#160;3. Os datos MAC son o desafío como unha matriz de bytes<br />&#160;4. A resposta debe ser unha cadea hexadecimal<br />&#160;5. A resposta debe estar en minúsculas",
+	"apihelp-passwordlesslogin-verify-login-summary": "Comproba se o dispositivo xa verificou unha solicitude de inicio de sesión."
+}
