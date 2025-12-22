@@ -3,6 +3,7 @@
 		"authors": [
 			"A Chinese Wikipedian",
 			"Anterdc99",
+			"GuoPC",
 			"沈澄心"
 		]
 	},
@@ -14,7 +15,19 @@
 	"passwordlesslogin-verification-pending": "身份验证尚未验证。请在您连接的设备上验证您的登录请求。",
 	"passwordlesslogin-pair-device-step": "请按照说明配对您的新设备。",
 	"passwordlesslogin-no-device-paired": "目前还没有设备配对。",
+	"passwordlesslogin-verify-pair": "我们已向您的设备发送登录请求，以验证其是否已正确注册。请确认该请求并继续。",
 	"passwordlesslogin-pair-device": "用于无密码登录的对设备",
 	"passwordlesslogin-login": "用您的智能手机登录",
-	"passwordlesslogin-authentication-app": "身份验证应用程序"
+	"passwordlesslogin-pair-step-1": "1. 下载MediaWiki PasswordlessLogin应用程序",
+	"passwordlesslogin-pair-step-2": "2. 使用应用程序扫描二维码",
+	"passwordlesslogin-pair-step-3": "3. 应用程序设置完成后，继续下一步",
+	"passwordlesslogin-authentication-app": "身份验证应用程序",
+	"apihelp-passwordlesslogin-summary": "为先前生成的配对令牌注册新设备。",
+	"apihelp-passwordlesslogin-param-pairToken": "先前生成的配对令牌用于识别设备要注册到哪个用户。",
+	"apihelp-passwordlesslogin-param-deviceId": "唯一设备标识符，可用于识别设备，以及通过设备的默认消息系统（例如Android设备的Firebase云端消息传递）来向设备发送通知。",
+	"apihelp-passwordlesslogin-param-secret": "设备上生成的私钥，会用于签名发送到设备的质询。此私钥用于验证登录请求的质询响应，因此需要保密。",
+	"apihelp-passwordlesslogin-verify-challenge-summary": "验证发送到设备的登录请求。",
+	"apihelp-passwordlesslogin-verify-challenge-param-challenge": "发送到设备且必须解决的质询。",
+	"apihelp-passwordlesslogin-verify-challenge-param-response": "质询的回应（解答）。解答内容应为：<br />&#160;1. 以SHA512作为签名算法的HMAC<br />&#160;2. 预共享私钥作为对称密钥材料<br />&#160;3. MAC数据是作为字节数组的质询<br />&#160;4. 回应必须为十六进制字符串<br />&#160;5. 回应必须为小写",
+	"apihelp-passwordlesslogin-verify-login-summary": "检查登录请求是否已被设备验证。"
 }
