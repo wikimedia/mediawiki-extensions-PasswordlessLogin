@@ -1,22 +1,30 @@
 {
 	"@metadata": {
 		"authors": [
-			"Sabelöga"
+			"Sabelöga",
+			"Stefan2255"
 		]
 	},
 	"passwordlesslogin-desc": "Ger ett sätt att logga in utan lösenord genom att bekräfta inloggningen på en ansluten enhet.",
 	"passwordlesslogin-verify-request": "Bekräfta inloggningen på din telefon.",
 	"passwordlesslogin-error-no-authentication-workflow": "Autentiseringsarbetsflödet upphörde oväntat.",
-	"passwordlesslogin-no-challenge": "Ingen aktiv utmaning att bekräfta, försök att autentisera igen.",
+	"passwordlesslogin-no-challenge": "Ingen aktiv utmaning att bekräfta. Försök att autentisera igen.",
 	"passwordlesslogin-verification-pending": "Autentiseringen har ännu inte verifierats. Var vänlig verifiera din inloggningsbegäran på din anslutna enhet.",
 	"passwordlesslogin-pair-device-step": "Följ instruktionerna för att para ihop din nya enhet.",
 	"passwordlesslogin-no-device-paired": "Det finns ännu ingen parad enhet.",
-	"passwordlesslogin-verify-pair": "Vi har skicka en inloggningsbegäran till din enhet för att verifiera att den registrerats korrekt. Var vänlig bekräfta begäran och fortsätt.",
+	"passwordlesslogin-verify-pair": "Vi har skickat en inloggningsbegäran till din enhet för att verifiera att den registrerats korrekt. Var vänlig bekräfta begäran och fortsätt.",
 	"passwordlesslogin-pair-device": "Para enhet för lösenordsfri inloggning",
 	"passwordlesslogin-login": "Logga in med din smartphone",
 	"passwordlesslogin-pair-step-1": "1. Ladda ner MediaWikis app PasswordlessLogin",
 	"passwordlesslogin-pair-step-2": "2. Skanna in QR-koden med appen",
 	"passwordlesslogin-pair-step-3": "3. När appen har installerats ordentligt kan du fortsätta till nästa steg",
 	"passwordlesslogin-authentication-app": "Autentiseringsapp",
-	"apihelp-passwordlesslogin-verify-challenge-summary": "Verifiera en begäran som skickats till enheten."
+	"apihelp-passwordlesslogin-summary": "Registrera en ny enhet för en tidigare genererad partoken.",
+	"apihelp-passwordlesslogin-param-pairToken": "Den tidigare genererade partoken för att identifiera vilken användare enheten ska registreras till.",
+	"apihelp-passwordlesslogin-param-deviceId": "En unik enhetsidentifierare som kan användas för att identifiera en enhet samt för att skicka aviseringar till den med enhetens standardmeddelandesystem (t.ex. Firebase Cloud Messaging för Android-enheter).",
+	"apihelp-passwordlesslogin-param-secret": "En hemlighet som genereras på enheten och som kommer att användas för att signera utmaningar som skickas till enheten. Denna hemlighet används för att verifiera ett svar på en inloggningsförfrågan och måste hållas hemlig.",
+	"apihelp-passwordlesslogin-verify-challenge-summary": "Verifiera en begäran som skickats till enheten.",
+	"apihelp-passwordlesslogin-verify-challenge-param-challenge": "Utmaningen som skickades till enheten och måste lösas.",
+	"apihelp-passwordlesslogin-verify-challenge-param-response": "Svaret (lösningen) på utmaningen. Lösningen måste vara:<br />&#160;1. En HMAC med SHA512 som signaturalgoritm<br />&#160;2. Den fördelade hemligheten som ett symmetriskt nyckelmaterial<br />&#160;3. MAC-data är utmaningen som en byte-array<br />&#160;4. Svaret måste vara en hexadecimal sträng<br />&#160;5. Svaret måste vara med gemener",
+	"apihelp-passwordlesslogin-verify-login-summary": "Kontrollera om en inloggningsbegäran redan har verifierats av enheten."
 }
