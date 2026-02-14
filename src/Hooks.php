@@ -7,10 +7,10 @@ use MediaWiki\Config\Config;
 use MediaWiki\Installer\DatabaseUpdater;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Output\OutputPage;
+use MediaWiki\Skin\Skin;
 use PasswordlessLogin\adapter\HTMLImageField;
 use PasswordlessLogin\adapter\HTMLPlayStoreField;
 use PasswordlessLogin\model\QRCodeRequest;
-use Skin;
 
 class Hooks {
 	public static $addFrontendModules = false;
