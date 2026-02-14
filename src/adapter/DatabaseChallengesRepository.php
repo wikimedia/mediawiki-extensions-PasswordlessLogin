@@ -2,9 +2,9 @@
 
 namespace PasswordlessLogin\adapter;
 
+use MediaWiki\User\User;
 use PasswordlessLogin\model\Challenge;
 use PasswordlessLogin\model\ChallengesRepository;
-use User;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 class DatabaseChallengesRepository implements ChallengesRepository {

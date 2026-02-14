@@ -2,9 +2,9 @@
 
 namespace PasswordlessLogin\adapter;
 
+use MediaWiki\User\User;
 use PasswordlessLogin\model\Device;
 use PasswordlessLogin\model\DevicesRepository;
-use User;
 
 class FakeDevicesRepository implements DevicesRepository {
 	/** @var Device|null */

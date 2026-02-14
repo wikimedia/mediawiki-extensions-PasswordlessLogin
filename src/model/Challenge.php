@@ -3,7 +3,7 @@
 namespace PasswordlessLogin\model;
 
 use Exception;
-use User;
+use MediaWiki\User\User;
 
 class Challenge {
 	private $challenge;

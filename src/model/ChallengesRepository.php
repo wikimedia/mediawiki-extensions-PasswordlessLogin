@@ -2,7 +2,7 @@
 
 namespace PasswordlessLogin\model;
 
-use User;
+use MediaWiki\User\User;
 
 interface ChallengesRepository {
 	const SERVICE_NAME = 'PasswordlessLogin.ChallengesRepository';

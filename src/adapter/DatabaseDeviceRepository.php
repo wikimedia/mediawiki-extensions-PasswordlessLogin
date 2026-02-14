@@ -2,9 +2,9 @@
 
 namespace PasswordlessLogin\adapter;
 
+use MediaWiki\User\User;
 use PasswordlessLogin\model\Device;
 use PasswordlessLogin\model\DevicesRepository;
-use User;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 

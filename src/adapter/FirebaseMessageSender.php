@@ -2,7 +2,7 @@
 
 namespace PasswordlessLogin\adapter;
 
-use Config;
+use MediaWiki\Config\Config;
 use MWException;
 use PasswordlessLogin\model\Challenge;
 use PasswordlessLogin\model\Device;

@@ -6,7 +6,9 @@ use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\PrimaryAuthenticationProvider;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
+use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
 use PasswordlessLogin\model\Challenge;
 use PasswordlessLogin\model\ChallengesRepository;
@@ -19,8 +21,6 @@ use PasswordlessLogin\model\QRCodeRequest;
 use PasswordlessLogin\model\RemoveRequest;
 use PasswordlessLogin\model\VerifyRequest;
 use StatusValue;
-use User;
-use WebRequest;
 
 /**
  * @group Database

@@ -2,11 +2,11 @@
 
 namespace PasswordlessLogin;
 
-use Config;
-use DatabaseUpdater;
 use MediaWiki\Auth\AuthenticationRequest;
+use MediaWiki\Config\Config;
+use MediaWiki\Installer\DatabaseUpdater;
 use MediaWiki\MediaWikiServices;
-use OutputPage;
+use MediaWiki\Output\OutputPage;
 use PasswordlessLogin\adapter\HTMLImageField;
 use PasswordlessLogin\adapter\HTMLPlayStoreField;
 use PasswordlessLogin\model\QRCodeRequest;

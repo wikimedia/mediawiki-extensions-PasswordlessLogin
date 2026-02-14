@@ -2,7 +2,7 @@
 
 namespace PasswordlessLogin\adapter\api;
 
-use ApiBase;
+use MediaWiki\Api\ApiBase;
 use MediaWiki\MediaWikiServices;
 use PasswordlessLogin\model\DevicesRepository;
 

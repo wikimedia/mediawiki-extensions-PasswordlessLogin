@@ -2,11 +2,11 @@
 
 namespace PasswordlessLogin;
 
+use MediaWiki\Context\RequestContext;
 use MediaWiki\MainConfigNames;
+use MediaWiki\Output\OutputPage;
 use MediaWiki\Title\Title;
 use MediaWikiIntegrationTestCase;
-use OutputPage;
-use RequestContext;
 
 class HooksTest extends MediaWikiIntegrationTestCase {
 	/**

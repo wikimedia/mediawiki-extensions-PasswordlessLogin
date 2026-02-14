@@ -2,9 +2,9 @@
 
 namespace PasswordlessLogin\adapter;
 
+use MediaWiki\User\User;
 use PasswordlessLogin\model\Challenge;
 use PasswordlessLogin\model\ChallengesRepository;
-use User;
 
 class FakeChallengesRepository implements ChallengesRepository {
 	/** @var Challenge */

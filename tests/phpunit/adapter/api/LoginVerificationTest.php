@@ -2,11 +2,11 @@
 
 namespace PasswordlessLogin\adapter\api;
 
-use ApiTestCase;
+use MediaWiki\Tests\Api\ApiTestCase;
+use MediaWiki\User\User;
 use PasswordlessLogin\adapter\AuthenticationProvider;
 use PasswordlessLogin\model\Challenge;
 use PasswordlessLogin\model\ChallengesRepository;
-use User;
 
 /**
  * @group API

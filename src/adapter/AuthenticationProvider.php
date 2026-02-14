@@ -2,13 +2,13 @@
 
 namespace PasswordlessLogin\adapter;
 
-use Config;
-use IDBAccessObject;
 use MediaWiki\Auth\AbstractPrimaryAuthenticationProvider;
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Config\Config;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\User;
 use PasswordlessLogin\Hooks;
 use PasswordlessLogin\model\Challenge;
 use PasswordlessLogin\model\ChallengesRepository;
@@ -21,7 +21,7 @@ use PasswordlessLogin\model\QRCodeRequest;
 use PasswordlessLogin\model\RemoveRequest;
 use PasswordlessLogin\model\VerifyRequest;
 use StatusValue;
-use User;
+use Wikimedia\Rdbms\IDBAccessObject;
 
 class AuthenticationProvider extends AbstractPrimaryAuthenticationProvider {
 	const CHALLENGE_SOLVED = 'solved';

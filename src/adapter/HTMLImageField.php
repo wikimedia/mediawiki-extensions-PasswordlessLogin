@@ -2,7 +2,7 @@
 
 namespace PasswordlessLogin\adapter;
 
-use HTMLFormField;
+use MediaWiki\HTMLForm\HTMLFormField;
 use MWException;
 use OOUI\HtmlSnippet;
 use OOUI\Widget;
