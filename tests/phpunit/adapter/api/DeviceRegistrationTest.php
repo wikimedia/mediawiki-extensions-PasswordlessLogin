@@ -12,7 +12,7 @@ use User;
  * @group Database
  * @group medium
  *
- * @covers \PasswordlessLogin\adapter\api\DeviceRegistrationTest
+ * @covers \PasswordlessLogin\adapter\api\DeviceRegistration
  */
 class DeviceRegistrationTest extends ApiTestCase {
 	/** @var DevicesRepository */
