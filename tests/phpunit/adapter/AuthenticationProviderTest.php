@@ -6,7 +6,7 @@ use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Auth\PrimaryAuthenticationProvider;
-use MediaWiki\Config\GlobalVarConfig;
+use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWikiIntegrationTestCase;
 use PasswordlessLogin\model\Challenge;
 use PasswordlessLogin\model\ChallengesRepository;
@@ -26,6 +26,8 @@ use WebRequest;
  * @group Database
  */
 class AuthenticationProviderTest extends MediaWikiIntegrationTestCase {
+	use AuthenticationProviderTestTrait;
+
 	/**
 	 * @var FakeDevicesRepository
 	 */
@@ -158,29 +160,10 @@ class AuthenticationProviderTest extends MediaWikiIntegrationTestCase {
 	public function testPublishUsernameForApiVerification() {
 		$this->overrideConfigValue( 'PLEnableApiVerification', true );
 		$webRequest = new WebRequest();
-		$provider = new class( $webRequest ) extends AuthenticationProvider {
-			public function __construct( \WebRequest $webRequest ) {
-				parent::__construct();
-				$services = \MediaWiki\MediaWikiServices::getInstance();
-				$this->manager = new \MediaWiki\Auth\AuthManager(
-					$webRequest,
-					new GlobalVarConfig(),
-					$services->getObjectFactory(),
-					$services->getHookContainer(),
-					$services->getReadOnlyMode(),
-					$services->getUserNameUtils(),
-					$services->getBlockManager(),
-					$services->getWatchlistManager(),
-					$services->getDBLoadBalancer(),
-					$services->getContentLanguage(),
-					$services->getLanguageConverterFactory(),
-					$services->getBotPasswordStore(),
-					$services->getUserFactory(),
-					$services->getUserIdentityLookup(),
-					$services->getUserOptionsManager()
-				);
-			}
-		};
+		// AuthManager makes access to the global request
+		$this->setRequest( $webRequest );
+		$provider = new AuthenticationProvider();
+		$this->initProvider( $provider, null, null, $this->getServiceContainer()->getAuthManager() );
 		$request = new LoginRequest();
 		$request->password = '';
 		$request->username = 'UTSysop';
