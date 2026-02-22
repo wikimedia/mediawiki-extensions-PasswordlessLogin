@@ -8,16 +8,23 @@ use PasswordlessLogin\Hooks;
 use PasswordlessLogin\model\ChallengesRepository;
 use PasswordlessLogin\model\DevicesRepository;
 
+/** @phpcs-require-sorted-array */
 return [
-	DevicesRepository::SERVICE_NAME => static function ( MediaWikiServices $services ) {
-		return new DatabaseDeviceRepository( $services->getDBLoadBalancer() );
-	},
-
-	ChallengesRepository::SERVICE_NAME => static function ( MediaWikiServices $services ) {
+	ChallengesRepository::SERVICE_NAME => static function (
+		MediaWikiServices $services,
+	): DatabaseChallengesRepository {
 		return new DatabaseChallengesRepository( $services->getDBLoadBalancer() );
 	},
 
-	FirebaseMessageSender::SERVICE_NAME => static function ( MediaWikiServices $services ) {
+	DevicesRepository::SERVICE_NAME => static function (
+		MediaWikiServices $services,
+	): DatabaseDeviceRepository {
+		return new DatabaseDeviceRepository( $services->getDBLoadBalancer() );
+	},
+
+	FirebaseMessageSender::SERVICE_NAME => static function (
+		MediaWikiServices $services,
+	): FirebaseMessageSender {
 		$config = $services->getConfigFactory()->makeConfig( 'passwordless' );
 		$mainConfig = $services->getMainConfig();
 
