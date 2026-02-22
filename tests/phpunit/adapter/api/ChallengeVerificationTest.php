@@ -14,7 +14,7 @@ use User;
  * @group Database
  * @group medium
  *
- * @covers \PasswordlessLogin\adapter\api\DeviceRegistrationTest
+ * @covers \PasswordlessLogin\adapter\api\ChallengeVerification
  */
 class ChallengeVerificationTest extends ApiTestCase {
 	/** @var ChallengesRepository */
