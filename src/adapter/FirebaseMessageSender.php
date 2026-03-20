@@ -39,7 +39,6 @@ class FirebaseMessageSender {
 		$curlSession = $this->curlSession( $device, $challenge );
 
 		$result = json_decode( curl_exec( $curlSession ) );
-		curl_close( $curlSession );
 		if ( $result->success !== 1 ) {
 			throw new MWException( 'Message could not be sent. Response: ' . $result );
 		}
