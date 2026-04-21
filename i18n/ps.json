@@ -1,0 +1,14 @@
+{
+	"@metadata": {
+		"authors": [
+			"شاه زمان پټان"
+		]
+	},
+	"passwordlesslogin-desc": "په تړلې وسيله کې د ننوتنې تاييد سره بې له پټنومه د ننوتنې لار چمتو کوي.",
+	"passwordlesslogin-verify-request": "مهرباني وکړئ خپل موبایل کې د خپلې ننوتنې تاييد وکړئ.",
+	"passwordlesslogin-error-no-authentication-workflow": "د تاييد کارچاره ناڅاپه پای ته ورسېده.",
+	"passwordlesslogin-no-challenge": "تاييد لپاره هېڅ کارنده ننگونه نشته. مهرباني وکړئ بياځلي د تاييدولو هڅه وکړئ.",
+	"passwordlesslogin-verification-pending": "د تاييد تاييد لا نه دی شوی. مهرباني وکړئ په خپل نښلېدلې وسیله کې د خپلې ننوتنې تاييد وکړئ.",
+	"passwordlesslogin-pair-device-step": "مهرباني وکړئ د خپلې نوې وسيلې د جوړه کولو لپاره لارښوونې وڅارئ.",
+	"passwordlesslogin-no-device-paired": "تراوسه هېڅ وسیله جوړه شوې نه ده."
+}
