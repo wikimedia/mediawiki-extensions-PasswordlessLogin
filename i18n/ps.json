@@ -10,5 +10,8 @@
 	"passwordlesslogin-no-challenge": "تاييد لپاره هېڅ کارنده ننگونه نشته. مهرباني وکړئ بياځلي د تاييدولو هڅه وکړئ.",
 	"passwordlesslogin-verification-pending": "د تاييد تاييد لا نه دی شوی. مهرباني وکړئ په خپل نښلېدلې وسیله کې د خپلې ننوتنې تاييد وکړئ.",
 	"passwordlesslogin-pair-device-step": "مهرباني وکړئ د خپلې نوې وسيلې د جوړه کولو لپاره لارښوونې وڅارئ.",
-	"passwordlesslogin-no-device-paired": "تراوسه هېڅ وسیله جوړه شوې نه ده."
+	"passwordlesslogin-no-device-paired": "تراوسه هېڅ وسیله جوړه شوې نه ده.",
+	"passwordlesslogin-verify-pair": "موږ ستاسو وسيلې ته د ننوتلو غوښتنه لېږلې؛ ترڅو تاييد کړو چې دا په سمه توگه نوم‌ليکل شوې ده. مهرباني وکړئ غوښتنه تاييد کړئ او دوام ورکړئ.",
+	"passwordlesslogin-pair-device": "بې‌پټنومه ننوتنې لپاره وسیله جوړه کړئ",
+	"passwordlesslogin-login": "خپل ځيرک تلیفون سره ورننوځئ"
 }
