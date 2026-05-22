@@ -18,7 +18,7 @@
 	"passwordlesslogin-verify-pair": "기기가 올바르게 등록되었는지 확인하기 위해 로그인 요청을 보냈습니다. 요청을 확인하고 계속 진행해 주세요.",
 	"passwordlesslogin-pair-device": "비밀번호 없는 로그인을 위해 장치를 페어링합니다",
 	"passwordlesslogin-login": "내 스마트폰으로 로그인",
-	"passwordlesslogin-pair-step-1": "1. MediaWiki PasswordlessLogin 앱을 다운로드하세요",
+	"passwordlesslogin-pair-step-1": "1. 미디어위키 PasswordlessLogin 앱을 다운로드하세요",
 	"passwordlesslogin-pair-step-2": "2. 앱으로 QR코드를 스캔하세요",
 	"passwordlesslogin-pair-step-3": "3. 앱 설정이 완료되면 다음 단계로 계속하세요",
 	"passwordlesslogin-authentication-app": "인증 앱",
