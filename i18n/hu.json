@@ -1,0 +1,20 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dj"
+		]
+	},
+	"passwordlesslogin-desc": "Lehetővé teszi a jelszó nélküli bejelentkezést a bejelentkezés egy összekapcsolt eszközön történő megerősítésével.",
+	"passwordlesslogin-verify-request": "Erősítsd meg a bejelentkezést a telefonodon.",
+	"passwordlesslogin-error-no-authentication-workflow": "A hitelesítési folyamat váratlanul megszakadt.",
+	"passwordlesslogin-no-challenge": "Nincs megerősítendő aktív kérés. Próbáld meg újra a hitelesítést.",
+	"passwordlesslogin-verification-pending": "A hitelesítés még nincs megerősítve. Erősítsd meg a bejelentkezési kérésedet az összekapcsolt eszközödön.",
+	"passwordlesslogin-pair-device-step": "Kövesd az utasításokat az új eszközöd párosításához.",
+	"passwordlesslogin-no-device-paired": "Még nincs párosított eszköz.",
+	"passwordlesslogin-verify-pair": "Bejelentkezési kérést küldtünk az eszközödre annak ellenőrzésére, hogy megfelelően lett-e regisztrálva. Erősítsd meg a kérést, majd folytasd.",
+	"passwordlesslogin-pair-device": "Eszköz párosítása a jelszó nélküli bejelentkezéshez",
+	"passwordlesslogin-login": "Bejelentkezés okostelefonnal",
+	"passwordlesslogin-pair-step-1": "1. Töltsd le a MediaWiki PasswordlessLogin alkalmazást",
+	"passwordlesslogin-pair-step-2": "2. Olvasd be a QR-kódot az alkalmazással",
+	"passwordlesslogin-pair-step-3": "3. Az alkalmazás beállításának befejezése után lépj tovább a következő lépésre"
+}
