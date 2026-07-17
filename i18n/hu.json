@@ -1,0 +1,29 @@
+{
+	"@metadata": {
+		"authors": [
+			"Dj"
+		]
+	},
+	"passwordlesslogin-desc": "Lehetővé teszi a jelszó nélküli bejelentkezést a bejelentkezés egy összekapcsolt eszközön történő megerősítésével.",
+	"passwordlesslogin-verify-request": "Erősítsd meg a bejelentkezést a telefonodon.",
+	"passwordlesslogin-error-no-authentication-workflow": "A hitelesítési folyamat váratlanul megszakadt.",
+	"passwordlesslogin-no-challenge": "Nincs megerősítendő aktív kérés. Próbáld meg újra a hitelesítést.",
+	"passwordlesslogin-verification-pending": "A hitelesítés még nincs megerősítve. Erősítsd meg a bejelentkezési kérésedet az összekapcsolt eszközödön.",
+	"passwordlesslogin-pair-device-step": "Kövesd az utasításokat az új eszközöd párosításához.",
+	"passwordlesslogin-no-device-paired": "Még nincs párosított eszköz.",
+	"passwordlesslogin-verify-pair": "Bejelentkezési kérést küldtünk az eszközödre annak ellenőrzésére, hogy megfelelően lett-e regisztrálva. Erősítsd meg a kérést, majd folytasd.",
+	"passwordlesslogin-pair-device": "Eszköz párosítása a jelszó nélküli bejelentkezéshez",
+	"passwordlesslogin-login": "Bejelentkezés okostelefonnal",
+	"passwordlesslogin-pair-step-1": "1. Töltsd le a MediaWiki PasswordlessLogin alkalmazást",
+	"passwordlesslogin-pair-step-2": "2. Olvasd be a QR-kódot az alkalmazással",
+	"passwordlesslogin-pair-step-3": "3. Az alkalmazás beállításának befejezése után lépj tovább a következő lépésre",
+	"passwordlesslogin-authentication-app": "Hitelesítő alkalmazás",
+	"apihelp-passwordlesslogin-summary": "Új eszköz regisztrálása egy korábban létrehozott párosítási tokenhez.",
+	"apihelp-passwordlesslogin-param-pairToken": "A korábban létrehozott párosítási token, amely azonosítja, hogy az eszközt melyik felhasználóhoz kell regisztrálni.",
+	"apihelp-passwordlesslogin-param-deviceId": "Egyedi eszközazonosító, amely az eszköz azonosítására, valamint az eszköz alapértelmezett üzenetküldő rendszerén keresztüli értesítések küldésére használható (például Android-eszközökön a Firebase Cloud Messaging).",
+	"apihelp-passwordlesslogin-param-secret": "Az eszközön létrehozott titkos érték, amely az eszközre küldött kihívások aláírására szolgál. Ezzel ellenőrizhető a bejelentkezési kérés kihívására adott válasz, ezért titokban kell tartani.",
+	"apihelp-passwordlesslogin-verify-challenge-summary": "Egy eszközre küldött bejelentkezési kérés ellenőrzése.",
+	"apihelp-passwordlesslogin-verify-challenge-param-challenge": "Az eszközre küldött, megoldandó kihívás.",
+	"apihelp-passwordlesslogin-verify-challenge-param-response": "A kihívásra adott válasz (megoldás). A megoldásnak a következő követelményeknek kell megfelelnie:<br />&#160;1. Az aláírási algoritmus HMAC SHA-512 legyen<br />&#160;2. A szimmetrikus kulcsanyag az előre megosztott titok legyen<br />&#160;3. A MAC bemeneti adata a kihívás legyen bájttömbként<br />&#160;4. A válasz hexadecimális karakterlánc legyen<br />&#160;5. A válasz kisbetűs legyen",
+	"apihelp-passwordlesslogin-verify-login-summary": "Annak ellenőrzése, hogy az eszköz már megerősítette-e a bejelentkezési kérést."
+}
