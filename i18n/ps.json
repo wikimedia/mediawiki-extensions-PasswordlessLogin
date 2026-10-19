@@ -13,5 +13,15 @@
 	"passwordlesslogin-no-device-paired": "تراوسه هېڅ وسیله جوړه شوې نه ده.",
 	"passwordlesslogin-verify-pair": "موږ ستاسو وسيلې ته د ننوتلو غوښتنه لېږلې؛ ترڅو تاييد کړو چې دا په سمه توگه نوم‌ليکل شوې ده. مهرباني وکړئ غوښتنه تاييد کړئ او دوام ورکړئ.",
 	"passwordlesslogin-pair-device": "بې‌پټنومه ننوتنې لپاره وسیله جوړه کړئ",
-	"passwordlesslogin-login": "خپل ځيرک تلیفون سره ورننوځئ"
+	"passwordlesslogin-login": "خپل ځيرک تلیفون سره ورننوځئ",
+	"passwordlesslogin-pair-step-1": "۱. د مېډياويکي بې‌پټنوم‌ننوتلو کاريال راکښته کړئ",
+	"passwordlesslogin-pair-step-2": "۲. کاريال سره کيوار کوډ سکين کړئ",
+	"passwordlesslogin-pair-step-3": "۳. کله چې د کاريال ترتيب بشپړ شي، بل گام ته دوام ورکړئ",
+	"passwordlesslogin-authentication-app": "تاييدونکی کاريال",
+	"apihelp-passwordlesslogin-summary": "د پخوانۍ زېږول‌شوې جوړې نښې لپاره د يو نوي سولگر نوم‌ليکنه وکړئ.",
+	"apihelp-passwordlesslogin-param-pairToken": "د پخوانۍ زېږول‌شوې جوړې نښېه د دې لپاره چې وپېژندل شي چې سولگر کوم کارن ته نوم‌ليکل‌شوی دی.",
+	"apihelp-passwordlesslogin-param-deviceId": "د سولگر يو ځانگړی پېژندونکی چې د سولگر پېژندلو او د سولگر تلواله پيغام رسولو غونډال سره د ورته خبرتياوو لېږلو لپاره کارول کېدی شي ( د بېلگې په توگه د اندرويد سولگر لپاره Firebase Cloud پيغام رسونې)",
+	"apihelp-passwordlesslogin-verify-challenge-summary": "سولگر ته لېږل شوې د ننوتلو غوښتنه تاييد کړئ.",
+	"apihelp-passwordlesslogin-verify-challenge-param-challenge": "هغه ننگونه چې سولگر ه لېږل شوې وه بايد هواره شي.",
+	"apihelp-passwordlesslogin-verify-login-summary": "وگورئ چې ايا د ننوتلو غوښتنه دمخه د سولگر له‌خوا تاييد شوې وه."
 }
