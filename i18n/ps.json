@@ -4,6 +4,7 @@
 			"شاه زمان پټان"
 		]
 	},
+	"passwordlesslogin": "بې‌پټنومه ننوتل",
 	"passwordlesslogin-desc": "په تړلې وسيله کې د ننوتنې تاييد سره بې له پټنومه د ننوتنې لار چمتو کوي.",
 	"passwordlesslogin-verify-request": "مهرباني وکړئ خپل موبایل کې د خپلې ننوتنې تاييد وکړئ.",
 	"passwordlesslogin-error-no-authentication-workflow": "د تاييد کارچاره ناڅاپه پای ته ورسېده.",
@@ -21,6 +22,7 @@
 	"apihelp-passwordlesslogin-summary": "د پخوانۍ زېږول‌شوې جوړې نښې لپاره د يو نوي سولگر نوم‌ليکنه وکړئ.",
 	"apihelp-passwordlesslogin-param-pairToken": "د پخوانۍ زېږول‌شوې جوړې نښېه د دې لپاره چې وپېژندل شي چې سولگر کوم کارن ته نوم‌ليکل‌شوی دی.",
 	"apihelp-passwordlesslogin-param-deviceId": "د سولگر يو ځانگړی پېژندونکی چې د سولگر پېژندلو او د سولگر تلواله پيغام رسولو غونډال سره د ورته خبرتياوو لېږلو لپاره کارول کېدی شي ( د بېلگې په توگه د اندرويد سولگر لپاره Firebase Cloud پيغام رسونې)",
+	"apihelp-passwordlesslogin-param-secret": "سولگر کې يو راز رامنځته‌شوی چې سولگر ته لېږل شوې ننگونې لاسليکولو لپاره به وکارول شي. دا راز د ننوتلو د غوښتنې د ننگونو ځواب تاييدولو لپاره کارېږي او بايد پټ وساتل شي.",
 	"apihelp-passwordlesslogin-verify-challenge-summary": "سولگر ته لېږل شوې د ننوتلو غوښتنه تاييد کړئ.",
 	"apihelp-passwordlesslogin-verify-challenge-param-challenge": "هغه ننگونه چې سولگر ه لېږل شوې وه بايد هواره شي.",
 	"apihelp-passwordlesslogin-verify-login-summary": "وگورئ چې ايا د ننوتلو غوښتنه دمخه د سولگر له‌خوا تاييد شوې وه."
